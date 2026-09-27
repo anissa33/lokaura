@@ -1,0 +1,2097 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Lokaura — Style & Beauty Assistant</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bronze: #8B5E3C;
+      --bronze-dark: #6B4226;
+      --cream: #FDFBF7;
+      --beige: #F5EFE6;
+      --rose: #D9A79C;
+      --rose-light: #F3DFD9;
+      --text-dark: #2E241F;
+      --text-soft: #5E4B3E;
+      --shadow-sm: 0 8px 20px rgba(0,0,0,0.04);
+      --shadow-md: 0 12px 28px rgba(0,0,0,0.06);
+      --radius-card: 24px;
+      --radius-btn: 40px;
+      --radius-input: 16px;
+      --bottom-nav-height: 74px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--cream);
+      color: var(--text-dark);
+      padding-bottom: var(--bottom-nav-height);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    #splash-screen {
+      position: fixed;
+      inset: 0;
+      background: var(--cream);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.6s;
+    }
+    .logo-splash {
+      font-size: 3.8rem;
+      font-weight: 700;
+      color: var(--bronze);
+      letter-spacing: -1px;
+      margin-bottom: 1.5rem;
+    }
+    .btn-bronze {
+      background-color: var(--bronze);
+      color: white;
+      border: none;
+      border-radius: var(--radius-btn);
+      padding: 0.85rem 2.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: 0.2s;
+      box-shadow: 0 12px 18px -8px rgba(139,94,60,0.3);
+    }
+    .btn-bronze:hover { background-color: var(--bronze-dark); color: white; }
+    .btn-outline-bronze {
+      border: 1.5px solid var(--bronze);
+      color: var(--bronze);
+      border-radius: var(--radius-btn);
+      padding: 0.75rem 1.8rem;
+      font-weight: 500;
+      background: transparent;
+    }
+    .btn-outline-bronze:hover { background: var(--bronze); color: white; }
+    .card-lok {
+      background: white;
+      border-radius: var(--radius-card);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      border: none;
+      transition: 0.15s;
+    }
+    .card-lok:hover { box-shadow: var(--shadow-md); }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: var(--bottom-nav-height);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      border-top: 1px solid rgba(139,94,60,0.08);
+      z-index: 1000;
+      padding: 0 6px;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.02);
+    }
+    .bottom-nav .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: #B9A89C;
+      transition: 0.2s;
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      gap: 2px;
+    }
+    .bottom-nav .nav-item i { font-size: 1.5rem; }
+    .bottom-nav .nav-item.active {
+      color: var(--bronze);
+      background: rgba(139,94,60,0.06);
+      font-weight: 500;
+    }
+    .page {
+      display: none;
+      padding: 20px 16px 16px;
+      animation: fadeUp 0.25s ease;
+    }
+    .page.active { display: block; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h1, h2, h3, h4, h5 { font-weight: 600; color: var(--bronze); }
+    .text-soft { color: var(--text-soft); }
+    .progress-thin { height: 8px; background: var(--rose-light); border-radius: 10px; }
+    .progress-bar-rose { background: var(--rose); border-radius: 10px; }
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      border-radius: 20px;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+      border: 1.5px solid #f0e6dd;
+      transition: 0.15s;
+      cursor: pointer;
+    }
+    .quiz-option.selected { border-color: var(--bronze); background: #faf6f2; }
+    .quiz-option input[type="radio"] { accent-color: var(--bronze); width: 20px; height: 20px; }
+    .color-swatch {
+      width: 50px; height: 50px; border-radius: 16px; display: inline-block; margin: 4px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .profile-pic {
+      width: 90px; height: 90px; border-radius: 50%;
+      object-fit: cover; border: 3px solid var(--rose-light);
+    }
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid #f0e6dd;
+    }
+    .setting-item:last-child { border-bottom: none; }
+    .form-control-lok {
+      border-radius: var(--radius-input);
+      border: 1.5px solid #e5d9cf;
+      padding: 12px 18px;
+      background: white;
+    }
+    .form-control-lok:focus {
+      border-color: var(--bronze);
+      box-shadow: 0 0 0 0.2rem rgba(139,94,60,0.15);
+    }
+    .btn-google { background: #fff; border: 1.5px solid #ddd; border-radius: 40px; padding: 12px; font-weight: 500; }
+    .modal-content { border-radius: 32px; border: none; }
+    .modal-header { border-bottom: none; }
+    .modal-footer { border-top: none; }
+    .hidden { display: none !important; }
+    .footer-space { height: 10px; }
+    .dark-mode { background: #2A241F; color: #F0E6DD; }
+    .dark-mode .card-lok { background: #3B322B; color: #F0E6DD; }
+    .dark-mode .bottom-nav { background: #2A241F; }
+    .welcome-banner {
+      background: linear-gradient(135deg, var(--bronze) 0%, #A67B5B 100%);
+      color: white;
+      border-radius: var(--radius-card);
+      padding: 1.5rem;
+      margin-bottom: 1.2rem;
+      box-shadow: var(--shadow-md);
+    }
+    .welcome-banner h3 { color: white; }
+    .welcome-banner p { color: rgba(255,255,255,0.9); margin-bottom: 0; }
+    .feature-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0e6dd;
+    }
+    .feature-list-item:last-child { border-bottom: none; }
+    .feature-icon {
+      width: 42px; height: 42px; min-width: 42px;
+      border-radius: 14px;
+      background: var(--rose-light);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--bronze);
+      font-size: 1.2rem;
+    }
+    .shortcut-card { cursor: pointer; transition: transform 0.15s; }
+    .shortcut-card:active { transform: scale(0.97); }
+    .step-number {
+      width: 26px; height: 26px; min-width: 26px;
+      background: var(--bronze); color: white;
+      border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 600;
+    }
+    .form-select-lok {
+      border-radius: var(--radius-input);
+      border: 1.5px solid #e5d9cf;
+      padding: 12px 18px;
+      background: white;
+      font-size: 0.95rem;
+    }
+    .form-select-lok:focus {
+      border-color: var(--bronze);
+      box-shadow: 0 0 0 0.2rem rgba(139,94,60,0.15);
+    }
+    .styling-tips {
+      background: #FFF9F4;
+      border-radius: 18px;
+      padding: 16px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--text-soft);
+      border: 1px dashed #e5d9cf;
+    }
+    .styling-tips strong { color: var(--bronze-dark); }
+    .loading-overlay {
+      text-align: center;
+      padding: 40px 0;
+    }
+    .spinner-lok {
+      width: 50px; height: 50px;
+      border: 4px solid var(--rose-light);
+      border-top: 4px solid var(--bronze);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .fade-in-result { animation: fadeInResult 0.5s ease; }
+    @keyframes fadeInResult {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .look-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--bronze);
+      margin-bottom: 4px;
+    }
+    .breakdown-photo-card {
+      background: #FAF6F2;
+      border-radius: 18px;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-left: 4px solid var(--rose);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .breakdown-photo-slot {
+      width: 80px;
+      height: 80px;
+      min-width: 80px;
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      background: #EDE3D6;
+    }
+    .breakdown-photo-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .breakdown-photo-slot .slot-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      gap: 4px;
+      position: relative;
+    }
+    .breakdown-photo-slot .slot-placeholder i {
+      font-size: 1.6rem;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+    }
+    .breakdown-photo-slot .slot-placeholder span {
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      opacity: 0.95;
+    }
+    .breakdown-info { flex: 1; min-width: 0; }
+    .breakdown-info .breakdown-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--bronze-dark);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+    .breakdown-info .breakdown-value {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      line-height: 1.4;
+    }
+    .color-edu-card {
+      background: linear-gradient(135deg, #FFF9F4 0%, #FDF3EC 100%);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 12px;
+      border: 1px solid #f0e0d5;
+    }
+    .color-edu-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--bronze-dark);
+      font-size: 0.9rem;
+    }
+    .color-edu-body {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--text-soft);
+    }
+    .color-edu-body strong { color: var(--bronze-dark); }
+    .color-edu-palette {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .color-edu-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    }
+    .score-bar-container {
+      height: 8px;
+      background: #F0E6DD;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .score-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--rose), var(--bronze));
+      border-radius: 10px;
+      transition: width 0.8s ease;
+    }
+    /* Modal khusus */
+    .modal-icon-circle {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px auto;
+    }
+    .modal-icon-circle i { color: white; }
+  </style>
+</head>
+<body>
+
+<!-- SPLASH SCREEN -->
+<div id="splash-screen">
+  <div class="logo-splash">Lokaura</div>
+  <p class="text-soft mb-4">Style & Beauty Assistant</p>
+  <button class="btn-bronze" id="splashStartBtn">Mulai Sekarang</button>
+</div>
+
+<!-- MAIN APP CONTAINER -->
+<div id="app-container" class="hidden">
+
+  <!-- ============ BERANDA ============ -->
+  <div id="page-beranda" class="page active">
+    <div class="welcome-banner">
+      <h3 class="mb-1" style="color:white;">Halo, <span id="greetingName">Aura!</span> 👋</h3>
+      <p>Selamat datang di Lokaura, asisten gaya & kecantikanmu.</p>
+    </div>
+
+    <div class="card-lok mb-3">
+      <h5 class="mb-2"><i class="bi bi-stars me-2"></i>Apa itu Lokaura?</h5>
+      <p class="text-soft mb-0" style="font-size: 0.92rem;">
+        Lokaura adalah platform <strong>style & beauty assistant</strong> terintegrasi yang membantumu tampil percaya diri setiap hari. Kami menggabungkan tiga hal dalam satu aplikasi:
+      </p>
+    </div>
+
+    <div class="card-lok mb-3">
+      <h6 class="fw-bold mb-1">Fitur Unggulan</h6>
+      <div class="feature-list-item">
+        <div class="feature-icon"><i class="bi bi-bag-heart"></i></div>
+        <div>
+          <div class="fw-semibold" style="font-size:0.95rem;">OOTD Recommendation</div>
+          <small class="text-soft">Pilih satu item pakaian, dapatkan rekomendasi padu padan dan styling tips lengkap.</small>
+        </div>
+      </div>
+      <div class="feature-list-item">
+        <div class="feature-icon"><i class="bi bi-droplet-half"></i></div>
+        <div>
+          <div class="fw-semibold" style="font-size:0.95rem;">Skin Type & Skincare</div>
+          <small class="text-soft">Kuis 10 pertanyaan untuk mengenali tipe kulit dan mendapatkan urutan skincare yang tepat.</small>
+        </div>
+      </div>
+      <div class="feature-list-item">
+        <div class="feature-icon"><i class="bi bi-palette"></i></div>
+        <div>
+          <div class="fw-semibold" style="font-size:0.95rem;">Undertone & Makeup</div>
+          <small class="text-soft">Temukan undertone wajahmu dan dapatkan rekomendasi makeup yang presisi.</small>
+        </div>
+      </div>
+    </div>
+
+    <h6 class="fw-bold mb-2">Mulai Cepat</h6>
+    <div class="row g-3">
+      <div class="col-6">
+        <div class="card-lok text-center shortcut-card" onclick="goToPage('ootd')">
+          <i class="bi bi-bag-heart fs-1" style="color: var(--bronze);"></i>
+          <h6 class="mt-2 mb-0">OOTD</h6>
+          <small class="text-soft">Mix & match</small>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card-lok text-center shortcut-card" onclick="goToPage('skincare')">
+          <i class="bi bi-droplet-half fs-1" style="color: var(--bronze);"></i>
+          <h6 class="mt-2 mb-0">Skin Care</h6>
+          <small class="text-soft">Cek tipe kulit</small>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card-lok text-center shortcut-card" onclick="goToPage('makeup')">
+          <i class="bi bi-palette fs-1" style="color: var(--bronze);"></i>
+          <h6 class="mt-2 mb-0">Makeup</h6>
+          <small class="text-soft">Undertone</small>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card-lok text-center shortcut-card" onclick="goToPage('profil')">
+          <i class="bi bi-person-circle fs-1" style="color: var(--bronze);"></i>
+          <h6 class="mt-2 mb-0">Profil</h6>
+          <small class="text-soft">Akunmu</small>
+        </div>
+      </div>
+    </div>
+    <div class="footer-space"></div>
+  </div>
+
+  <!-- ============ OOTD (FIXED) ============ -->
+  <div id="page-ootd" class="page">
+    <div id="ootdFormSection">
+      <h2 class="mb-1">OOTD Recommendation</h2>
+      <p class="text-soft mb-4">Pilih item fashion favoritmu, dapatkan rekomendasi padu padan lengkap dengan styling tips.</p>
+
+      <div class="card-lok mb-3">
+        <label class="form-label fw-semibold mb-1" style="font-size:0.9rem;">Pilih Kategori</label>
+        <select class="form-select form-select-lok mb-3" id="ootdCategorySelect" onchange="updateOotdItemOptions()">
+          <option value="atasan">Atasan</option>
+          <option value="bawahan">Bawahan</option>
+          <option value="hijab">Hijab</option>
+          <option value="outer">Outer</option>
+          <option value="alaskaki">Alas Kaki</option>
+        </select>
+
+        <label class="form-label fw-semibold mb-1" style="font-size:0.9rem;">Pilih Item</label>
+        <select class="form-select form-select-lok" id="ootdItemSelect"></select>
+      </div>
+
+      <button class="btn-bronze w-100" onclick="getOotdRecommendation()">
+        <i class="bi bi-magic me-2"></i>Dapatkan Rekomendasi
+      </button>
+    </div>
+
+    <div id="ootdResultSection" class="hidden"></div>
+    <div class="footer-space"></div>
+  </div>
+
+  <!-- ============ SKINCARE ============ -->
+  <div id="page-skincare" class="page">
+    <div id="skincareIntro">
+      <h2 class="mb-1">Pahami Kulitmu</h2>
+      <p class="text-soft mb-4">Kenali tipe & kondisi kulitmu dengan kuis 10 pertanyaan. Hasilnya lengkap: tipe kulit, kandungan cocok, urutan skincare pagi & malam, plus tips personal.</p>
+
+      <div id="savedSkinResultContainer"></div>
+
+      <div class="card-lok mb-3" style="background: linear-gradient(135deg, #FFF9F4 0%, #FDF3EC 100%);">
+        <div class="d-flex align-items-center gap-3 mb-2">
+          <div class="feature-icon"><i class="bi bi-stars"></i></div>
+          <div>
+            <div class="fw-semibold" style="font-size:0.95rem;">Yang akan kamu dapatkan</div>
+            <small class="text-soft">Hasil personal sesuai jawabanmu</small>
+          </div>
+        </div>
+        <div class="d-flex align-items-start gap-2 mb-2">
+          <i class="bi bi-check-circle-fill" style="color: var(--bronze);"></i>
+          <small class="text-soft">Tipe kulit + kondisi tambahan (acne-prone, dehydrated, dll)</small>
+        </div>
+        <div class="d-flex align-items-start gap-2 mb-2">
+          <i class="bi bi-check-circle-fill" style="color: var(--bronze);"></i>
+          <small class="text-soft">Kandungan skincare yang cocok & harus dihindari</small>
+        </div>
+        <div class="d-flex align-items-start gap-2 mb-2">
+          <i class="bi bi-check-circle-fill" style="color: var(--bronze);"></i>
+          <small class="text-soft">Urutan rutinitas pagi & malam yang berbeda</small>
+        </div>
+        <div class="d-flex align-items-start gap-2">
+          <i class="bi bi-check-circle-fill" style="color: var(--bronze);"></i>
+          <small class="text-soft">Tips personal untuk hasil maksimal</small>
+        </div>
+      </div>
+
+      <button class="btn-bronze w-100" onclick="startSkinQuiz()">
+        <i class="bi bi-clipboard-pulse me-2"></i>Mulai Kuis Kulit
+      </button>
+      <p class="text-soft text-center mt-3 mb-0" style="font-size:0.78rem;">
+        <i class="bi bi-clock me-1"></i>Hanya butuh 2 menit
+      </p>
+    </div>
+
+    <div id="skinQuizContainer" class="hidden">
+      <div class="d-flex justify-content-between mb-1">
+        <small>Pertanyaan <span id="skinQNum">1</span> dari 10</small>
+        <small id="skinProgressText">10%</small>
+      </div>
+      <div class="progress progress-thin mb-4">
+        <div class="progress-bar progress-bar-rose" id="skinProgressBar" style="width: 10%"></div>
+      </div>
+      <div id="skinQuestionText" class="mb-3 fw-semibold" style="font-size:1.05rem;"></div>
+      <div id="skinOptions"></div>
+      <div class="d-flex justify-content-between mt-4">
+        <button class="btn btn-outline-secondary rounded-pill" id="skinPrevBtn" onclick="skinPrev()">Kembali</button>
+        <button class="btn-bronze rounded-pill" id="skinNextBtn" onclick="skinNext()">Lanjut</button>
+      </div>
+    </div>
+
+    <div id="skinResult" class="hidden"></div>
+    <div class="footer-space"></div>
+  </div>
+
+  <!-- ============ MAKEUP ============ -->
+  <div id="page-makeup" class="page">
+    <div id="makeupIntro">
+      <h2>Temukan Warna Aura</h2>
+      <p class="text-soft">Analisis undertone & rekomendasi makeup</p>
+      <div class="card-lok mb-3"><i class="bi bi-droplet me-2"></i> Analisis Undertone</div>
+      <div class="card-lok mb-3"><i class="bi bi-brush me-2"></i> Rekomendasi Makeup</div>
+      <div class="card-lok mb-4"><i class="bi bi-palette me-2"></i> Panduan Warna</div>
+      <button class="btn-bronze w-100" onclick="startUndertoneQuiz()">Mulai Kuis Undertone</button>
+    </div>
+    <div id="undertoneQuizContainer" class="hidden">
+      <div class="d-flex justify-content-between mb-1"><small>Langkah <span id="utQNum">1</span>/10</small><small id="utProgressText">10%</small></div>
+      <div class="progress progress-thin mb-4"><div class="progress-bar progress-bar-rose" id="utProgressBar" style="width: 10%"></div></div>
+      <div id="utQuestionText" class="mb-3 fw-semibold"></div>
+      <div id="utOptions"></div>
+      <div class="d-flex justify-content-between mt-4">
+        <button class="btn btn-outline-secondary rounded-pill" onclick="utPrev()">Kembali</button>
+        <button class="btn-bronze rounded-pill" onclick="utNext()">Lanjut</button>
+      </div>
+    </div>
+    <div id="undertoneResult" class="hidden"></div>
+    <div class="footer-space"></div>
+  </div>
+
+  <!-- ============ PROFIL ============ -->
+  <div id="page-profil" class="page">
+    <div class="text-center mb-3">
+      <img src="https://ui-avatars.com/api/?background=D9A79C&color=fff&name=User&size=90" class="profile-pic" id="profilePic">
+      <h4 class="mt-2" id="profileName">Nama User</h4>
+      <p class="text-soft" id="profileEmail">email@contoh.com</p>
+    </div>
+    <div class="card-lok mb-3">
+      <div class="setting-item"><span>Edit Profil</span><i class="bi bi-chevron-right" onclick="alert('Fitur edit profil')"></i></div>
+      <div class="setting-item"><span>Ubah Password</span><i class="bi bi-chevron-right" onclick="alert('Fitur ubah password')"></i></div>
+      <div class="setting-item"><span>Notifikasi</span><i class="bi bi-toggle-on" style="color: var(--bronze);"></i></div>
+      <div class="setting-item"><span>Mode Gelap</span><i class="bi bi-toggle-off" style="color: var(--bronze);" onclick="toggleDark()"></i></div>
+      <div class="setting-item"><span>Bahasa</span><span>Indonesia <i class="bi bi-chevron-down"></i></span></div>
+      <div class="setting-item"><span>Kebijakan Privasi</span><i class="bi bi-chevron-right"></i></div>
+      <div class="setting-item"><span>Tentang Aplikasi</span><i class="bi bi-chevron-right"></i></div>
+    </div>
+    <button class="btn-outline-bronze w-100" data-bs-toggle="modal" data-bs-target="#logoutModal">Keluar</button>
+    <div class="footer-space"></div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" data-page="beranda"><i class="bi bi-house"></i><span>Beranda</span></button>
+    <button class="nav-item" data-page="ootd"><i class="bi bi-bag-heart"></i><span>OOTD</span></button>
+    <button class="nav-item" data-page="skincare"><i class="bi bi-droplet-half"></i><span>Skin Care</span></button>
+    <button class="nav-item" data-page="makeup"><i class="bi bi-palette"></i><span>Makeup</span></button>
+    <button class="nav-item" data-page="profil"><i class="bi bi-person"></i><span>Profil</span></button>
+  </nav>
+</div>
+
+<!-- LOGIN / REGISTER OVERLAY -->
+<div id="authOverlay" class="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style="background: var(--cream); z-index: 2000;">
+  <div class="card-lok w-100 mx-3" style="max-width: 400px;">
+    <h3 class="text-center mb-4" style="color: var(--bronze);">Lokaura</h3>
+    <ul class="nav nav-pills nav-fill mb-3" id="authTabs">
+      <li class="nav-item"><button class="nav-link active" data-tab="login">Login</button></li>
+      <li class="nav-item"><button class="nav-link" data-tab="register">Daftar</button></li>
+    </ul>
+    <form id="loginForm">
+      <input type="email" class="form-control form-control-lok mb-2" placeholder="Email" id="loginEmail" required>
+      <input type="password" class="form-control form-control-lok mb-2" placeholder="Password" id="loginPassword" required>
+      <div class="form-check mb-3"><input class="form-check-input" type="checkbox" id="rememberMe"><label class="form-check-label" for="rememberMe">Remember Me</label></div>
+      <button type="submit" class="btn-bronze w-100 mb-2">Masuk</button>
+      <div class="text-center text-soft">Lupa Password?</div>
+    </form>
+    <form id="registerForm" class="hidden">
+      <input type="text" class="form-control form-control-lok mb-2" placeholder="Nama Lengkap" id="regName" required>
+      <input type="email" class="form-control form-control-lok mb-2" placeholder="Email" id="regEmail" required>
+      <input type="password" class="form-control form-control-lok mb-2" placeholder="Password (min 6)" id="regPassword" required>
+      <input type="password" class="form-control form-control-lok mb-2" placeholder="Konfirmasi Password" id="regConfirm" required>
+      <div class="form-check mb-3"><input class="form-check-input" type="checkbox" id="regTerms" required><label class="form-check-label">Saya setuju Syarat & Ketentuan</label></div>
+      <button type="submit" class="btn-bronze w-100 mb-2">Daftar</button>
+    </form>
+    <div class="text-center mt-2">
+      <button class="btn btn-google w-100 mb-2"><i class="bi bi-google me-2"></i>Google</button>
+      <button class="btn btn-google w-100"><i class="bi bi-apple me-2"></i>Apple</button>
+    </div>
+  </div>
+</div>
+
+<!-- LOGOUT MODAL -->
+<div class="modal fade" id="logoutModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-2">
+      <div class="modal-header"><h5 class="modal-title">Yakin ingin keluar?</h5></div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal">Batal</button>
+        <button class="btn btn-bronze rounded-pill" onclick="logout()">Keluar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: HASIL TERSIMPAN -->
+<div class="modal fade" id="saveSuccessModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-2 text-center">
+      <div class="modal-header border-0 justify-content-center pb-0">
+        <div class="modal-icon-circle" style="background: linear-gradient(135deg, #D9A79C, #8B5E3C);">
+          <i class="bi bi-check-lg" style="font-size:2.2rem;"></i>
+        </div>
+      </div>
+      <div class="modal-body pt-2">
+        <h5 class="fw-bold mb-2" style="color: var(--bronze);">Hasil Kuis Tersimpan!</h5>
+        <p class="text-soft mb-0" style="font-size:0.9rem;">
+          Kamu bisa lihat hasilnya kapan saja di halaman <strong>Skin Care</strong> tanpa perlu ulang kuis.
+        </p>
+      </div>
+      <div class="modal-footer border-0 justify-content-center pt-0">
+        <button class="btn-bronze rounded-pill px-4" data-bs-dismiss="modal">Oke, Mengerti</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: KONFIRMASI HAPUS -->
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-2 text-center">
+      <div class="modal-header border-0 justify-content-center pb-0">
+        <div class="modal-icon-circle" style="background: linear-gradient(135deg, #F5C6C0, #C0392B);">
+          <i class="bi bi-trash3" style="font-size:1.8rem;"></i>
+        </div>
+      </div>
+      <div class="modal-body pt-2">
+        <h5 class="fw-bold mb-2" style="color: var(--bronze);">Yakin ingin menghapus?</h5>
+        <p class="text-soft mb-0" style="font-size:0.9rem;">
+          Hasil kuis yang tersimpan akan dihapus permanen. Kamu perlu mengulang kuis untuk mendapat hasil baru.
+        </p>
+      </div>
+      <div class="modal-footer border-0 justify-content-center pt-0 gap-2">
+        <button class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Batal</button>
+        <button class="btn rounded-pill px-4 text-white" style="background:#C0392B; border:none;" onclick="confirmDeleteSkinResult()">
+          <i class="bi bi-trash3 me-1"></i>Hapus
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // ============================================================
+  // ============ OOTD — MAPPING & DATA (FIXED) ============
+  // ============================================================
+  const ITEM_IMAGES = {
+    'Blouse':      'assets/atasan/blouse.jpg',
+    'Kaos':        'assets/atasan/kaos.jpg',
+    'Kemeja':      'assets/atasan/kemeja.jpg',
+    'Sweater':     'assets/atasan/sweater.jpg',
+    'Turtleneck':  'assets/atasan/turtleneck.jpg',
+    'Celana Kulot':  'assets/bawahan/celana-kulot.jpg',
+    'Jeans':         'assets/bawahan/jeans.jpg',
+    'Rok Plisket':   'assets/bawahan/rok-plisket.jpg',
+    'Rok Panjang':   'assets/bawahan/rok-panjang.jpg',
+    'Palazzo':       'assets/bawahan/palazzo.jpg',
+    'Hijab Segi Empat': 'assets/hijab/segi-empat.jpg',
+    'Hijab Pashmina':   'assets/hijab/pashmina.jpg',
+    'Hijab Instan':     'assets/hijab/instan.jpg',
+    'Bergo':            'assets/hijab/bergo.jpg',
+    'Blazer':       'assets/outer/blazer.jpg',
+    'Cardigan':     'assets/outer/cardigan.jpg',
+    'Jaket Denim':  'assets/outer/jaket-denim.jpg',
+    'Bomber':       'assets/outer/bomber.jpg',
+    'Heels':         'assets/alas-kaki/heels.jpg',
+    'Sneakers':      'assets/alas-kaki/sneakers.jpg',
+    'Flat Shoes':    'assets/alas-kaki/flat-shoes.jpg',
+    'Crocs':         'assets/alas-kaki/crocs.jpg',
+    'Sandal Slop':   'assets/alas-kaki/sandal-slop.jpg'
+  };
+
+  const categoryColors = {
+    atasan:    { bg: 'linear-gradient(135deg, #8B5E3C, #A67B5B)', icon: 'bi-person-standing-dress', label: 'ATASAN' },
+    bawahan:   { bg: 'linear-gradient(135deg, #6B4226, #8B5E3C)', icon: 'bi-person-standing',       label: 'BAWAHAN' },
+    hijab:     { bg: 'linear-gradient(135deg, #D9A79C, #C28B7E)', icon: 'bi-person-badge',          label: 'HIJAB' },
+    outer:     { bg: 'linear-gradient(135deg, #5E4B3E, #7A6455)', icon: 'bi-layers',                label: 'OUTER' },
+    alaskaki:  { bg: 'linear-gradient(135deg, #4A3728, #6B4E3D)', icon: 'bi-boot',                  label: 'ALAS KAKI' }
+  };
+
+  const labelToCategory = {
+    'Atasan': 'atasan', 'Bawahan': 'bawahan', 'Hijab': 'hijab',
+    'Outer': 'outer', 'Alas Kaki': 'alaskaki'
+  };
+
+  const ootdCategories = {
+    atasan: { label: 'Atasan', items: ['Blouse', 'Kaos', 'Kemeja', 'Sweater', 'Turtleneck'] },
+    bawahan: { label: 'Bawahan', items: ['Celana Kulot', 'Jeans', 'Rok Plisket', 'Rok Panjang', 'Palazzo'] },
+    hijab: { label: 'Hijab', items: ['Hijab Segi Empat', 'Hijab Pashmina', 'Hijab Instan', 'Bergo'] },
+    outer: { label: 'Outer', items: ['Blazer', 'Cardigan', 'Jaket Denim', 'Bomber'] },
+    alaskaki: { label: 'Alas Kaki', items: ['Heels', 'Sneakers', 'Flat Shoes', 'Crocs', 'Sandal Slop'] }
+  };
+
+  const ootdRules = {
+    'Blouse': {
+      lookTitle: 'Smart Casual Look with Blouse',
+      breakdown: [
+        { label: 'Bawahan', value: 'Celana Kulot / Rok Plisket', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Flat Shoes / Heels', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Blazer / Cardigan', icon: 'bi-layers' }
+      ],
+      tips: 'Blouse sangat cocok dipadukan dengan <strong>Celana Kulot</strong> atau <strong>Rok Plisket</strong> untuk kesan smart casual. Hindari celana skinny agar siluet tubuh terlihat lebih seimbang. Untuk alas kaki, pilih <strong>Flat Shoes</strong> atau <strong>Heels</strong> agar penampilan lebih elegan. Jika ingin tampil santai, <strong>Sneakers putih</strong> bisa menjadi pilihan. Padukan dengan <strong>Hijab Pashmina</strong> untuk gaya flowy yang anggun, atau <strong>Hijab Segi Empat</strong> untuk tampilan yang lebih rapi dan formal. Tambahkan <strong>Blazer</strong> sebagai outer untuk acara formal, atau <strong>Cardigan</strong> untuk acara santai.',
+      colorEducation: [
+        { title: 'Jika Blouse Warna Terang (Putih, Cream, Pastel)', text: 'Bawahan lebih cocok pakai warna <strong>netral gelap</strong> seperti Cokelat Mocca, Navy, atau Hitam agar kontrasnya elegan dan tidak terlihat pucat. Untuk hijab, pilih warna <strong>Dusty Pink, Beige, atau Sage Green</strong> supaya tampilan lebih lembut dan seimbang.', palette: ['#FFFFFF', '#8B5E3C', '#1B2A4A', '#D9A79C', '#E8D9CD'] },
+        { title: 'Jika Blouse Warna Gelap (Navy, Maroon, Hitam)', text: 'Bawahan sebaiknya pakai warna <strong>terang atau netral</strong> seperti Cream, Putih, atau Beige agar tidak terlihat berat. Hijab bisa pakai warna <strong>senada dengan bawahan</strong> atau sedikit lebih terang untuk memberi aksen.', palette: ['#1B2A4A', '#FDFBF7', '#E8D9CD', '#D9A79C', '#8B5E3C'] },
+        { title: 'Jika Blouse Warna Bold (Merah, Kuning, Hijau)', text: 'Pilih bawahan warna <strong>netral</strong> seperti Hitam, Putih, atau Denim agar warna bold tetap jadi pusat perhatian. Hindari bawahan dengan warna bold lain agar tidak terlalu ramai. Hijab cukup pakai warna <strong>netral atau senada</strong> dengan salah satu warna di blouse.', palette: ['#C0392B', '#2C3E50', '#FDFBF7', '#D9C7B8', '#8B5E3C'] }
+      ]
+    },
+    'Kaos': {
+      lookTitle: 'Casual Chic with Kaos',
+      breakdown: [
+        { label: 'Bawahan', value: 'Jeans / Rok Panjang / Palazzo', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Sneakers / Sandal Slop', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Jaket Denim / Bomber', icon: 'bi-layers' }
+      ],
+      tips: 'Kaos adalah item paling fleksibel. Padukan dengan <strong>Jeans</strong> untuk gaya kasual sehari-hari, atau <strong>Rok Panjang</strong> dan <strong>Palazzo</strong> untuk tampilan yang lebih feminin. Alas kaki <strong>Sneakers</strong> atau <strong>Sandal Slop</strong> akan melengkapi kesan santai. Gunakan <strong>Hijab Instan</strong> atau <strong>Bergo</strong> agar praktis. Tambahkan <strong>Jaket Denim</strong> atau <strong>Bomber</strong> sebagai outer untuk gaya streetwear yang keren.',
+      colorEducation: [
+        { title: 'Jika Kaos Warna Putih / Netral', text: 'Bawahan bisa pakai warna apa saja, tapi paling aman <strong>Denim Biru, Hitam, atau Cokelat</strong>. Hijab pilih warna <strong>cerah</strong> seperti Mustard atau Dusty Pink untuk memberi aksen.', palette: ['#FFFFFF', '#4A6A8B', '#2C3E50', '#8B5E3C', '#D9A79C'] },
+        { title: 'Jika Kaos Warna Hitam', text: 'Bawahan cocok pakai <strong>Denim, Beige, atau Abu-abu</strong> agar tidak monoton. Hijab bisa pakai warna <strong>terang</strong> untuk kontras, misalnya Putih atau Cream.', palette: ['#2C2C2C', '#4A6A8B', '#D9C7B8', '#FDFBF7', '#E8D9CD'] },
+        { title: 'Jika Kaos Warna Bold', text: 'Pilih bawahan <strong>netral</strong> (Hitam/Putih/Denim) agar warna kaos tetap menonjol. Hijab pakai warna <strong>senada</strong> dengan kaos atau netral.', palette: ['#C0392B', '#2C3E50', '#FDFBF7', '#D9C7B8', '#8B5E3C'] }
+      ]
+    },
+    'Kemeja': {
+      lookTitle: 'Polished Look with Kemeja',
+      breakdown: [
+        { label: 'Bawahan', value: 'Jeans / Celana Kulot', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Flat Shoes / Heels', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Segi Empat / Pashmina', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Blazer / Cardigan', icon: 'bi-layers' }
+      ],
+      tips: 'Kemeja memberi kesan rapi dan profesional. Padukan dengan <strong>Jeans</strong> untuk smart casual, atau <strong>Celana Kulot</strong> untuk tampilan formal. <strong>Flat Shoes</strong> atau <strong>Heels</strong> akan menyempurnakan gaya. Pilih <strong>Hijab Segi Empat</strong> untuk kesan formal, atau <strong>Pashmina</strong> untuk gaya yang lebih lembut. <strong>Blazer</strong> sangat cocok untuk acara kantor, sedangkan <strong>Cardigan</strong> untuk acara semi-formal.',
+      colorEducation: [
+        { title: 'Jika Kemeja Warna Putih', text: 'Bawahan paling aman <strong>Navy, Hitam, atau Cokelat</strong>. Hijab pilih warna <strong>soft</strong> seperti Beige atau Dusty Pink agar terlihat profesional tapi tetap lembut.', palette: ['#FFFFFF', '#1B2A4A', '#2C3E50', '#8B5E3C', '#D9A79C'] },
+        { title: 'Jika Kemeja Warna Pastel', text: 'Bawahan cocok pakai <strong>Putih, Cream, atau Denim</strong>. Hijab pilih warna <strong>senada</strong> atau sedikit lebih gelap untuk memberi dimensi.', palette: ['#B0C4DE', '#FDFBF7', '#4A6A8B', '#E8D9CD', '#8B5E3C'] },
+        { title: 'Jika Kemeja Warna Gelap', text: 'Bawahan pakai warna <strong>terang</strong> seperti Cream atau Putih. Hijab pilih warna <strong>netral</strong> agar tampilan tetap seimbang.', palette: ['#2C3E50', '#FDFBF7', '#E8D9CD', '#D9A79C', '#8B5E3C'] }
+      ]
+    },
+    'Sweater': {
+      lookTitle: 'Cozy Elegance with Sweater',
+      breakdown: [
+        { label: 'Bawahan', value: 'Jeans / Rok Plisket', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Sneakers / Sneakers', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Bergo', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Cardigan / Jaket Denim', icon: 'bi-layers' }
+      ],
+      tips: 'Sweater memberikan kehangatan dan kenyamanan. Padukan dengan <strong>Jeans</strong> untuk gaya kasual, atau <strong>Rok Plisket</strong> untuk tampilan yang lebih manis. <strong>Boots</strong> atau <strong>Sneakers</strong> akan melengkapi. Gunakan <strong>Hijab Pashmina</strong> atau <strong>Bergo</strong> agar tetap nyaman. Tambahkan <strong>Cardigan</strong> atau <strong>Jaket Denim</strong> untuk lapisan ekstra.',
+      colorEducation: [
+        { title: 'Jika Sweater Warna Netral (Cream, Abu, Cokelat)', text: 'Bawahan bisa pakai <strong>Denim, Hitam, atau warna earthy</strong> lainnya. Hijab pilih warna <strong>senada</strong> atau sedikit lebih terang.', palette: ['#D9C7B8', '#4A6A8B', '#2C3E50', '#8B5E3C', '#FDFBF7'] },
+        { title: 'Jika Sweater Warna Bold', text: 'Bawahan sebaiknya <strong>netral</strong> agar sweater tetap jadi pusat perhatian. Hijab pakai warna <strong>netral</strong> atau senada.', palette: ['#C0392B', '#2C3E50', '#FDFBF7', '#D9C7B8', '#8B5E3C'] }
+      ]
+    },
+    'Turtleneck': {
+      lookTitle: 'Sleek & Sophisticated with Turtleneck',
+      breakdown: [
+        { label: 'Bawahan', value: 'Celana Kulot / Palazzo', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Heels / Sneakers', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Blazer / Bomber', icon: 'bi-layers' }
+      ],
+      tips: 'Turtleneck memberikan siluet ramping dan elegan. Padukan dengan <strong>Celana Kulot</strong> atau <strong>Palazzo</strong> untuk kesan memanjangkan tubuh. <strong>Heels</strong> atau <strong>Boots</strong> akan menambah kesan premium. Pilih <strong>Hijab Instan</strong> atau <strong>Bergo</strong> agar leher tetap terlihat rapi. <strong>Blazer</strong> sangat cocok untuk acara formal, sedangkan <strong>Bomber</strong> untuk gaya kasual yang stylish.',
+      colorEducation: [
+        { title: 'Jika Turtleneck Warna Gelap', text: 'Bawahan cocok pakai <strong>Cream, Putih, atau Beige</strong> agar tidak terlihat berat. Hijab pilih warna <strong>netral</strong> atau senada dengan bawahan.', palette: ['#2E241F', '#FDFBF7', '#E8D9CD', '#D9A79C', '#8B5E3C'] },
+        { title: 'Jika Turtleneck Warna Terang', text: 'Bawahan bisa pakai <strong>warna gelap</strong> untuk kontras. Hijab pilih warna <strong>senada</strong> atau netral.', palette: ['#FDFBF7', '#2C3E50', '#8B5E3C', '#D9A79C', '#E8D9CD'] }
+      ]
+    },
+    'Celana Kulot': {
+      lookTitle: 'Flowy Elegance with Celana Kulot',
+      breakdown: [
+        { label: 'Atasan', value: 'Blouse / Kemeja / Turtleneck', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Heels / Flat Shoes', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Blazer / Cardigan', icon: 'bi-layers' }
+      ],
+      tips: 'Celana Kulot sangat versatile. Padukan dengan <strong>Blouse</strong> untuk smart casual, <strong>Kemeja</strong> untuk formal, atau <strong>Turtleneck</strong> untuk tampilan sleek. <strong>Heels</strong> atau <strong>Flat Shoes</strong> akan menyempurnakan. Gunakan <strong>Hijab Pashmina</strong> untuk gaya flowy, atau <strong>Segi Empat</strong> untuk kesan rapi. <strong>Blazer</strong> untuk acara kantor, <strong>Cardigan</strong> untuk santai.',
+      colorEducation: [
+        { title: 'Jika Celana Kulot Warna Netral', text: 'Atasan bisa pakai warna <strong>bold</strong> atau <strong>pastel</strong> untuk kontras. Hijab pilih warna <strong>senada</strong> dengan atasan atau netral.', palette: ['#D9C7B8', '#C0392B', '#B0C4DE', '#8B5E3C', '#FDFBF7'] },
+        { title: 'Jika Celana Kulot Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong> (Putih/Cream/Hitam) agar tidak terlalu ramai. Hijab pakai warna <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Jeans': {
+      lookTitle: 'Everyday Cool with Jeans',
+      breakdown: [
+        { label: 'Atasan', value: 'Kaos / Kemeja / Sweater', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Sneakers / Sneakers', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Jaket Denim / Bomber', icon: 'bi-layers' }
+      ],
+      tips: 'Jeans adalah item wajib. Padukan dengan <strong>Kaos</strong> untuk kasual, <strong>Kemeja</strong> untuk smart casual, atau <strong>Sweater</strong> untuk hangat. <strong>Sneakers</strong> atau <strong>Boots</strong> akan melengkapi. <strong>Hijab Instan</strong> atau <strong>Bergo</strong> praktis untuk sehari-hari. Tambahkan <strong>Jaket Denim</strong> atau <strong>Bomber</strong> untuk gaya streetwear.',
+      colorEducation: [
+        { title: 'Jika Jeans Warna Biru', text: 'Atasan cocok pakai <strong>Putih, Cream, atau warna bold</strong>. Hijab pilih warna <strong>netral</strong> atau senada dengan atasan.', palette: ['#4A6A8B', '#FDFBF7', '#C0392B', '#D9C7B8', '#8B5E3C'] },
+        { title: 'Jika Jeans Warna Hitam', text: 'Atasan bisa pakai <strong>warna terang</strong> agar tidak monoton. Hijab pilih warna <strong>cerah</strong> untuk aksen.', palette: ['#2C2C2C', '#FDFBF7', '#D9A79C', '#B0C4DE', '#8B5E3C'] }
+      ]
+    },
+    'Rok Plisket': {
+      lookTitle: 'Feminine Charm with Rok Plisket',
+      breakdown: [
+        { label: 'Atasan', value: 'Blouse / Kaos / Sweater', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Flat Shoes / Heels', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Cardigan / Blazer', icon: 'bi-layers' }
+      ],
+      tips: 'Rok Plisket memberikan kesan feminin dan flowy. Padukan dengan <strong>Blouse</strong> untuk elegan, <strong>Kaos</strong> untuk kasual, atau <strong>Sweater</strong> untuk hangat. <strong>Flat Shoes</strong> atau <strong>Heels</strong> cocok. <strong>Hijab Pashmina</strong> untuk gaya anggun, <strong>Segi Empat</strong> untuk rapi. <strong>Cardigan</strong> untuk santai, <strong>Blazer</strong> untuk formal.',
+      colorEducation: [
+        { title: 'Jika Rok Plisket Warna Netral', text: 'Atasan bisa pakai warna <strong>bold</strong> atau <strong>pastel</strong>. Hijab pilih warna <strong>senada</strong> atau netral.', palette: ['#D4C4B7', '#C0392B', '#B0C4DE', '#8B5E3C', '#FDFBF7'] },
+        { title: 'Jika Rok Plisket Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Hijab pakai warna <strong>netral</strong> agar tidak terlalu ramai.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Rok Panjang': {
+      lookTitle: 'Modest & Elegant with Rok Panjang',
+      breakdown: [
+        { label: 'Atasan', value: 'Blouse / Kemeja / Turtleneck', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Flat Shoes / Heels', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Cardigan / Blazer', icon: 'bi-layers' }
+      ],
+      tips: 'Rok Panjang memberikan kesan modest dan elegan, sangat hijab friendly. Padukan dengan <strong>Blouse</strong> untuk kesan anggun, <strong>Kemeja</strong> untuk formal, atau <strong>Tunic</strong> untuk gaya yang lebih longgar dan nyaman. <strong>Flat Shoes</strong> atau <strong>Heels</strong> akan melengkapi penampilan. Gunakan <strong>Hijab Pashmina</strong> untuk gaya flowy, atau <strong>Segi Empat</strong> untuk tampilan rapi. <strong>Cardigan</strong> untuk acara santai, <strong>Blazer</strong> untuk acara formal.',
+      colorEducation: [
+        { title: 'Jika Rok Panjang Warna Netral', text: 'Atasan bisa pakai warna <strong>earthy</strong> seperti Olive, Mustard, atau Terracotta. Hijab pilih warna <strong>senada</strong> dengan atasan atau netral.', palette: ['#E8D9CD', '#8B7355', '#B8860B', '#A0522D', '#8B5E3C'] },
+        { title: 'Jika Rok Panjang Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong> (Putih/Cream/Hitam). Hijab pakai warna <strong>netral</strong> atau senada.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Palazzo': {
+      lookTitle: 'Effortless Elegance with Palazzo',
+      breakdown: [
+        { label: 'Atasan', value: 'Blouse / Turtleneck / Kemeja', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Heels / Flat Shoes', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Blazer / Cardigan', icon: 'bi-layers' }
+      ],
+      tips: 'Palazzo memberikan siluet memanjang. Padukan dengan <strong>Blouse</strong> untuk elegan, <strong>Turtleneck</strong> untuk sleek, atau <strong>Kemeja</strong> untuk formal. <strong>Heels</strong> atau <strong>Flat Shoes</strong> akan menyempurnakan. <strong>Hijab Pashmina</strong> untuk flowy, <strong>Segi Empat</strong> untuk rapi. <strong>Blazer</strong> untuk kantor, <strong>Cardigan</strong> untuk santai.',
+      colorEducation: [
+        { title: 'Jika Palazzo Warna Netral', text: 'Atasan bisa pakai warna <strong>bold</strong> atau <strong>pastel</strong>. Hijab pilih warna <strong>senada</strong> atau netral.', palette: ['#3D2B1F', '#C0392B', '#B0C4DE', '#8B5E3C', '#FDFBF7'] },
+        { title: 'Jika Palazzo Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Hijab pakai warna <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Hijab Segi Empat': {
+      lookTitle: 'Classic Elegance with Hijab Segi Empat',
+      breakdown: [
+        { label: 'Atasan', value: 'Blouse / Kemeja', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Celana Kulot / Rok Plisket', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Flat Shoes / Heels', icon: 'bi-boot' },
+        { label: 'Outer', value: 'Blazer / Cardigan', icon: 'bi-layers' }
+      ],
+      tips: 'Hijab Segi Empat memberikan kesan rapi dan formal. Padukan dengan <strong>Blouse</strong> atau <strong>Kemeja</strong> untuk tampilan profesional. Bawahan <strong>Celana Kulot</strong> atau <strong>Rok Plisket</strong> akan menyeimbangkan siluet. <strong>Flat Shoes</strong> atau <strong>Heels</strong> untuk kenyamanan. <strong>Blazer</strong> untuk acara formal, <strong>Cardigan</strong> untuk santai.',
+      colorEducation: [
+        { title: 'Jika Hijab Warna Netral', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong>. Bawahan pilih <strong>netral</strong> agar seimbang.', palette: ['#F3DFD9', '#C0392B', '#B0C4DE', '#8B5E3C', '#FDFBF7'] },
+        { title: 'Jika Hijab Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong> (Putih/Cream/Hitam). Bawahan pilih <strong>netral</strong> juga.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Hijab Pashmina': {
+      lookTitle: 'Flowy Grace with Hijab Pashmina',
+      breakdown: [
+        { label: 'Atasan', value: 'Blouse / Sweater / Turtleneck', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Celana Kulot / Palazzo', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Heels / Flat Shoes', icon: 'bi-boot' },
+        { label: 'Outer', value: 'Cardigan / Blazer', icon: 'bi-layers' }
+      ],
+      tips: 'Hijab Pashmina memberikan kesan flowy dan anggun. Padukan dengan <strong>Blouse</strong>, <strong>Sweater</strong>, atau <strong>Turtleneck</strong> untuk tampilan lembut. Bawahan <strong>Celana Kulot</strong> atau <strong>Palazzo</strong> akan menambah kesan elegan. <strong>Heels</strong> atau <strong>Flat Shoes</strong> cocok. <strong>Cardigan</strong> untuk santai, <strong>Blazer</strong> untuk formal.',
+      colorEducation: [
+        { title: 'Jika Hijab Warna Pastel', text: 'Atasan bisa pakai <strong>warna senada</strong> atau <strong>netral</strong>. Bawahan pilih <strong>netral</strong> atau warna earthy.', palette: ['#E5D9CF', '#C9A9A6', '#8B5E3C', '#F3DFD9', '#D9C7B8'] },
+        { title: 'Jika Hijab Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong> agar hijab tetap jadi fokus. Bawahan pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Hijab Instan': {
+      lookTitle: 'Practical Style with Hijab Instan',
+      breakdown: [
+        { label: 'Atasan', value: 'Kaos / Kemeja / Blouse', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Jeans / Celana Kulot', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Sneakers / Flat Shoes', icon: 'bi-boot' },
+        { label: 'Outer', value: 'Jaket Denim / Bomber', icon: 'bi-layers' }
+      ],
+      tips: 'Hijab Instan praktis untuk sehari-hari. Padukan dengan <strong>Kaos</strong>, <strong>Kemeja</strong>, atau <strong>Blouse</strong>. Bawahan <strong>Jeans</strong> atau <strong>Celana Kulot</strong> untuk kenyamanan. <strong>Sneakers</strong> atau <strong>Flat Shoes</strong> untuk aktivitas. <strong>Jaket Denim</strong> atau <strong>Bomber</strong> untuk gaya kasual.',
+      colorEducation: [
+        { title: 'Jika Hijab Warna Netral', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong>. Bawahan pilih <strong>netral</strong>.', palette: ['#FDFBF7', '#C0392B', '#B0C4DE', '#8B5E3C', '#E8D9CD'] },
+        { title: 'Jika Hijab Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Bawahan pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Bergo': {
+      lookTitle: 'Simple & Sweet with Bergo',
+      breakdown: [
+        { label: 'Atasan', value: 'Kaos / Blouse / Sweater', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Jeans / Rok Plisket', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Sneakers / Flat Shoes', icon: 'bi-boot' },
+        { label: 'Outer', value: 'Cardigan / Jaket Denim', icon: 'bi-layers' }
+      ],
+      tips: 'Bergo memberikan kesan simple dan manis. Padukan dengan <strong>Kaos</strong>, <strong>Blouse</strong>, atau <strong>Sweater</strong>. Bawahan <strong>Jeans</strong> atau <strong>Rok Plisket</strong> untuk variasi. <strong>Sneakers</strong> atau <strong>Flat Shoes</strong> untuk kenyamanan. <strong>Cardigan</strong> atau <strong>Jaket Denim</strong> untuk outer.',
+      colorEducation: [
+        { title: 'Jika Bergo Warna Netral', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong>. Bawahan pilih <strong>netral</strong>.', palette: ['#FDFBF7', '#C0392B', '#B0C4DE', '#8B5E3C', '#E8D9CD'] },
+        { title: 'Jika Bergo Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Bawahan pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Blazer': {
+      lookTitle: 'Power Look with Blazer',
+      breakdown: [
+        { label: 'Atasan', value: 'Kemeja / Blouse / Turtleneck', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Celana Kulot / Palazzo', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Heels / Flat Shoes', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Segi Empat / Pashmina', icon: 'bi-person-badge' }
+      ],
+      tips: 'Blazer memberikan kesan profesional dan berkelas. Padukan dengan <strong>Kemeja</strong>, <strong>Blouse</strong>, atau <strong>Turtleneck</strong> untuk tampilan kantor. Bawahan <strong>Celana Kulot</strong> atau <strong>Palazzo</strong> akan menyeimbangkan siluet. <strong>Heels</strong> atau <strong>Flat Shoes</strong> untuk kesan formal. <strong>Hijab Segi Empat</strong> atau <strong>Pashmina</strong> untuk melengkapi.',
+      colorEducation: [
+        { title: 'Jika Blazer Warna Netral', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#2C3E50', '#C0392B', '#B0C4DE', '#8B5E3C', '#FDFBF7'] },
+        { title: 'Jika Blazer Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Cardigan': {
+      lookTitle: 'Soft Layering with Cardigan',
+      breakdown: [
+        { label: 'Atasan', value: 'Kaos / Blouse / Sweater', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Jeans / Rok Plisket', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Flat Shoes / Sneakers', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Bergo', icon: 'bi-person-badge' }
+      ],
+      tips: 'Cardigan memberikan kesan lembut dan santai. Padukan dengan <strong>Kaos</strong>, <strong>Blouse</strong>, atau <strong>Sweater</strong>. Bawahan <strong>Jeans</strong> atau <strong>Rok Plisket</strong> untuk variasi. <strong>Flat Shoes</strong> atau <strong>Sneakers</strong> untuk kenyamanan. <strong>Hijab Pashmina</strong> atau <strong>Bergo</strong> untuk melengkapi.',
+      colorEducation: [
+        { title: 'Jika Cardigan Warna Netral', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#D9C7B8', '#C0392B', '#B0C4DE', '#8B5E3C', '#FDFBF7'] },
+        { title: 'Jika Cardigan Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Jaket Denim': {
+      lookTitle: 'Street Style with Jaket Denim',
+      breakdown: [
+        { label: 'Atasan', value: 'Kaos / Blouse / Sweater', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Jeans / Rok Panjang', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Sneakers / Sneakers', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' }
+      ],
+      tips: 'Jaket Denim memberikan kesan streetwear yang keren. Padukan dengan <strong>Kaos</strong>, <strong>Crop Top</strong>, atau <strong>Sweater</strong>. Bawahan <strong>Jeans</strong> atau <strong>Rok Panjang</strong> untuk gaya muda. <strong>Sneakers</strong> atau <strong>Boots</strong> untuk melengkapi. <strong>Hijab Instan</strong> atau <strong>Bergo</strong> praktis.',
+      colorEducation: [
+        { title: 'Jika Jaket Denim Warna Biru', text: 'Atasan bisa pakai <strong>Putih, Cream, atau warna bold</strong>. Bawahan pilih <strong>netral</strong> atau Denim. Hijab pilih <strong>netral</strong>.', palette: ['#4A6A8B', '#FDFBF7', '#C0392B', '#D9C7B8', '#8B5E3C'] },
+        { title: 'Jika Jaket Denim Warna Gelap', text: 'Atasan bisa pakai <strong>warna terang</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>cerah</strong>.', palette: ['#2C3E50', '#FDFBF7', '#D9A79C', '#B0C4DE', '#8B5E3C'] }
+      ]
+    },
+    'Bomber': {
+      lookTitle: 'Urban Cool with Bomber',
+      breakdown: [
+        { label: 'Atasan', value: 'Kaos / Blouse / Turtleneck', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Jeans / Rok Panjang / Palazzo', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Sneakers / Sneakers', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' }
+      ],
+      tips: 'Bomber memberikan kesan urban dan sporty. Padukan dengan <strong>Kaos</strong>, <strong>Crop Top</strong>, atau <strong>Turtleneck</strong>. Bawahan <strong>Jeans</strong>, <strong>Rok Panjang</strong>, atau <strong>Palazzo</strong>. <strong>Sneakers</strong> atau <strong>Boots</strong> untuk melengkapi. <strong>Hijab Instan</strong> atau <strong>Bergo</strong> untuk kenyamanan.',
+      colorEducation: [
+        { title: 'Jika Bomber Warna Netral', text: 'Atasan bisa pakai <strong>warna bold</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#3D2B1F', '#C0392B', '#8B5E3C', '#2C3E50', '#FDFBF7'] },
+        { title: 'Jika Bomber Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Heels': {
+      lookTitle: 'Glamorous Step with Heels',
+      breakdown: [
+        { label: 'Atasan', value: 'Blouse / Kemeja / Turtleneck', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Celana Kulot / Palazzo / Rok Plisket', icon: 'bi-bag' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Blazer / Cardigan', icon: 'bi-layers' }
+      ],
+      tips: 'Heels memberikan kesan elegan dan feminin. Padukan dengan <strong>Blouse</strong>, <strong>Kemeja</strong>, atau <strong>Turtleneck</strong>. Bawahan <strong>Celana Kulot</strong>, <strong>Palazzo</strong>, atau <strong>Rok Plisket</strong> akan menyeimbangkan siluet. <strong>Hijab Pashmina</strong> atau <strong>Segi Empat</strong> untuk melengkapi. <strong>Blazer</strong> untuk formal, <strong>Cardigan</strong> untuk semi-formal.',
+      colorEducation: [
+        { title: 'Jika Heels Warna Netral', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#8B5E3C', '#C0392B', '#B0C4DE', '#F5EFE6', '#FDFBF7'] },
+        { title: 'Jika Heels Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Sneakers': {
+      lookTitle: 'Sporty Casual with Sneakers',
+      breakdown: [
+        { label: 'Atasan', value: 'Kaos / Kemeja / Sweater', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Jeans / Rok Panjang / Palazzo', icon: 'bi-bag' },
+        { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Jaket Denim / Bomber', icon: 'bi-layers' }
+      ],
+      tips: 'Sneakers memberikan kesan sporty dan kasual. Padukan dengan <strong>Kaos</strong>, <strong>Kemeja</strong>, atau <strong>Sweater</strong>. Bawahan <strong>Jeans</strong>, <strong>Rok Panjang</strong>, atau <strong>Palazzo</strong>. <strong>Hijab Instan</strong> atau <strong>Bergo</strong> praktis. <strong>Jaket Denim</strong> atau <strong>Bomber</strong> untuk gaya streetwear.',
+      colorEducation: [
+        { title: 'Jika Sneakers Warna Putih', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#FFFFFF', '#C0392B', '#B0C4DE', '#8B5E3C', '#FDFBF7'] },
+        { title: 'Jika Sneakers Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Flat Shoes': {
+      lookTitle: 'Comfortable Chic with Flat Shoes',
+      breakdown: [
+        { label: 'Atasan', value: 'Blouse / Kemeja / Kaos', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Celana Kulot / Jeans / Rok Plisket', icon: 'bi-bag' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Instan', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Cardigan / Blazer', icon: 'bi-layers' }
+      ],
+      tips: 'Flat Shoes nyaman untuk aktivitas sehari-hari. Padukan dengan <strong>Blouse</strong>, <strong>Kemeja</strong>, atau <strong>Kaos</strong>. Bawahan <strong>Celana Kulot</strong>, <strong>Jeans</strong>, atau <strong>Rok Plisket</strong>. <strong>Hijab Pashmina</strong> atau <strong>Instan</strong> untuk melengkapi. <strong>Cardigan</strong> untuk santai, <strong>Blazer</strong> untuk formal.',
+      colorEducation: [
+        { title: 'Jika Flat Shoes Warna Netral', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#5E4B3E', '#C0392B', '#B0C4DE', '#FDFBF7', '#8B5E3C'] },
+        { title: 'Jika Flat Shoes Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Crocs': {
+      lookTitle: 'Fun & Comfy with Crocs',
+      breakdown: [
+        { label: 'Atasan', value: 'Kaos / Kemeja / Blouse', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Jeans / Celana Kulot / Rok Panjang', icon: 'bi-bag' },
+        { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Cardigan / Jaket Denim', icon: 'bi-layers' }
+      ],
+      tips: 'Crocs memberikan kesan fun, comfy, dan kasual. Padukan dengan <strong>Kaos</strong>, <strong>Kemeja</strong>, atau <strong>Blouse</strong> untuk tampilan santai. Bawahan <strong>Jeans</strong>, <strong>Celana Kulot</strong>, atau <strong>Rok Panjang</strong> agar tetap nyaman bergerak. <strong>Hijab Instan</strong> atau <strong>Bergo</strong> praktis untuk aktivitas sehari-hari. Tambahkan <strong>Cardigan</strong> atau <strong>Jaket Denim</strong> untuk melengkapi gaya.',
+      colorEducation: [
+        { title: 'Jika Crocs Warna Netral (Putih, Hitam, Cream)', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong> untuk memberi warna. Bawahan pilih <strong>Denim, netral, atau earthy</strong>. Hijab pilih <strong>netral</strong> atau senada dengan atasan.', palette: ['#FFFFFF', '#2C2C2C', '#E8D9CD', '#C0392B', '#8B5E3C'] },
+        { title: 'Jika Crocs Warna Bold (Merah, Kuning, Pink)', text: 'Atasan sebaiknya <strong>netral</strong> (Putih/Cream/Hitam). Bawahan pilih <strong>netral</strong> atau Denim. Hijab pilih <strong>netral</strong> agar tidak terlalu ramai.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#4A6A8B', '#8B5E3C'] },
+        { title: 'Jika Crocs Warna Pastel', text: 'Atasan bisa pakai <strong>warna senada</strong> atau <strong>netral</strong>. Bawahan pilih <strong>netral</strong> atau <strong>earthy</strong>. Hijab pilih <strong>pastel</strong> atau netral.', palette: ['#FADADD', '#B0C4DE', '#FDFBF7', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Sandal Slop': {
+      lookTitle: 'Relaxed Vibes with Sandal Slop',
+      breakdown: [
+        { label: 'Atasan', value: 'Kaos / Blouse / Kemeja', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Jeans / Rok Panjang / Palazzo', icon: 'bi-bag' },
+        { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Cardigan / Bomber', icon: 'bi-layers' }
+      ],
+      tips: 'Sandal Slop memberikan kesan santai dan relaxed. Padukan dengan <strong>Kaos</strong>, <strong>Blouse</strong>, atau <strong>Kemeja</strong> untuk tampilan kasual. Bawahan <strong>Jeans</strong>, <strong>Rok Panjang</strong>, atau <strong>Palazzo</strong> agar tetap nyaman. <strong>Hijab Instan</strong> atau <strong>Bergo</strong> praktis. <strong>Cardigan</strong> atau <strong>Bomber</strong> untuk outer.',
+      colorEducation: [
+        { title: 'Jika Sandal Slop Warna Netral', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong>. Bawahan pilih <strong>netral</strong> atau Denim. Hijab pilih <strong>netral</strong>.', palette: ['#FDFBF7', '#C0392B', '#B0C4DE', '#4A6A8B', '#8B5E3C'] },
+        { title: 'Jika Sandal Slop Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+      ]
+    }
+  };
+
+  // ============================================================
+  // ============ SKIN TYPE — DATA ============
+  // ============================================================
+  const skinQuestions = [
+    {
+      q: 'Bagaimana tekstur kulitmu saat bangun tidur?',
+      subtitle: 'Sentuh pipi & dahi, rasakan tanpa produk apapun',
+      opts: [
+        { text: 'Mengkilap di seluruh wajah',    scores: { oily: 3, dehydrated: 1 } },
+        { text: 'Kering & terasa kaku',           scores: { dry: 3, sensitive: 1 } },
+        { text: 'Mengkilap di T-zone saja',       scores: { combination: 3 } },
+        { text: 'Normal, tidak berminyak/kering', scores: { normal: 3 } }
+      ]
+    },
+    {
+      q: 'Seberapa sering kulitmu berjerawat?',
+      subtitle: 'Termasuk jerawat kecil, komedo, atau bruntusan',
+      opts: [
+        { text: 'Sering, hampir setiap minggu',   scores: { acne: 3, oily: 2 } },
+        { text: 'Kadang, saat stres atau haid',   scores: { acne: 2, combination: 1 } },
+        { text: 'Jarang, hanya 1-2 kali sebulan', scores: { acne: 1, normal: 1 } },
+        { text: 'Tidak pernah',                    scores: { normal: 2, dry: 1 } }
+      ]
+    },
+    {
+      q: 'Bagaimana kondisi pori-porimu?',
+      subtitle: 'Perhatikan area hidung & pipi di cermin',
+      opts: [
+        { text: 'Besar & terlihat jelas',         scores: { oily: 3, acne: 1 } },
+        { text: 'Kecil & hampir tidak terlihat',  scores: { dry: 2, normal: 2 } },
+        { text: 'Sedang, hanya di area T-zone',   scores: { combination: 3 } },
+        { text: 'Tidak merata, ada yang besar ada yang kecil', scores: { combination: 2, oily: 1 } }
+      ]
+    },
+    {
+      q: 'Bagaimana reaksi kulitmu saat mencoba produk baru?',
+      subtitle: 'Pikirkan reaksi biasanya dalam 1-2 hari pemakaian',
+      opts: [
+        { text: 'Sering perih, gatal, atau kemerahan', scores: { sensitive: 3 } },
+        { text: 'Kadang perih kalau ada alkohol/fragrance', scores: { sensitive: 2, dry: 1 } },
+        { text: 'Cenderung aman, jarang reaksi', scores: { normal: 3 } },
+        { text: 'Kadang breakout kalau produk terlalu rich', scores: { oily: 2, acne: 2 } }
+      ]
+    },
+    {
+      q: 'Apa tujuan skincare utamamu sekarang?',
+      subtitle: 'Pilih yang paling kamu prioritaskan',
+      opts: [
+        { text: 'Mengontrol minyak & jerawat', scores: { oily: 3, acne: 2 } },
+        { text: 'Melembapkan & mengatasi kering', scores: { dry: 3, dehydrated: 1 } },
+        { text: 'Mencerahkan & meratakan warna kulit', scores: { dull: 3 } },
+        { text: 'Menenangkan & memperkuat skin barrier', scores: { sensitive: 3 } }
+      ]
+    },
+    {
+      q: 'Seberapa sering kulitmu terasa kering atau "tight"?',
+      subtitle: 'Terutama setelah mencuci muka atau di ruangan AC',
+      opts: [
+        { text: 'Selalu, hampir setiap saat', scores: { dry: 3, dehydrated: 2 } },
+        { text: 'Sering, terutama di AC', scores: { dehydrated: 3, dry: 1 } },
+        { text: 'Jarang, hanya kadang-kadang', scores: { normal: 2, combination: 1 } },
+        { text: 'Tidak pernah, malah cenderung berminyak', scores: { oily: 3 } }
+      ]
+    },
+    {
+      q: 'Apakah wajahmu terlihat kusam / kurang bercahaya?',
+      subtitle: 'Meski sudah tidur cukup & minum air',
+      opts: [
+        { text: 'Ya, sering terlihat kusam', scores: { dull: 3 } },
+        { text: 'Kadang, terutama saat lelah', scores: { dull: 2, dehydrated: 1 } },
+        { text: 'Jarang, kulitku cukup cerah', scores: { normal: 2 } },
+        { text: 'Tidak, kulitku justru mengkilap', scores: { oily: 2 } }
+      ]
+    },
+    {
+      q: 'Bagaimana reaksi kulitmu setelah mencuci muka?',
+      subtitle: 'Dengan facial wash biasa, tanpa langsung pakai skincare',
+      opts: [
+        { text: 'Langsung kering & kaku', scores: { dry: 3, sensitive: 1 } },
+        { text: 'Terasa nyaman, tidak kering/berminyak', scores: { normal: 3 } },
+        { text: 'Cepat berminyak lagi dalam 30 menit', scores: { oily: 3 } },
+        { text: 'Kadang kering, kadang berminyak', scores: { combination: 3 } }
+      ]
+    },
+    {
+      q: 'Apakah kulitmu mudah kemerahan atau iritasi?',
+      subtitle: 'Misalnya setelah kena matahari, gosok, atau produk',
+      opts: [
+        { text: 'Sangat mudah, sering merah', scores: { sensitive: 3 } },
+        { text: 'Kadang, di area tertentu saja', scores: { sensitive: 2, dry: 1 } },
+        { text: 'Jarang, kulitku cukup tahan', scores: { normal: 2 } },
+        { text: 'Tidak, malah cenderung berminyak & tahan', scores: { oily: 2 } }
+      ]
+    },
+    {
+      q: 'Menurutmu, tipe kulitmu paling mendekati...',
+      subtitle: 'Intuisi kamu biasanya benar, lho',
+      opts: [
+        { text: 'Berminyak di seluruh wajah', scores: { oily: 3 } },
+        { text: 'Kering, kaku, kadang mengelupas', scores: { dry: 3 } },
+        { text: 'Kombinasi: berminyak di T-zone, kering di pipi', scores: { combination: 3 } },
+        { text: 'Sensitif, mudah reaksi', scores: { sensitive: 3 } }
+      ]
+    }
+  ];
+
+  const skinProfiles = {
+    oily: {
+      name: 'Oily Skin',
+      emoji: '💧',
+      color: '#8B5E3C',
+      description: 'Kulitmu memproduksi minyak berlebih, terutama di seluruh wajah. Ini bisa membuat makeup cepat luntur dan pori-pori tampak besar.',
+      ingredientsGood: [
+        { name: 'Niacinamide', benefit: 'Mengontrol minyak & memperkecil pori' },
+        { name: 'Salicylic Acid', benefit: 'Membersihkan pori dari dalam' },
+        { name: 'Zinc PCA', benefit: 'Menyeimbangkan produksi sebum' },
+        { name: 'Green Tea Extract', benefit: 'Antioksidan & anti-inflamasi' }
+      ],
+      ingredientsAvoid: [
+        { name: 'Coconut Oil', reason: 'Menyumbat pori & memicu jerawat' },
+        { name: 'Heavy Cream', reason: 'Terlalu rich untuk kulit berminyak' },
+        { name: 'Alcohol Denat (tinggi)', reason: 'Memicu produksi minyak berlebih' }
+      ],
+      morning: ['Gentle Cleanser', 'Oil-control Toner', 'Niacinamide Serum', 'Gel Moisturizer', 'Sunscreen Gel/Water-based'],
+      night: ['Double Cleansing', 'Salicylic Acid Toner', 'Niacinamide / Zinc Serum', 'Light Moisturizer'],
+      tips: [
+        'Jangan over-washing! Cukup 2x sehari, karena mencuci terlalu sering justru memicu minyak lebih banyak.',
+        'Pilih pelembap berbasis gel atau water-based, hindari yang berbasis oil.',
+        'Gunakan blotting paper saat T-zone mulai mengkilap, bukan mencuci muka.',
+        'Cek label produk: hindari yang mengandung "comedogenic" ingredients.'
+      ]
+    },
+    dry: {
+      name: 'Dry Skin',
+      emoji: '🌵',
+      color: '#A58E7A',
+      description: 'Kulitmu kurang produksi minyak alami, sehingga sering terasa kaku, kering, dan kadang mengelupas.',
+      ingredientsGood: [
+        { name: 'Hyaluronic Acid', benefit: 'Menarik & mengunci kelembapan' },
+        { name: 'Ceramide', benefit: 'Memperkuat skin barrier' },
+        { name: 'Squalane', benefit: 'Melembapkan tanpa menyumbat pori' },
+        { name: 'Glycerin', benefit: 'Humektan klasik yang efektif' }
+      ],
+      ingredientsAvoid: [
+        { name: 'Alcohol Denat', reason: 'Membuat kulit makin kering' },
+        { name: 'Salicylic Acid (tinggi)', reason: 'Terlalu keras untuk kulit kering' },
+        { name: 'Foaming Cleanser', reason: 'Mengikis minyak alami kulit' }
+      ],
+      morning: ['Creamy Cleanser', 'Hydrating Toner', 'Hyaluronic Acid Serum', 'Rich Moisturizer', 'Sunscreen Moisturizing'],
+      night: ['Oil Cleanser', 'Creamy Cleanser', 'Ceramide Serum', 'Face Oil / Rich Cream'],
+      tips: [
+        'Gunakan pelembap segera setelah mencuci muka, saat kulit masih lembap.',
+        'Hindari air panas saat mencuci muka, pakai air hangat atau dingin.',
+        'Tidur dengan humidifier bisa sangat membantu kulit kering.',
+        'Layer produk: toner → serum → moisturizer, jangan skip satu pun.'
+      ]
+    },
+    combination: {
+      name: 'Combination Skin',
+      emoji: '⚖️',
+      color: '#D9A79C',
+      description: 'Kulitmu punya karakter berbeda di tiap area: berminyak di T-zone, tapi normal/kering di pipi.',
+      ingredientsGood: [
+        { name: 'Niacinamide', benefit: 'Menyeimbangkan minyak & kelembapan' },
+        { name: 'Hyaluronic Acid', benefit: 'Melembapkan tanpa berat' },
+        { name: 'Centella Asiatica', benefit: 'Menenangkan & memperbaiki' },
+        { name: 'Green Tea Extract', benefit: 'Antioksidan & oil-control' }
+      ],
+      ingredientsAvoid: [
+        { name: 'Heavy Butter', reason: 'Terlalu berat untuk T-zone' },
+        { name: 'Alcohol Denat (tinggi)', reason: 'Bikin pipi makin kering' },
+        { name: 'Coconut Oil', reason: 'Komodogenik di T-zone' }
+      ],
+      morning: ['Gentle Cleanser', 'Balancing Toner', 'Niacinamide Serum', 'Light Moisturizer', 'Sunscreen Gel'],
+      night: ['Double Cleansing', 'Exfoliating Toner (T-zone)', 'Hyaluronic Serum', 'Moisturizer'],
+      tips: [
+        'Gunakan produk berbeda untuk area berbeda: clay mask di T-zone, hydrating mask di pipi.',
+        'Jangan pakai produk "untuk kulit berminyak" di seluruh wajah, bisa bikin pipi makin kering.',
+        'Multi-masking adalah sahabat kulit kombinasi.',
+        'Pilih pelembap dengan tekstur lotion atau gel-cream, bukan cream tebal.'
+      ]
+    },
+    sensitive: {
+      name: 'Sensitive Skin',
+      emoji: '🌸',
+      color: '#C28B7E',
+      description: 'Kulitmu mudah bereaksi terhadap produk, cuaca, atau gesekan. Skin barrier-mu cenderung lebih rapuh dan butuh perhatian ekstra.',
+      ingredientsGood: [
+        { name: 'Ceramide', benefit: 'Memperkuat skin barrier' },
+        { name: 'Centella Asiatica', benefit: 'Menenangkan kemerahan' },
+        { name: 'Panthenol (B5)', benefit: 'Melembapkan & healing' },
+        { name: 'Aloe Vera', benefit: 'Soothes & menenangkan' }
+      ],
+      ingredientsAvoid: [
+        { name: 'Fragrance', reason: 'Pemicu iritasi paling umum' },
+        { name: 'Essential Oil', reason: 'Bisa memicu reaksi alergi' },
+        { name: 'AHA/BHA (konsentrasi tinggi)', reason: 'Terlalu keras untuk barrier lemah' },
+        { name: 'Alcohol Denat', reason: 'Merusak barrier lebih lanjut' }
+      ],
+      morning: ['Gentle Non-foaming Cleanser', 'Soothing Toner', 'Centella Serum', 'Barrier Moisturizer', 'Mineral Sunscreen'],
+      night: ['Micellar Water', 'Gentle Cleanser', 'Panthenol Serum', 'Ceramide Cream'],
+      tips: [
+        'Selalu patch test produk baru di belakang telinga selama 24 jam.',
+        'Perkenalkan 1 produk baru setiap 2 minggu, jangan sekaligus.',
+        'Pilih produk dengan klaim "fragrance-free" dan "hypoallergenic".',
+        'Hindari scrub fisik, pilih chemical exfoliant lembut (PHA).'
+      ]
+    },
+    normal: {
+      name: 'Normal Skin',
+      emoji: '✨',
+      color: '#B78B6B',
+      description: 'Selamat! Kulitmu seimbang: tidak terlalu berminyak, tidak terlalu kering. Tugasmu sekarang adalah mempertahankannya.',
+      ingredientsGood: [
+        { name: 'Vitamin C', benefit: 'Antioksidan & mencerahkan' },
+        { name: 'Hyaluronic Acid', benefit: 'Menjaga hidrasi' },
+        { name: 'Niacinamide', benefit: 'Menjaga keseimbangan' },
+        { name: 'Antioxidant Complex', benefit: 'Proteksi dari polusi' }
+      ],
+      ingredientsAvoid: [
+        { name: 'Produk terlalu keras', reason: 'Bisa merusak keseimbangan alami' },
+        { name: 'Over-exfoliating', reason: 'Bikin kulit jadi sensitif' }
+      ],
+      morning: ['Gentle Cleanser', 'Vitamin C Serum', 'Moisturizer', 'Sunscreen'],
+      night: ['Cleanser', 'Hydrating Toner', 'Niacinamide Serum', 'Moisturizer'],
+      tips: [
+        'Jangan malas skincare! Kulit normal bisa berubah kalau tidak dirawat.',
+        'Fokus pada prevention: sunscreen & antioksidan adalah kunci.',
+        'Eksfoliasi 1-2x seminggu cukup untuk menjaga kulit cerah.',
+        'Perhatikan perubahan kulit seiring usia & musim.'
+      ]
+    }
+  };
+
+  const skinConditions = {
+    acne: {
+      name: 'Acne-Prone',
+      emoji: '⚠️',
+      description: 'Kulitmu cenderung mudah breakout. Butuh perhatian ekstra dalam memilih produk.',
+      extraTips: [
+        'Jangan pernah tidur dengan makeup masih menempel.',
+        'Ganti sarung bantal setiap 3-4 hari.',
+        'Hindari menyentuh wajah dengan tangan kotor.',
+        'Konsultasi dermatolog kalau jerawat sudah meradang.'
+      ]
+    },
+    dehydrated: {
+      name: 'Dehydrated',
+      emoji: '💦',
+      description: 'Kulitmu kekurangan air (bukan minyak). Bisa terjadi pada semua tipe kulit.',
+      extraTips: [
+        'Minum air 8 gelas sehari, kulit butuh hidrasi dari dalam.',
+        'Gunakan hydrating toner (bukan astringent).',
+        'Hindari produk yang mengandung alkohol tinggi.',
+        'Tidur dengan humidifier membantu hidrasi malam.'
+      ]
+    },
+    dull: {
+      name: 'Dull Skin',
+      emoji: '🌫️',
+      description: 'Kulitmu kurang bercahaya, bisa karena penumpukan sel kulit mati atau kurang hidrasi.',
+      extraTips: [
+        'Eksfoliasi lembut 1-2x seminggu untuk angkat sel mati.',
+        'Tambah vitamin C di rutinitas pagi.',
+        'Pastikan tidur cukup (7-8 jam), kulit regenerasi saat tidur.',
+        'Konsumsi makanan kaya antioksidan (buah, sayur).'
+      ]
+    }
+  };
+
+  // ================= UNDERTONE DATA =================
+  const undertoneQuestions = [
+    { q: 'Warna pembuluh darah di pergelangan tangan?', opts: ['Biru/ungu', 'Hijau', 'Campuran', 'Tidak jelas'] },
+    { q: 'Perhiasan yang cocok?', opts: ['Perak', 'Emas', 'Keduanya', 'Rose gold'] },
+    { q: 'Reaksi kulit terkena sinar matahari?', opts: ['Terbakar', 'Cokelat', 'Kadang terbakar', 'Cokelat kehitaman'] },
+    { q: 'White Paper Test: warna kulit di samping kertas?', opts: ['Kemerahan', 'Kekuningan', 'Netral', 'Kehijauan'] },
+    { q: 'Warna mata?', opts: ['Biru/hitam', 'Cokelat', 'Hazel', 'Hijau'] },
+    { q: 'Warna rambut alami?', opts: ['Hitam', 'Cokelat', 'Pirang', 'Merah'] },
+    { q: 'Warna pakaian yang membuatmu terlihat segar?', opts: ['Biru', 'Oranye', 'Putih', 'Hijau'] },
+    { q: 'Warna lipstik yang cocok?', opts: ['Merah muda', 'Coral', 'Nude', 'Plum'] },
+    { q: 'Bagaimana warna kulitmu di bawah sinar matahari?', opts: ['Pucat', 'Kuning langsat', 'Sawo matang', 'Zaitun'] },
+    { q: 'Warna eyeshadow yang sering kamu pakai?', opts: ['Cool tone', 'Warm tone', 'Neutral', 'Earth tone'] }
+  ];
+
+  // ================= STATE =================
+  let currentUser = null;
+  let skinAnswers = new Array(10).fill(null);
+  let skinIndex = 0;
+  let skinScores = {};
+  let currentSkinResult = null;
+  let undertoneAnswers = new Array(10).fill(null);
+  let undertoneIndex = 0;
+
+  // ================= INIT =================
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('#authTabs .nav-link').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelectorAll('#authTabs .nav-link').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const tab = btn.dataset.tab;
+        document.getElementById('loginForm').classList.toggle('hidden', tab !== 'login');
+        document.getElementById('registerForm').classList.toggle('hidden', tab !== 'register');
+      });
+    });
+
+    document.getElementById('splashStartBtn').addEventListener('click', () => {
+      document.getElementById('splash-screen').style.opacity = '0';
+      setTimeout(() => {
+        document.getElementById('splash-screen').style.display = 'none';
+        checkAuth();
+      }, 500);
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const pass = document.getElementById('loginPassword').value;
+      const remember = document.getElementById('rememberMe').checked;
+      const users = JSON.parse(localStorage.getItem('lokaura_users') || '[]');
+      const user = users.find(u => u.email === email && u.password === pass);
+      if (user) {
+        currentUser = user;
+        localStorage.setItem('lokaura_session', JSON.stringify({ email: user.email, remember }));
+        enterApp();
+      } else alert('Email atau password salah');
+    });
+
+    document.getElementById('registerForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('regName').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const pass = document.getElementById('regPassword').value;
+      const confirm = document.getElementById('regConfirm').value;
+      if (!email.includes('@')) return alert('Email tidak valid');
+      if (pass.length < 6) return alert('Password minimal 6 karakter');
+      if (pass !== confirm) return alert('Konfirmasi password tidak cocok');
+      if (!document.getElementById('regTerms').checked) return alert('Setuju syarat & ketentuan');
+      let users = JSON.parse(localStorage.getItem('lokaura_users') || '[]');
+      if (users.find(u => u.email === email)) return alert('Email sudah terdaftar');
+      users.push({ name, email, password: pass });
+      localStorage.setItem('lokaura_users', JSON.stringify(users));
+      alert('Registrasi berhasil, silakan login');
+      document.querySelector('#authTabs .nav-link[data-tab="login"]').click();
+    });
+
+    document.querySelectorAll('.bottom-nav .nav-item').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.bottom-nav .nav-item').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        goToPage(btn.dataset.page);
+      });
+    });
+
+    initOotdDropdown();
+    renderSavedSkinCard();
+  });
+
+  // ================= AUTH =================
+  function checkAuth() {
+    const session = JSON.parse(localStorage.getItem('lokaura_session') || 'null');
+    if (session) {
+      const users = JSON.parse(localStorage.getItem('lokaura_users') || '[]');
+      const user = users.find(u => u.email === session.email);
+      if (user) {
+        currentUser = user;
+        enterApp();
+        return;
+      }
+    }
+    document.getElementById('authOverlay').classList.remove('hidden');
+    document.getElementById('app-container').classList.add('hidden');
+  }
+
+  function enterApp() {
+    document.getElementById('authOverlay').classList.add('hidden');
+    document.getElementById('app-container').classList.remove('hidden');
+    document.getElementById('greetingName').innerText = currentUser.name.split(' ')[0] + '!';
+    document.getElementById('profileName').innerText = currentUser.name;
+    document.getElementById('profileEmail').innerText = currentUser.email;
+    document.getElementById('profilePic').src = `https://ui-avatars.com/api/?background=D9A79C&color=fff&name=${encodeURIComponent(currentUser.name)}&size=90`;
+  }
+
+  function logout() {
+    localStorage.removeItem('lokaura_session');
+    currentUser = null;
+    location.reload();
+  }
+
+  // ================= NAVIGATION =================
+  function goToPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const page = document.getElementById('page-' + pageId);
+    if (page) page.classList.add('active');
+    document.querySelectorAll('.bottom-nav .nav-item').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.page === pageId);
+    });
+
+    if (pageId === 'skincare') {
+      document.getElementById('skincareIntro').classList.remove('hidden');
+      document.getElementById('skinQuizContainer').classList.add('hidden');
+      document.getElementById('skinResult').classList.add('hidden');
+      document.getElementById('skinResult').innerHTML = '';
+      renderSavedSkinCard();
+    }
+  }
+
+  // ================= OOTD =================
+  function initOotdDropdown() {
+    updateOotdItemOptions();
+  }
+
+  function updateOotdItemOptions() {
+    const cat = document.getElementById('ootdCategorySelect').value;
+    const itemSelect = document.getElementById('ootdItemSelect');
+    const items = ootdCategories[cat].items;
+    itemSelect.innerHTML = items.map(i => `<option value="${i}">${i}</option>`).join('');
+  }
+
+  function findImageForBreakdown(item) {
+    const candidates = item.value.split('/').map(s => s.trim());
+    for (const candidate of candidates) {
+      if (ITEM_IMAGES[candidate]) return ITEM_IMAGES[candidate];
+    }
+    for (const candidate of candidates) {
+      for (const key in ITEM_IMAGES) {
+        if (candidate.toLowerCase().includes(key.toLowerCase()) ||
+            key.toLowerCase().includes(candidate.toLowerCase())) {
+          return ITEM_IMAGES[key];
+        }
+      }
+    }
+    return null;
+  }
+
+  function generatePlaceholderHTML(catColor) {
+    const bg = catColor.bg.replace(/'/g, "\\'");
+    return `<div class="slot-placeholder" style="background:${bg};">
+      <i class="bi ${catColor.icon}"></i>
+      <span>${catColor.label}</span>
+    </div>`;
+  }
+
+  function renderBreakdownPhoto(item) {
+    const catKey = labelToCategory[item.label] || 'atasan';
+    const catColor = categoryColors[catKey];
+    const imagePath = findImageForBreakdown(item);
+
+    if (imagePath) {
+      return `<img src="${imagePath}" alt="${item.value}"
+        onerror="this.parentElement.innerHTML='${generatePlaceholderHTML(catColor)}'">`;
+    } else {
+      return generatePlaceholderHTML(catColor);
+    }
+  }
+
+  function getOotdRecommendation() {
+    const category = document.getElementById('ootdCategorySelect').value;
+    const item = document.getElementById('ootdItemSelect').value;
+    const rule = ootdRules[item];
+    if (!rule) { alert('Rekomendasi untuk item ini belum tersedia.'); return; }
+
+    document.getElementById('ootdFormSection').classList.add('hidden');
+    const resultSection = document.getElementById('ootdResultSection');
+    resultSection.classList.remove('hidden');
+    resultSection.innerHTML = `
+      <div class="loading-overlay">
+        <div class="spinner-lok"></div>
+        <p class="text-soft">Menyusun rekomendasi...</p>
+      </div>
+    `;
+
+    setTimeout(() => {
+      const breakdownHtml = rule.breakdown.map((b) => `
+        <div class="breakdown-photo-card">
+          <div class="breakdown-photo-slot">
+            ${renderBreakdownPhoto(b)}
+          </div>
+          <div class="breakdown-info">
+            <div class="breakdown-label">
+              <i class="bi ${b.icon}"></i>
+              ${b.label}
+            </div>
+            <div class="breakdown-value">${b.value}</div>
+          </div>
+        </div>
+      `).join('');
+
+      const colorEduHtml = rule.colorEducation.map(edu => `
+        <div class="color-edu-card">
+          <div class="color-edu-header">
+            <i class="bi bi-info-circle"></i>
+            ${edu.title}
+          </div>
+          <div class="color-edu-body">${edu.text}</div>
+          <div class="color-edu-palette">
+            ${edu.palette.map(c => `
+              <div class="color-edu-dot" style="background:${c};"></div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+
+      resultSection.innerHTML = `
+        <div class="fade-in-result">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div>
+              <div class="look-title">${rule.lookTitle}</div>
+              <small class="text-soft">Berdasarkan pilihan: <strong>${item}</strong></small>
+            </div>
+          </div>
+
+          <div class="card-lok mb-3">
+            <h6 class="fw-bold mb-3"><i class="bi bi-list-check me-2"></i>Outfit Breakdown</h6>
+            <p class="text-soft mb-2" style="font-size:0.78rem;">${rule.breakdown.length} item rekomendasi untuk padu padanmu.</p>
+            ${breakdownHtml}
+          </div>
+
+          <div class="card-lok mb-3">
+            <h6 class="fw-bold mb-2"><i class="bi bi-lightbulb me-2"></i>Styling Tips</h6>
+            <div class="styling-tips">${rule.tips}</div>
+          </div>
+
+          <div class="card-lok mb-3">
+            <h6 class="fw-bold mb-2"><i class="bi bi-palette me-2"></i>Panduan Warna & Padu Padan</h6>
+            <p class="text-soft mb-2" style="font-size:0.78rem;">Edukasi warna berdasarkan kondisi item pilihanmu.</p>
+            ${colorEduHtml}
+          </div>
+
+          <button class="btn-outline-bronze w-100" onclick="resetOotd()">
+            <i class="bi bi-arrow-repeat me-2"></i>Coba Kombinasi Lain
+          </button>
+          <div class="footer-space"></div>
+        </div>
+      `;
+    }, 900);
+  }
+
+  function resetOotd() {
+    document.getElementById('ootdFormSection').classList.remove('hidden');
+    document.getElementById('ootdResultSection').classList.add('hidden');
+    document.getElementById('ootdResultSection').innerHTML = '';
+    document.getElementById('ootdCategorySelect').value = 'atasan';
+    updateOotdItemOptions();
+  }
+
+  // ============================================================
+  // ================= SKIN QUIZ =================
+  // ============================================================
+  function startSkinQuiz() {
+    skinScores = { oily: 0, dry: 0, combination: 0, sensitive: 0, normal: 0, acne: 0, dehydrated: 0, dull: 0 };
+    skinIndex = 0;
+    skinAnswers = new Array(10).fill(null);
+    currentSkinResult = null;
+
+    document.getElementById('skincareIntro').classList.add('hidden');
+    document.getElementById('skinQuizContainer').classList.remove('hidden');
+    document.getElementById('skinResult').classList.add('hidden');
+    document.getElementById('skinResult').innerHTML = '';
+    renderSkinQuestion();
+  }
+
+  function renderSkinQuestion() {
+    const q = skinQuestions[skinIndex];
+    document.getElementById('skinQNum').innerText = skinIndex + 1;
+    const pct = ((skinIndex + 1) / 10) * 100;
+    document.getElementById('skinProgressBar').style.width = pct + '%';
+    document.getElementById('skinProgressText').innerText = Math.round(pct) + '%';
+    document.getElementById('skinQuestionText').innerHTML = `
+      ${q.q}
+      <div class="text-soft fw-normal mt-1" style="font-size:0.78rem;">${q.subtitle}</div>
+    `;
+    document.getElementById('skinOptions').innerHTML = q.opts.map((opt, i) => `
+      <div class="quiz-option ${skinAnswers[skinIndex] === i ? 'selected' : ''}" onclick="selectSkinOption(${i})">
+        <input type="radio" name="skinOpt" ${skinAnswers[skinIndex] === i ? 'checked' : ''}>
+        <span>${opt.text}</span>
+      </div>
+    `).join('');
+    document.getElementById('skinPrevBtn').style.visibility = skinIndex === 0 ? 'hidden' : 'visible';
+    document.getElementById('skinNextBtn').innerText = skinIndex === 9 ? 'Lihat Hasil' : 'Lanjut';
+  }
+
+  function selectSkinOption(i) {
+    skinAnswers[skinIndex] = i;
+    renderSkinQuestion();
+  }
+
+  function skinPrev() {
+    if (skinIndex > 0) { skinIndex--; renderSkinQuestion(); }
+  }
+
+  function skinNext() {
+    if (skinAnswers[skinIndex] === null) return alert('Pilih jawaban dulu ya');
+    if (skinIndex < 9) { skinIndex++; renderSkinQuestion(); }
+    else finishSkinQuiz();
+  }
+
+  function finishSkinQuiz() {
+    const scores = { oily: 0, dry: 0, combination: 0, sensitive: 0, normal: 0, acne: 0, dehydrated: 0, dull: 0 };
+    skinAnswers.forEach((ansIdx, qIdx) => {
+      const opt = skinQuestions[qIdx].opts[ansIdx];
+      for (const key in opt.scores) {
+        scores[key] = (scores[key] || 0) + opt.scores[key];
+      }
+    });
+
+    const mainTypes = ['oily', 'dry', 'combination', 'sensitive', 'normal'];
+    let mainType = 'normal';
+    let maxScore = 0;
+    mainTypes.forEach(t => {
+      if (scores[t] > maxScore) { maxScore = scores[t]; mainType = t; }
+    });
+
+    const conditions = [];
+    if (scores.acne >= 4) conditions.push('acne');
+    if (scores.dehydrated >= 3) conditions.push('dehydrated');
+    if (scores.dull >= 3) conditions.push('dull');
+
+    const result = {
+      type: mainType,
+      conditions: conditions,
+      scores: scores,
+      date: new Date().toISOString()
+    };
+    localStorage.setItem('lokaura_skin_result', JSON.stringify(result));
+    currentSkinResult = result;
+
+    document.getElementById('skinQuizContainer').classList.add('hidden');
+    const resDiv = document.getElementById('skinResult');
+    resDiv.classList.remove('hidden');
+    resDiv.innerHTML = `
+      <div class="loading-overlay">
+        <div class="spinner-lok"></div>
+        <p class="text-soft">Menganalisis profil kulitmu...</p>
+      </div>
+    `;
+
+    setTimeout(() => {
+      renderSkinResult(result, false);
+    }, 1200);
+  }
+
+  function renderSkinResult(result, isSavedView) {
+    const profile = skinProfiles[result.type];
+    const conditionDetails = result.conditions.map(c => skinConditions[c]);
+
+    const conditionsHtml = conditionDetails.length > 0
+      ? conditionDetails.map(c => `
+          <div class="breakdown-photo-card" style="border-left-color: ${profile.color};">
+            <div style="font-size:2rem; min-width:50px; text-align:center;">${c.emoji}</div>
+            <div class="breakdown-info">
+              <div class="breakdown-label">${c.name}</div>
+              <div class="breakdown-value">${c.description}</div>
+            </div>
+          </div>
+        `).join('')
+      : `<p class="text-soft text-center mb-0" style="font-size:0.85rem;">Tidak ada kondisi tambahan terdeteksi. Kulitmu seimbang! 🎉</p>`;
+
+    const goodIngredientsHtml = profile.ingredientsGood.map(i => `
+      <div class="d-flex align-items-start gap-2 mb-2">
+        <i class="bi bi-check-circle-fill" style="color: #27AE60; margin-top:3px;"></i>
+        <div>
+          <strong style="color: var(--bronze-dark); font-size:0.9rem;">${i.name}</strong>
+          <div class="text-soft" style="font-size:0.8rem;">${i.benefit}</div>
+        </div>
+      </div>
+    `).join('');
+
+    const badIngredientsHtml = profile.ingredientsAvoid.map(i => `
+      <div class="d-flex align-items-start gap-2 mb-2">
+        <i class="bi bi-x-circle-fill" style="color: #C0392B; margin-top:3px;"></i>
+        <div>
+          <strong style="color: var(--bronze-dark); font-size:0.9rem;">${i.name}</strong>
+          <div class="text-soft" style="font-size:0.8rem;">${i.reason}</div>
+        </div>
+      </div>
+    `).join('');
+
+    const morningSteps = profile.morning.map((step, i) => `
+      <div class="d-flex align-items-center gap-2 mb-2">
+        <span class="step-number">${i + 1}</span>
+        <span style="font-size:0.88rem;">${step}</span>
+      </div>
+    `).join('');
+
+    const nightSteps = profile.night.map((step, i) => `
+      <div class="d-flex align-items-center gap-2 mb-2">
+        <span class="step-number" style="background: var(--bronze-dark);">${i + 1}</span>
+        <span style="font-size:0.88rem;">${step}</span>
+      </div>
+    `).join('');
+
+    const allTips = [...profile.tips];
+    conditionDetails.forEach(c => allTips.push(...c.extraTips));
+    const tipsHtml = allTips.map(t => `
+      <div class="d-flex align-items-start gap-2 mb-2">
+        <i class="bi bi-lightbulb-fill" style="color: var(--bronze); margin-top:3px;"></i>
+        <span style="font-size:0.85rem; color: var(--text-soft); line-height:1.5;">${t}</span>
+      </div>
+    `).join('');
+
+    const scoreBars = Object.entries(result.scores)
+      .filter(([k, v]) => v > 0)
+      .map(([k, v]) => {
+        const labels = {
+          oily: 'Berminyak', dry: 'Kering', combination: 'Kombinasi',
+          sensitive: 'Sensitif', normal: 'Normal', acne: 'Jerawat',
+          dehydrated: 'Dehidrasi', dull: 'Kusam'
+        };
+        const pct = Math.min(100, (v / 10) * 100);
+        return `
+          <div class="mb-2">
+            <div class="d-flex justify-content-between mb-1">
+              <small style="font-size:0.75rem; color: var(--text-soft);">${labels[k] || k}</small>
+              <small style="font-size:0.75rem; color: var(--bronze-dark); font-weight:600;">${Math.round(pct)}%</small>
+            </div>
+            <div class="score-bar-container">
+              <div class="score-bar-fill" style="width:${pct}%;"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+    const actionButtons = isSavedView
+      ? `<button class="btn-outline-bronze w-100 mb-2" onclick="backToSkinIntro()">
+           <i class="bi bi-arrow-left me-2"></i>Kembali
+         </button>`
+      : `<div class="row g-2 mb-2">
+           <div class="col-6">
+             <button class="btn btn-outline-secondary rounded-pill w-100" onclick="startSkinQuiz()">
+               <i class="bi bi-arrow-repeat me-1"></i>Ulangi
+             </button>
+           </div>
+           <div class="col-6">
+             <button class="btn-bronze rounded-pill w-100" onclick="saveSkinResult()">
+               <i class="bi bi-bookmark-plus me-1"></i>Simpan
+             </button>
+           </div>
+         </div>`;
+
+    document.getElementById('skinResult').innerHTML = `
+      <div class="fade-in-result">
+        <div class="card-lok text-center mb-3" style="background: linear-gradient(135deg, ${profile.color}15, ${profile.color}05); border: 2px solid ${profile.color}40;">
+          <div style="font-size:3.5rem; margin-bottom:8px;">${profile.emoji}</div>
+          <small class="text-soft" style="letter-spacing:1px; text-transform:uppercase; font-size:0.7rem;">Tipe Kulitmu</small>
+          <h2 class="mb-2" style="color: ${profile.color}; font-weight:700;">${profile.name}</h2>
+          <p class="text-soft mb-0" style="font-size:0.9rem; line-height:1.5;">${profile.description}</p>
+        </div>
+
+        <div class="card-lok mb-3">
+          <h6 class="fw-bold mb-3"><i class="bi bi-clipboard-pulse me-2"></i>Kondisi Tambahan</h6>
+          ${conditionsHtml}
+        </div>
+
+        <div class="card-lok mb-3">
+          <h6 class="fw-bold mb-3"><i class="bi bi-bar-chart me-2"></i>Profil Kulitmu</h6>
+          ${scoreBars}
+        </div>
+
+        <div class="card-lok mb-3">
+          <h6 class="fw-bold mb-3"><i class="bi bi-check-circle me-2" style="color:#27AE60;"></i>Kandungan yang Cocok</h6>
+          ${goodIngredientsHtml}
+        </div>
+
+        <div class="card-lok mb-3">
+          <h6 class="fw-bold mb-3"><i class="bi bi-x-circle me-2" style="color:#C0392B;"></i>Kandungan yang Sebaiknya Dihindari</h6>
+          ${badIngredientsHtml}
+        </div>
+
+        <div class="card-lok mb-3">
+          <h6 class="fw-bold mb-3"><i class="bi bi-sun me-2" style="color:#F39C12;"></i>Rutinitas Pagi</h6>
+          ${morningSteps}
+        </div>
+
+        <div class="card-lok mb-3">
+          <h6 class="fw-bold mb-3"><i class="bi bi-moon-stars me-2" style="color:#34495E;"></i>Rutinitas Malam</h6>
+          ${nightSteps}
+        </div>
+
+        <div class="card-lok mb-3" style="background: linear-gradient(135deg, #FFF9F4, #FDF3EC);">
+          <h6 class="fw-bold mb-3"><i class="bi bi-lightbulb me-2"></i>Tips Personal untuk Kulitmu</h6>
+          ${tipsHtml}
+        </div>
+
+        ${actionButtons}
+        <div class="footer-space"></div>
+      </div>
+    `;
+  }
+
+  // ============================================================
+  // SIMPAN & LOAD HASIL KULIT (dengan modal pop-up)
+  // ============================================================
+  function saveSkinResult() {
+    const stored = JSON.parse(localStorage.getItem('lokaura_skin_result') || 'null');
+    if (!stored) return;
+    stored.saved = true;
+    stored.savedAt = new Date().toISOString();
+    localStorage.setItem('lokaura_skin_result_saved', JSON.stringify(stored));
+    localStorage.removeItem('lokaura_skin_result');
+
+    const successModal = new bootstrap.Modal(document.getElementById('saveSuccessModal'));
+    successModal.show();
+
+    document.getElementById('saveSuccessModal').addEventListener('hidden.bs.modal', function onHidden() {
+      document.getElementById('saveSuccessModal').removeEventListener('hidden.bs.modal', onHidden);
+      backToSkinIntro();
+    });
+  }
+
+  function loadSavedSkinResult() {
+    return JSON.parse(localStorage.getItem('lokaura_skin_result_saved') || 'null');
+  }
+
+  function backToSkinIntro() {
+    document.getElementById('skincareIntro').classList.remove('hidden');
+    document.getElementById('skinQuizContainer').classList.add('hidden');
+    document.getElementById('skinResult').classList.add('hidden');
+    document.getElementById('skinResult').innerHTML = '';
+    renderSavedSkinCard();
+    skinAnswers = new Array(10).fill(null);
+    skinIndex = 0;
+    currentSkinResult = null;
+  }
+
+  function viewSavedSkinResult() {
+    const saved = loadSavedSkinResult();
+    if (!saved) return;
+    document.getElementById('skincareIntro').classList.add('hidden');
+    document.getElementById('skinQuizContainer').classList.add('hidden');
+    document.getElementById('skinResult').classList.remove('hidden');
+    renderSkinResult(saved, true);
+  }
+
+  function deleteSavedSkinResult() {
+    const deleteModal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
+    deleteModal.show();
+  }
+
+  function confirmDeleteSkinResult() {
+    localStorage.removeItem('lokaura_skin_result_saved');
+    const modalEl = document.getElementById('deleteConfirmModal');
+    const modal = bootstrap.Modal.getInstance(modalEl);
+    if (modal) modal.hide();
+    renderSavedSkinCard();
+  }
+
+  function renderSavedSkinCard() {
+    const container = document.getElementById('savedSkinResultContainer');
+    if (!container) return;
+    const saved = loadSavedSkinResult();
+
+    if (!saved) {
+      container.innerHTML = '';
+      return;
+    }
+
+    const profile = skinProfiles[saved.type];
+    const dateFormatted = new Date(saved.savedAt).toLocaleDateString('id-ID', {
+      day: 'numeric', month: 'long', year: 'numeric'
+    });
+
+    const conditionsEmojis = saved.conditions.map(c => skinConditions[c].emoji).join(' ');
+
+    container.innerHTML = `
+      <div class="card-lok mb-3" style="background: linear-gradient(135deg, ${profile.color}15, ${profile.color}05); border: 2px solid ${profile.color}40;">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+          <small style="font-size:0.7rem; letter-spacing:1px; text-transform:uppercase; color: var(--text-soft);">
+            <i class="bi bi-bookmark-fill me-1" style="color: var(--bronze);"></i>Hasil Tersimpan
+          </small>
+          <button class="btn btn-sm p-0" style="color:#C0392B; font-size:0.8rem;" onclick="deleteSavedSkinResult()" title="Hapus hasil">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div style="font-size:2.5rem;">${profile.emoji}</div>
+          <div style="flex:1;">
+            <div class="fw-bold" style="font-size:1.1rem; color: ${profile.color};">${profile.name}</div>
+            <small class="text-soft" style="font-size:0.75rem;">
+              ${conditionsEmojis ? conditionsEmojis + ' • ' : ''}Disimpan ${dateFormatted}
+            </small>
+          </div>
+        </div>
+        <button class="btn-bronze w-100 mt-3" style="font-size:0.9rem; padding:0.6rem;" onclick="viewSavedSkinResult()">
+          <i class="bi bi-eye me-2"></i>Lihat Hasil Lengkap
+        </button>
+      </div>
+    `;
+  }
+
+  // ================= UNDERTONE QUIZ =================
+  function startUndertoneQuiz() {
+    undertoneAnswers = new Array(10).fill(null);
+    undertoneIndex = 0;
+    document.getElementById('makeupIntro').classList.add('hidden');
+    document.getElementById('undertoneQuizContainer').classList.remove('hidden');
+    document.getElementById('undertoneResult').classList.add('hidden');
+    renderUndertoneQuestion();
+  }
+
+  function renderUndertoneQuestion() {
+    const q = undertoneQuestions[undertoneIndex];
+    document.getElementById('utQNum').innerText = undertoneIndex + 1;
+    const pct = ((undertoneIndex + 1) / 10) * 100;
+    document.getElementById('utProgressBar').style.width = pct + '%';
+    document.getElementById('utProgressText').innerText = Math.round(pct) + '%';
+    document.getElementById('utQuestionText').innerText = q.q;
+    document.getElementById('utOptions').innerHTML = q.opts.map((opt, i) => `
+      <div class="quiz-option ${undertoneAnswers[undertoneIndex] === i ? 'selected' : ''}" onclick="selectUndertoneOption(${i})">
+        <input type="radio" name="utOpt" ${undertoneAnswers[undertoneIndex] === i ? 'checked' : ''}>
+        <span>${opt}</span>
+      </div>
+    `).join('');
+  }
+
+  function selectUndertoneOption(i) {
+    undertoneAnswers[undertoneIndex] = i;
+    renderUndertoneQuestion();
+  }
+
+  function utPrev() {
+    if (undertoneIndex > 0) { undertoneIndex--; renderUndertoneQuestion(); }
+  }
+
+  function utNext() {
+    if (undertoneAnswers[undertoneIndex] === null) return alert('Pilih jawaban dulu ya');
+    if (undertoneIndex < 9) { undertoneIndex++; renderUndertoneQuestion(); }
+    else finishUndertoneQuiz();
+  }
+
+  function finishUndertoneQuiz() {
+    const counts = [0,0,0,0];
+    undertoneAnswers.forEach(a => counts[a]++);
+    const types = ['Cool', 'Warm', 'Neutral', 'Olive'];
+    const maxIdx = counts.indexOf(Math.max(...counts));
+    const undertone = types[maxIdx];
+    localStorage.setItem('lokaura_undertone_result', JSON.stringify({ undertone, date: new Date().toISOString() }));
+
+    document.getElementById('undertoneQuizContainer').classList.add('hidden');
+    const resDiv = document.getElementById('undertoneResult');
+    resDiv.classList.remove('hidden');
+    const swatches = undertone === 'Cool' ? ['#B0C4DE', '#DDA0DD', '#C0C0C0'] : undertone === 'Warm' ? ['#FFDAB9', '#F4A460', '#FFB6C1'] : undertone === 'Neutral' ? ['#E6E6FA', '#D3D3D3', '#F5F5DC'] : ['#8FBC8F', '#556B2F', '#D2B48C'];
+    resDiv.innerHTML = `
+      <div class="card-lok text-center">
+        <h4>Undertone: ${undertone}</h4>
+        <div class="my-2">${swatches.map(c => `<span class="color-swatch" style="background:${c}"></span>`).join('')}</div>
+        <p class="text-soft">${undertone === 'Cool' ? 'Cocok dengan foundation pink, eyeshadow cool tone, lipstik berry.' : undertone === 'Warm' ? 'Cocok dengan foundation warm, eyeshadow earth tone, lipstik coral.' : undertone === 'Neutral' ? 'Fleksibel, bisa memakai kedua tone.' : 'Cocok dengan olive, cokelat kehijauan.'}</p>
+        <hr>
+        <p><strong>Rekomendasi Makeup:</strong> Foundation, Eyeshadow, Blush, Softlens, Lipstik</p>
+        <p><strong>Colors to Wear:</strong> ${undertone === 'Cool' ? 'Biru, Ungu, Pink' : 'Oranye, Kuning, Cokelat'}</p>
+        <p><strong>Colors to Avoid:</strong> ${undertone === 'Cool' ? 'Oranye, Kuning' : 'Biru, Ungu'}</p>
+        <button class="btn-outline-bronze mt-2" onclick="startUndertoneQuiz()">Ulangi Kuis</button>
+      </div>
+    `;
+  }
+
+  function toggleDark() {
+    document.body.classList.toggle('dark-mode');
+  }
+
+  // ================= SERVICE WORKER + MANIFEST =================
+  if ('serviceWorker' in navigator) {
+    const swCode = `
+      self.addEventListener('install', e => self.skipWaiting());
+      self.addEventListener('activate', e => self.clients.claim());
+      self.addEventListener('fetch', e => {
+        e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
+      });
+    `;
+    const blob = new Blob([swCode], {type: 'application/javascript'});
+    navigator.serviceWorker.register(URL.createObjectURL(blob));
+  }
+  const manifest = {
+    name: 'Lokaura',
+    short_name: 'Lokaura',
+    start_url: '.',
+    display: 'standalone',
+    background_color: '#FDFBF7',
+    theme_color: '#8B5E3C',
+  };
+  const link = document.createElement('link');
+  link.rel = 'manifest';
+  link.href = 'data:application/json,' + encodeURIComponent(JSON.stringify(manifest));
+  document.head.appendChild(link);
+
+  // ================= EXPOSE =================
+  window.goToPage = goToPage;
+  window.startSkinQuiz = startSkinQuiz;
+  window.startUndertoneQuiz = startUndertoneQuiz;
+  window.selectSkinOption = selectSkinOption;
+  window.selectUndertoneOption = selectUndertoneOption;
+  window.skinPrev = skinPrev;
+  window.skinNext = skinNext;
+  window.utPrev = utPrev;
+  window.utNext = utNext;
+  window.updateOotdItemOptions = updateOotdItemOptions;
+  window.getOotdRecommendation = getOotdRecommendation;
+  window.resetOotd = resetOotd;
+  window.saveSkinResult = saveSkinResult;
+  window.viewSavedSkinResult = viewSavedSkinResult;
+  window.deleteSavedSkinResult = deleteSavedSkinResult;
+  window.confirmDeleteSkinResult = confirmDeleteSkinResult;
+  window.backToSkinIntro = backToSkinIntro;
+  window.logout = logout;
+  window.toggleDark = toggleDark;
+</script>
+</body>
+</html>
