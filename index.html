@@ -36,94 +36,55 @@
       overflow-x: hidden;
     }
     #splash-screen {
-      position: fixed;
-      inset: 0;
-      background: var(--cream);
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 0.6s;
+      position: fixed; inset: 0; background: var(--cream);
+      z-index: 9999; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; transition: opacity 0.6s;
     }
     .logo-splash {
-      font-size: 3.8rem;
-      font-weight: 700;
-      color: var(--bronze);
-      letter-spacing: -1px;
-      margin-bottom: 1.5rem;
+      font-size: 3.8rem; font-weight: 700; color: var(--bronze);
+      letter-spacing: -1px; margin-bottom: 1.5rem;
     }
     .btn-bronze {
-      background-color: var(--bronze);
-      color: white;
-      border: none;
-      border-radius: var(--radius-btn);
-      padding: 0.85rem 2.5rem;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: 0.2s;
+      background-color: var(--bronze); color: white; border: none;
+      border-radius: var(--radius-btn); padding: 0.85rem 2.5rem;
+      font-weight: 600; font-size: 1.1rem; transition: 0.2s;
       box-shadow: 0 12px 18px -8px rgba(139,94,60,0.3);
     }
     .btn-bronze:hover { background-color: var(--bronze-dark); color: white; }
     .btn-outline-bronze {
-      border: 1.5px solid var(--bronze);
-      color: var(--bronze);
-      border-radius: var(--radius-btn);
-      padding: 0.75rem 1.8rem;
-      font-weight: 500;
-      background: transparent;
+      border: 1.5px solid var(--bronze); color: var(--bronze);
+      border-radius: var(--radius-btn); padding: 0.75rem 1.8rem;
+      font-weight: 500; background: transparent;
     }
     .btn-outline-bronze:hover { background: var(--bronze); color: white; }
     .card-lok {
-      background: white;
-      border-radius: var(--radius-card);
-      padding: 1.5rem;
-      box-shadow: var(--shadow-sm);
-      border: none;
-      transition: 0.15s;
+      background: white; border-radius: var(--radius-card);
+      padding: 1.5rem; box-shadow: var(--shadow-sm);
+      border: none; transition: 0.15s;
     }
     .card-lok:hover { box-shadow: var(--shadow-md); }
     .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      position: fixed; bottom: 0; left: 0; right: 0;
       height: var(--bottom-nav-height);
       background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      border-top: 1px solid rgba(139,94,60,0.08);
-      z-index: 1000;
-      padding: 0 6px;
-      box-shadow: 0 -4px 12px rgba(0,0,0,0.02);
+      display: flex; align-items: center; justify-content: space-around;
+      border-top: 1px solid rgba(139,94,60,0.08); z-index: 1000;
+      padding: 0 6px; box-shadow: 0 -4px 12px rgba(0,0,0,0.02);
     }
     .bottom-nav .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      color: #B9A89C;
-      transition: 0.2s;
-      text-decoration: none;
-      background: transparent;
-      border: none;
-      width: 60px;
-      height: 60px;
-      border-radius: 30px;
-      gap: 2px;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; font-size: 0.7rem; color: #B9A89C;
+      transition: 0.2s; text-decoration: none; background: transparent;
+      border: none; width: 60px; height: 60px;
+      border-radius: 30px; gap: 2px;
     }
     .bottom-nav .nav-item i { font-size: 1.5rem; }
     .bottom-nav .nav-item.active {
-      color: var(--bronze);
-      background: rgba(139,94,60,0.06);
-      font-weight: 500;
+      color: var(--bronze); background: rgba(139,94,60,0.06); font-weight: 500;
     }
     .page {
-      display: none;
-      padding: 20px 16px 16px;
+      display: none; padding: 20px 16px 16px;
       animation: fadeUp 0.25s ease;
     }
     .page.active { display: block; }
@@ -136,16 +97,10 @@
     .progress-thin { height: 8px; background: var(--rose-light); border-radius: 10px; }
     .progress-bar-rose { background: var(--rose); border-radius: 10px; }
     .quiz-option {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: white;
-      border-radius: 20px;
-      padding: 14px 18px;
-      margin-bottom: 12px;
-      border: 1.5px solid #f0e6dd;
-      transition: 0.15s;
-      cursor: pointer;
+      display: flex; align-items: center; gap: 12px;
+      background: white; border-radius: 20px; padding: 14px 18px;
+      margin-bottom: 12px; border: 1.5px solid #f0e6dd;
+      transition: 0.15s; cursor: pointer;
     }
     .quiz-option.selected { border-color: var(--bronze); background: #faf6f2; }
     .quiz-option input[type="radio"] { accent-color: var(--bronze); width: 20px; height: 20px; }
@@ -154,21 +109,15 @@
       object-fit: cover; border: 3px solid var(--rose-light);
     }
     .setting-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 0;
-      border-bottom: 1px solid #f0e6dd;
-      cursor: pointer;
-      transition: background 0.15s;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 0; border-bottom: 1px solid #f0e6dd;
+      cursor: pointer; transition: background 0.15s;
     }
     .setting-item:hover { background: rgba(139,94,60,0.03); margin: 0 -1.5rem; padding-left: 1.5rem; padding-right: 1.5rem; }
     .setting-item:last-child { border-bottom: none; }
     .form-control-lok {
-      border-radius: var(--radius-input);
-      border: 1.5px solid #e5d9cf;
-      padding: 12px 18px;
-      background: white;
+      border-radius: var(--radius-input); border: 1.5px solid #e5d9cf;
+      padding: 12px 18px; background: white;
     }
     .form-control-lok:focus {
       border-color: var(--bronze);
@@ -189,68 +138,50 @@
     .dark-mode .quiz-option { background: #3B322B; color: #F0E6DD; border-color: #5A4A3E; }
     .welcome-banner {
       background: linear-gradient(135deg, var(--bronze) 0%, #A67B5B 100%);
-      color: white;
-      border-radius: var(--radius-card);
-      padding: 1.5rem;
-      margin-bottom: 1.2rem;
+      color: white; border-radius: var(--radius-card);
+      padding: 1.5rem; margin-bottom: 1.2rem;
       box-shadow: var(--shadow-md);
     }
     .welcome-banner h3 { color: white; }
     .welcome-banner p { color: rgba(255,255,255,0.9); margin-bottom: 0; }
     .feature-list-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid #f0e6dd;
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 0; border-bottom: 1px solid #f0e6dd;
     }
     .feature-list-item:last-child { border-bottom: none; }
     .feature-icon {
       width: 42px; height: 42px; min-width: 42px;
-      border-radius: 14px;
-      background: var(--rose-light);
+      border-radius: 14px; background: var(--rose-light);
       display: flex; align-items: center; justify-content: center;
-      color: var(--bronze);
-      font-size: 1.2rem;
+      color: var(--bronze); font-size: 1.2rem;
     }
     .step-number {
       width: 26px; height: 26px; min-width: 26px;
       background: var(--bronze); color: white;
-      border-radius: 50%;
-      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 50%; display: inline-flex;
+      align-items: center; justify-content: center;
       font-size: 0.8rem; font-weight: 600;
     }
     .form-select-lok {
-      border-radius: var(--radius-input);
-      border: 1.5px solid #e5d9cf;
-      padding: 12px 18px;
-      background: white;
-      font-size: 0.95rem;
+      border-radius: var(--radius-input); border: 1.5px solid #e5d9cf;
+      padding: 12px 18px; background: white; font-size: 0.95rem;
     }
     .form-select-lok:focus {
       border-color: var(--bronze);
       box-shadow: 0 0 0 0.2rem rgba(139,94,60,0.15);
     }
     .styling-tips {
-      background: #FFF9F4;
-      border-radius: 18px;
-      padding: 16px;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: var(--text-soft);
+      background: #FFF9F4; border-radius: 18px; padding: 16px;
+      font-size: 0.9rem; line-height: 1.6; color: var(--text-soft);
       border: 1px dashed #e5d9cf;
     }
     .styling-tips strong { color: var(--bronze-dark); }
-    .loading-overlay {
-      text-align: center;
-      padding: 40px 0;
-    }
+    .loading-overlay { text-align: center; padding: 40px 0; }
     .spinner-lok {
       width: 50px; height: 50px;
       border: 4px solid var(--rose-light);
       border-top: 4px solid var(--bronze);
-      border-radius: 50%;
-      animation: spin 0.9s linear infinite;
+      border-radius: 50%; animation: spin 0.9s linear infinite;
       margin: 0 auto 16px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -260,171 +191,103 @@
       to { opacity: 1; transform: translateY(0); }
     }
     .look-title {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--bronze);
-      margin-bottom: 4px;
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--bronze); margin-bottom: 4px;
     }
     .breakdown-photo-card {
-      background: #FAF6F2;
-      border-radius: 18px;
-      padding: 12px;
-      margin-bottom: 12px;
-      border-left: 4px solid var(--rose);
-      display: flex;
-      gap: 12px;
-      align-items: center;
+      background: #FAF6F2; border-radius: 18px; padding: 12px;
+      margin-bottom: 12px; border-left: 4px solid var(--rose);
+      display: flex; gap: 12px; align-items: center;
     }
     .breakdown-photo-slot {
-      width: 80px;
-      height: 80px;
-      min-width: 80px;
-      border-radius: 14px;
-      overflow: hidden;
-      position: relative;
-      background: #EDE3D6;
+      width: 80px; height: 80px; min-width: 80px;
+      border-radius: 14px; overflow: hidden;
+      position: relative; background: #EDE3D6;
     }
     .breakdown-photo-slot img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
     .breakdown-photo-slot .slot-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      gap: 4px;
-      position: relative;
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: white; gap: 4px; position: relative;
     }
     .breakdown-photo-slot .slot-placeholder i {
-      font-size: 1.6rem;
-      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+      font-size: 1.6rem; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
     }
     .breakdown-photo-slot .slot-placeholder span {
-      font-size: 0.55rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      opacity: 0.95;
+      font-size: 0.55rem; font-weight: 700;
+      letter-spacing: 0.5px; text-transform: uppercase; opacity: 0.95;
     }
     .breakdown-info { flex: 1; min-width: 0; }
     .breakdown-info .breakdown-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--bronze-dark);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 4px;
+      font-size: 0.8rem; font-weight: 600;
+      color: var(--bronze-dark); display: flex;
+      align-items: center; gap: 6px; margin-bottom: 4px;
     }
     .breakdown-info .breakdown-value {
-      font-size: 0.85rem;
-      color: var(--text-soft);
-      line-height: 1.4;
+      font-size: 0.85rem; color: var(--text-soft); line-height: 1.4;
     }
     .color-edu-card {
       background: linear-gradient(135deg, #FFF9F4 0%, #FDF3EC 100%);
-      border-radius: 18px;
-      padding: 16px;
-      margin-bottom: 12px;
+      border-radius: 18px; padding: 16px; margin-bottom: 12px;
       border: 1px solid #f0e0d5;
     }
     .color-edu-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
-      font-weight: 600;
-      color: var(--bronze-dark);
-      font-size: 0.9rem;
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 8px; font-weight: 600;
+      color: var(--bronze-dark); font-size: 0.9rem;
     }
     .color-edu-body {
-      font-size: 0.85rem;
-      line-height: 1.6;
-      color: var(--text-soft);
+      font-size: 0.85rem; line-height: 1.6; color: var(--text-soft);
     }
     .color-edu-body strong { color: var(--bronze-dark); }
-    .color-edu-palette {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 10px;
-    }
+    .color-edu-palette { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
     .color-edu-dot {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      border: 2px solid white;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 2px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.12);
     }
     .score-bar-container {
-      height: 8px;
-      background: #F0E6DD;
-      border-radius: 10px;
-      overflow: hidden;
+      height: 8px; background: #F0E6DD;
+      border-radius: 10px; overflow: hidden;
     }
     .score-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--rose), var(--bronze));
-      border-radius: 10px;
-      transition: width 0.8s ease;
+      height: 100%; background: linear-gradient(90deg, var(--rose), var(--bronze));
+      border-radius: 10px; transition: width 0.8s ease;
     }
     .modal-icon-circle {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 70px; height: 70px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
       margin: 10px auto;
     }
     .modal-icon-circle i { color: white; }
-    .form-check-input:checked {
-      background-color: var(--bronze);
-      border-color: var(--bronze);
-    }
+    .form-check-input:checked { background-color: var(--bronze); border-color: var(--bronze); }
     .badge-complement {
-      display: inline-block;
-      padding: 5px 12px;
-      border-radius: 30px;
-      font-size: 0.72rem;
-      font-weight: 500;
+      display: inline-block; padding: 5px 12px;
+      border-radius: 30px; font-size: 0.72rem; font-weight: 500;
     }
-    /* Swatch warna bulat */
-    .color-swatch-item {
-      text-align: center;
-      width: 58px;
-    }
+    .color-swatch-item { text-align: center; width: 58px; }
     .color-swatch-circle {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 2px solid white;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      margin: 0 auto;
-      position: relative;
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 2px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      margin: 0 auto; position: relative;
     }
     .color-swatch-circle.with-x::after {
-      content: '';
-      position: absolute;
-      top: -2px;
-      right: -2px;
-      width: 16px;
-      height: 16px;
-      background: #C0392B;
-      border-radius: 50%;
-      border: 2px solid white;
+      content: ''; position: absolute; top: -2px; right: -2px;
+      width: 16px; height: 16px; background: #C0392B;
+      border-radius: 50%; border: 2px solid white;
     }
     .color-swatch-label {
-      font-size: 0.65rem;
-      color: var(--text-soft);
-      margin-top: 4px;
-      line-height: 1.15;
+      font-size: 0.65rem; color: var(--text-soft);
+      margin-top: 4px; line-height: 1.15;
+    }
+    /* Admin panel styles */
+    .admin-result-item {
+      transition: box-shadow 0.15s, transform 0.15s;
+    }
+    .admin-result-item:hover {
+      box-shadow: var(--shadow-md);
     }
   </style>
 </head>
@@ -643,6 +506,10 @@
       <p class="text-soft" id="profileEmail">email@contoh.com</p>
     </div>
     <div class="card-lok mb-3">
+      <div class="setting-item" id="adminPanelBtn" style="display:none;" onclick="openAdminPanel()">
+        <span>👑 Admin Panel</span>
+        <i class="bi bi-chevron-right"></i>
+      </div>
       <div class="setting-item" onclick="openEditProfile()">
         <span>Edit Profil</span><i class="bi bi-chevron-right"></i>
       </div>
@@ -673,6 +540,89 @@
       </div>
     </div>
     <button class="btn-outline-bronze w-100" data-bs-toggle="modal" data-bs-target="#logoutModal">Keluar</button>
+    <div class="footer-space"></div>
+  </div>
+
+  <!-- ============ ADMIN PANEL ============ -->
+  <div id="page-admin" class="page">
+    <div class="d-flex align-items-center gap-2 mb-3">
+      <button class="btn btn-sm rounded-pill" 
+              style="background: var(--rose-light); color: var(--bronze); border:none; width:36px; height:36px;"
+              onclick="goToPage('profil')">
+        <i class="bi bi-arrow-left"></i>
+      </button>
+      <div>
+        <h2 class="mb-0" style="font-size:1.3rem;">👑 Admin Panel</h2>
+        <small class="text-soft" style="font-size:0.75rem;">Kelola & lihat hasil kuis user</small>
+      </div>
+    </div>
+
+    <!-- Statistik Cards -->
+    <div class="row g-2 mb-3">
+      <div class="col-4">
+        <div class="card-lok text-center p-2" style="padding:0.8rem !important;">
+          <div style="font-size:1.6rem; font-weight:700; color: var(--bronze);" id="statTotal">0</div>
+          <small class="text-soft" style="font-size:0.68rem; line-height:1.2;">Total Kuis</small>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card-lok text-center p-2" style="padding:0.8rem !important;">
+          <div style="font-size:1.6rem; font-weight:700; color: #D9A79C;" id="statSkin">0</div>
+          <small class="text-soft" style="font-size:0.68rem; line-height:1.2;">Skin Type</small>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card-lok text-center p-2" style="padding:0.8rem !important;">
+          <div style="font-size:1.6rem; font-weight:700; color: #8B5E3C;" id="statUndertone">0</div>
+          <small class="text-soft" style="font-size:0.68rem; line-height:1.2;">Undertone</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Insight Section -->
+    <div class="card-lok mb-3">
+      <h6 class="fw-bold mb-3"><i class="bi bi-graph-up-arrow me-2"></i>Insight</h6>
+      <div id="adminInsight">
+        <small class="text-soft">Memuat insight...</small>
+      </div>
+    </div>
+
+    <!-- Filter & Search -->
+    <div class="card-lok mb-3">
+      <div class="mb-2">
+        <input type="text" 
+               class="form-control form-control-lok" 
+               id="adminSearch" 
+               placeholder="🔍 Cari nama atau email user..." 
+               oninput="filterAdminResults()">
+      </div>
+      <div class="d-flex gap-2">
+        <select class="form-select form-select-lok flex-grow-1" 
+                id="adminFilter" 
+                onchange="loadAdminData()">
+          <option value="all">Semua Kuis</option>
+          <option value="skin">Hanya Skin Type</option>
+          <option value="undertone">Hanya Undertone</option>
+        </select>
+        <button class="btn-bronze rounded-pill px-3" onclick="loadAdminData()" title="Refresh">
+          <i class="bi bi-arrow-clockwise"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Daftar Hasil -->
+    <div id="adminResults">
+      <div class="loading-overlay">
+        <div class="spinner-lok"></div>
+        <p class="text-soft">Memuat data...</p>
+      </div>
+    </div>
+
+    <!-- Export -->
+    <button class="btn-outline-bronze w-100 mt-3" onclick="exportAdminCSV()">
+      <i class="bi bi-download me-2"></i>Export CSV (Excel)
+    </button>
+
     <div class="footer-space"></div>
   </div>
 
@@ -719,40 +669,11 @@
         </a>
       </div>
 
-    <p class="text-soft text-center mt-3 mb-0" style="font-size:0.72rem; line-height:1.5;">
-      Akun hanya diberikan kepada pengguna yang sudah melakukan pembelian.<br>
-      Hubungi admin untuk info lebih lanjut.
-    </p>
-  </div>   <!-- ← Tutup card-lok -->
-</div>     <!-- ← TAMBAHKAN INI: tutup authOverlay -->
-
-<!-- MODAL: KONTAK ADMIN -->
-<div class="modal fade" id="contactAdminModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content p-2 text-center">
-      <div class="modal-header border-0 justify-content-center pb-0">
-        <div class="modal-icon-circle" style="background: linear-gradient(135deg, #25D366, #128C7E);">
-          <i class="bi bi-whatsapp" style="font-size:2rem;"></i>
-        </div>
-      </div>
-      <div class="modal-body pt-2">
-        <h5 class="fw-bold mb-2" style="color: var(--bronze);">Hubungi Admin</h5>
-        <p class="text-soft mb-3" style="font-size:0.88rem; line-height:1.6;">
-          Lupa password atau butuh bantuan terkait akun?<br>
-          Hubungi admin Lokaura via WhatsApp:
-        </p>
-        <a href="https://wa.me/6285877409460?text=Halo%20Admin%20Lokaura%2C%20saya%20butuh%20bantuan%20terkait%20akun%20saya." 
-   target="_blank" 
-           class="btn-bronze w-100 mb-2" 
-           style="text-decoration:none; display:inline-block; padding:12px;">
-          <i class="bi bi-whatsapp me-2"></i>Chat via WhatsApp
-        </a>
-        <p class="text-soft mb-0" style="font-size:0.72rem;">Admin akan merespons dalam 1×24 jam</p>
-      </div>
-      <div class="modal-footer border-0 justify-content-center pt-0">
-        <button class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Tutup</button>
-      </div>
-    </div>
+      <p class="text-soft text-center mt-3 mb-0" style="font-size:0.72rem; line-height:1.5;">
+        Akun hanya diberikan kepada pengguna yang sudah melakukan pembelian.<br>
+        Hubungi admin untuk info lebih lanjut.
+      </p>
+    </form>
   </div>
 </div>
 
@@ -973,70 +894,236 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+
+  // ============================================================
+  // PRE-REGISTERED USERS (Akun dibuat owner, diberikan ke user setelah pembayaran)
+  // ============================================================
+  const PRE_REGISTERED_USERS = [
+    // 👑 OWNER — role admin
+    { name: 'Owner', email: 'owner@lokaura.app', password: 'LokauraOwner2025!', role: 'admin' },
+
+    // User biasa
+    { name: 'User 1',  email: 'user1@lokaura.app',  password: 'mawarbiru',    role: 'user' },
+    { name: 'User 2',  email: 'user2@lokaura.app',  password: 'bulanputih',   role: 'user' },
+    { name: 'User 3',  email: 'user3@lokaura.app',  password: 'mentaricerah', role: 'user' },
+    { name: 'User 4',  email: 'user4@lokaura.app',  password: 'lautbiru',     role: 'user' },
+    { name: 'User 5',  email: 'user5@lokaura.app',  password: 'bintangjauh',  role: 'user' },
+    { name: 'User 6',  email: 'user6@lokaura.app',  password: 'awanputih',    role: 'user' },
+    { name: 'User 7',  email: 'user7@lokaura.app',  password: 'daunhijau',    role: 'user' },
+    { name: 'User 8',  email: 'user8@lokaura.app',  password: 'senjakala',    role: 'user' },
+    { name: 'User 9',  email: 'user9@lokaura.app',  password: 'pagicepat',    role: 'user' },
+    { name: 'User 10', email: 'user10@lokaura.app', password: 'kucingmanis',  role: 'user' }
+  ];
+
+  // ============================================================
+  // SUPABASE CONFIG
+  // ============================================================
+  const SUPABASE_URL = 'https://amirtcxafbyccqxmndsu.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtaXJ0Y3hhZmJ5Y2NxeG1uZHN1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEzNTEyMDUsImV4cCI6MjEwNjkyNzIwNX0.UgQX4nY104wZ6TG3GrmuF9r9yt-43-1ynQMWOT6xoLw';
+
+  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  // ================= STATE =================
+  let currentUser = null;
+  let skinAnswers = new Array(10).fill(null);
+  let skinIndex = 0;
+  let skinScores = {};
+  let currentSkinResult = null;
+  let undertoneAnswers = new Array(10).fill(null);
+  let undertoneIndex = 0;
+  let editProfilePhotoData = null;
+  let adminDataCache = [];
+
+  // ================= INIT =================
+  document.addEventListener('DOMContentLoaded', () => {
+    seedPreRegisteredUsers();
+
+    document.getElementById('splashStartBtn').addEventListener('click', () => {
+      document.getElementById('splash-screen').style.opacity = '0';
+      setTimeout(() => {
+        document.getElementById('splash-screen').style.display = 'none';
+        checkAuth();
+      }, 500);
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const pass = document.getElementById('loginPassword').value;
+      const remember = document.getElementById('rememberMe').checked;
+      const users = JSON.parse(localStorage.getItem('lokaura_users') || '[]');
+      const user = users.find(u => u.email === email && u.password === pass);
+      if (user) {
+        currentUser = user;
+        localStorage.setItem('lokaura_session', JSON.stringify({ email: user.email, remember }));
+        enterApp();
+      } else {
+        showLoginError();
+      }
+    });
+
+    document.querySelectorAll('.bottom-nav .nav-item').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.bottom-nav .nav-item').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        goToPage(btn.dataset.page);
+      });
+    });
+
+    initOotdDropdown();
+    renderSavedSkinCard();
+    renderSavedUndertoneCard();
+  });
+
+  // ============================================================
+  // SEED PRE-REGISTERED USERS
+  // ============================================================
+  function seedPreRegisteredUsers() {
+    const existing = localStorage.getItem('lokaura_users');
+    if (existing) {
+      try {
+        const users = JSON.parse(existing);
+        let needsUpdate = false;
+        PRE_REGISTERED_USERS.forEach(preUser => {
+          const found = users.find(u => u.email === preUser.email);
+          if (!found) {
+            users.push({ ...preUser });
+            needsUpdate = true;
+          } else if (found.role === undefined) {
+            // Update role kalau belum ada
+            found.role = preUser.role;
+            needsUpdate = true;
+          }
+        });
+        if (needsUpdate) {
+          localStorage.setItem('lokaura_users', JSON.stringify(users));
+        }
+      } catch (e) {
+        localStorage.setItem('lokaura_users', JSON.stringify(PRE_REGISTERED_USERS));
+      }
+    } else {
+      localStorage.setItem('lokaura_users', JSON.stringify(PRE_REGISTERED_USERS));
+    }
+  }
+
+  // ============================================================
+  // LOGIN ERROR
+  // ============================================================
+  function showLoginError() {
+    const loginForm = document.getElementById('loginForm');
+    const oldAlert = loginForm.querySelector('.login-error-alert');
+    if (oldAlert) oldAlert.remove();
+
+    const alertDiv = document.createElement('div');
+    alertDiv.className = 'login-error-alert alert alert-danger mt-3 mb-0';
+    alertDiv.style.cssText = 'border-radius: 16px; font-size: 0.85rem; padding: 12px 16px; border: none; background: #FDECEC; color: #C0392B;';
+    alertDiv.innerHTML = '<i class="bi bi-exclamation-circle me-1"></i>Email atau password salah. Periksa kembali atau hubungi admin.';
+    loginForm.appendChild(alertDiv);
+
+    setTimeout(() => { if (alertDiv) alertDiv.remove(); }, 4000);
+  }
+
+  function openContactAdmin() {
+    new bootstrap.Modal(document.getElementById('contactAdminModal')).show();
+  }
+
+  // ================= AUTH =================
+  function checkAuth() {
+    const session = JSON.parse(localStorage.getItem('lokaura_session') || 'null');
+    if (session) {
+      const users = JSON.parse(localStorage.getItem('lokaura_users') || '[]');
+      const user = users.find(u => u.email === session.email);
+      if (user) {
+        currentUser = user;
+        enterApp();
+        return;
+      }
+    }
+    document.getElementById('authOverlay').classList.remove('hidden');
+    document.getElementById('app-container').classList.add('hidden');
+  }
+
+  function enterApp() {
+    document.getElementById('authOverlay').classList.add('hidden');
+    document.getElementById('app-container').classList.remove('hidden');
+    document.getElementById('greetingName').innerText = currentUser.name.split(' ')[0] + '!';
+    document.getElementById('profileName').innerText = currentUser.name;
+    document.getElementById('profileEmail').innerText = currentUser.email;
+    document.getElementById('profilePic').src = currentUser.photo 
+      ? currentUser.photo 
+      : `https://ui-avatars.com/api/?background=D9A79C&color=fff&name=${encodeURIComponent(currentUser.name)}&size=90`;
+    loadUserPreferences();
+
+    // 👇 Tampilkan tombol admin kalau role = admin
+    const adminBtn = document.getElementById('adminPanelBtn');
+    if (adminBtn) {
+      adminBtn.style.display = currentUser.role === 'admin' ? 'flex' : 'none';
+    }
+  }
+
+  function logout() {
+    localStorage.removeItem('lokaura_session');
+    currentUser = null;
+    location.reload();
+  }
+
+  // ================= NAVIGATION =================
+  function goToPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const page = document.getElementById('page-' + pageId);
+    if (page) page.classList.add('active');
+    document.querySelectorAll('.bottom-nav .nav-item').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.page === pageId);
+    });
+
+    if (pageId === 'skincare') {
+      document.getElementById('skincareIntro').classList.remove('hidden');
+      document.getElementById('skinQuizContainer').classList.add('hidden');
+      document.getElementById('skinResult').classList.add('hidden');
+      document.getElementById('skinResult').innerHTML = '';
+      renderSavedSkinCard();
+    }
+
+    if (pageId === 'makeup') {
+      document.getElementById('makeupIntro').classList.remove('hidden');
+      document.getElementById('undertoneQuizContainer').classList.add('hidden');
+      document.getElementById('undertoneResult').classList.add('hidden');
+      document.getElementById('undertoneResult').innerHTML = '';
+      renderSavedUndertoneCard();
+    }
+  }
+
   // ============================================================
   // OOTD — MAPPING & DATA
   // ============================================================
   const ITEM_IMAGES = {
-    // ===== ATASAN =====
-    'Blouse':         'assets/atasan/blouse.jpg',
-    'Kaos':           'assets/atasan/kaos.jpg',
-    'Kemeja':         'assets/atasan/kemeja.jpg',
-    'Sweater':        'assets/atasan/sweater.jpg',
-    'Turtleneck':     'assets/atasan/turtleneck.jpg',
-    'Crop Top':       'assets/atasan/crop-top.jpg',
-    'Tunic':          'assets/atasan/tunic.jpg',
-    'Puff Sleeve Top':'assets/atasan/puff-sleeve.jpg',
-    'Vest Rajut':     'assets/atasan/vest-rajut.jpg',
-    'Cardigan Knit':  'assets/atasan/cardigan-knit.jpg',
-
-    // ===== BAWAHAN =====
-    'Celana Kulot':   'assets/bawahan/celana-kulot.jpg',
-    'Jeans':          'assets/bawahan/jeans.jpg',
-    'Rok Plisket':    'assets/bawahan/rok-plisket.jpg',
-    'Rok Panjang':    'assets/bawahan/rok-panjang.jpg',
-    'Palazzo':        'assets/bawahan/palazzo.jpg',
-    'Rok A-Line':     'assets/bawahan/rok-a-line.jpg',
-    'Rok Span':       'assets/bawahan/rok-span.jpg',
-    'Culotte':        'assets/bawahan/culotte.jpg',
-    'Cargo Pants':    'assets/bawahan/cargo-pants.jpg',
-    'Wide Leg Pants': 'assets/bawahan/wide-leg-pants.jpg',
-
-    // ===== HIJAB =====
-    'Hijab Segi Empat':   'assets/hijab/segi-empat.jpg',
-    'Hijab Pashmina':     'assets/hijab/pashmina.jpg',
-    'Hijab Instan':       'assets/hijab/instan.jpg',
-    'Bergo':              'assets/hijab/bergo.jpg',
-    'Hijab Khimar':       'assets/hijab/khimar.jpg',
-    'Hijab Satin':        'assets/hijab/satin.jpg',
-    'Hijab Bella Square': 'assets/hijab/bella-square.jpg',
-    'Hijab Voal':         'assets/hijab/voal.jpg',
-    'Hijab Jersey':       'assets/hijab/jersey.jpg',
-    'Bergo Olahraga':     'assets/hijab/bergo-olahraga.jpg',
-
-    // ===== OUTER =====
-    'Blazer':          'assets/outer/blazer.jpg',
-    'Cardigan':        'assets/outer/cardigan.jpg',
-    'Jaket Denim':     'assets/outer/jaket-denim.jpg',
-    'Bomber':          'assets/outer/bomber.jpg',
-    'Trench Coat':     'assets/outer/trench-coat.jpg',
-    'Kimono Outer':    'assets/outer/kimono.jpg',
-    'Vest Formal':     'assets/outer/vest-formal.jpg',
-    'Jaket Kulit':     'assets/outer/jaket-kulit.jpg',
-    'Bomber Oversize': 'assets/outer/bomber-oversize.jpg',
-    'Poncho':          'assets/outer/poncho.jpg',
-
-    // ===== ALAS KAKI =====
-    'Heels':          'assets/alas-kaki/heels.jpg',
-    'Sneakers':       'assets/alas-kaki/sneakers.jpg',
-    'Flat Shoes':     'assets/alas-kaki/flat-shoes.jpg',
-    'Crocs':          'assets/alas-kaki/crocs.jpg',
-    'Sandal Slop':    'assets/alas-kaki/sandal-slop.jpg',
-    'Wedges':         'assets/alas-kaki/wedges.jpg',
-    'Mary Jane Shoes':'assets/alas-kaki/mary-jane.jpg',
-    'Ballet Flats':   'assets/alas-kaki/ballet-flats.jpg',
-    'Platform Shoes': 'assets/alas-kaki/platform-shoes.jpg',
-    'Mules':          'assets/alas-kaki/mules.jpg'
+    'Blouse': 'assets/atasan/blouse.jpg', 'Kaos': 'assets/atasan/kaos.jpg',
+    'Kemeja': 'assets/atasan/kemeja.jpg', 'Sweater': 'assets/atasan/sweater.jpg',
+    'Turtleneck': 'assets/atasan/turtleneck.jpg', 'Crop Top': 'assets/atasan/crop-top.jpg',
+    'Tunic': 'assets/atasan/tunic.jpg', 'Puff Sleeve Top': 'assets/atasan/puff-sleeve.jpg',
+    'Vest Rajut': 'assets/atasan/vest-rajut.jpg', 'Cardigan Knit': 'assets/atasan/cardigan-knit.jpg',
+    'Celana Kulot': 'assets/bawahan/celana-kulot.jpg', 'Jeans': 'assets/bawahan/jeans.jpg',
+    'Rok Plisket': 'assets/bawahan/rok-plisket.jpg', 'Rok Panjang': 'assets/bawahan/rok-panjang.jpg',
+    'Palazzo': 'assets/bawahan/palazzo.jpg', 'Rok A-Line': 'assets/bawahan/rok-a-line.jpg',
+    'Rok Span': 'assets/bawahan/rok-span.jpg', 'Culotte': 'assets/bawahan/culotte.jpg',
+    'Cargo Pants': 'assets/bawahan/cargo-pants.jpg', 'Wide Leg Pants': 'assets/bawahan/wide-leg-pants.jpg',
+    'Hijab Segi Empat': 'assets/hijab/segi-empat.jpg', 'Hijab Pashmina': 'assets/hijab/pashmina.jpg',
+    'Hijab Instan': 'assets/hijab/instan.jpg', 'Bergo': 'assets/hijab/bergo.jpg',
+    'Hijab Khimar': 'assets/hijab/khimar.jpg', 'Hijab Satin': 'assets/hijab/satin.jpg',
+    'Hijab Bella Square': 'assets/hijab/bella-square.jpg', 'Hijab Voal': 'assets/hijab/voal.jpg',
+    'Hijab Jersey': 'assets/hijab/jersey.jpg', 'Bergo Olahraga': 'assets/hijab/bergo-olahraga.jpg',
+    'Blazer': 'assets/outer/blazer.jpg', 'Cardigan': 'assets/outer/cardigan.jpg',
+    'Jaket Denim': 'assets/outer/jaket-denim.jpg', 'Bomber': 'assets/outer/bomber.jpg',
+    'Trench Coat': 'assets/outer/trench-coat.jpg', 'Kimono Outer': 'assets/outer/kimono.jpg',
+    'Vest Formal': 'assets/outer/vest-formal.jpg', 'Jaket Kulit': 'assets/outer/jaket-kulit.jpg',
+    'Bomber Oversize': 'assets/outer/bomber-oversize.jpg', 'Poncho': 'assets/outer/poncho.jpg',
+    'Heels': 'assets/alas-kaki/heels.jpg', 'Sneakers': 'assets/alas-kaki/sneakers.jpg',
+    'Flat Shoes': 'assets/alas-kaki/flat-shoes.jpg', 'Crocs': 'assets/alas-kaki/crocs.jpg',
+    'Sandal Slop': 'assets/alas-kaki/sandal-slop.jpg', 'Wedges': 'assets/alas-kaki/wedges.jpg',
+    'Mary Jane Shoes': 'assets/alas-kaki/mary-jane.jpg', 'Ballet Flats': 'assets/alas-kaki/ballet-flats.jpg',
+    'Platform Shoes': 'assets/alas-kaki/platform-shoes.jpg', 'Mules': 'assets/alas-kaki/mules.jpg'
   };
 
   const categoryColors = {
@@ -1053,31 +1140,21 @@
   };
 
   const ootdCategories = {
-    atasan: { label: 'Atasan', items: [
-      'Blouse', 'Kaos', 'Kemeja', 'Sweater', 'Turtleneck',
-      'Crop Top', 'Tunic', 'Puff Sleeve Top', 'Vest Rajut', 'Cardigan Knit'
-    ]},
-    bawahan: { label: 'Bawahan', items: [
-      'Celana Kulot', 'Jeans', 'Rok Plisket', 'Rok Panjang', 'Palazzo',
-      'Rok A-Line', 'Rok Span', 'Culotte', 'Cargo Pants', 'Wide Leg Pants'
-    ]},
-    hijab: { label: 'Hijab', items: [
-      'Hijab Segi Empat', 'Hijab Pashmina', 'Hijab Instan', 'Bergo',
-      'Hijab Khimar', 'Hijab Satin', 'Hijab Bella Square', 'Hijab Voal',
-      'Hijab Jersey', 'Bergo Olahraga'
-    ]},
-    outer: { label: 'Outer', items: [
-      'Blazer', 'Cardigan', 'Jaket Denim', 'Bomber',
-      'Trench Coat', 'Kimono Outer', 'Vest Formal', 'Jaket Kulit',
-      'Bomber Oversize', 'Poncho'
-    ]},
-    alaskaki: { label: 'Alas Kaki', items: [
-      'Heels', 'Sneakers', 'Flat Shoes', 'Crocs', 'Sandal Slop',
-      'Wedges', 'Mary Jane Shoes', 'Ballet Flats', 'Platform Shoes', 'Mules'
-    ]}
+    atasan: { label: 'Atasan', items: ['Blouse','Kaos','Kemeja','Sweater','Turtleneck','Crop Top','Tunic','Puff Sleeve Top','Vest Rajut','Cardigan Knit']},
+    bawahan: { label: 'Bawahan', items: ['Celana Kulot','Jeans','Rok Plisket','Rok Panjang','Palazzo','Rok A-Line','Rok Span','Culotte','Cargo Pants','Wide Leg Pants']},
+    hijab: { label: 'Hijab', items: ['Hijab Segi Empat','Hijab Pashmina','Hijab Instan','Bergo','Hijab Khimar','Hijab Satin','Hijab Bella Square','Hijab Voal','Hijab Jersey','Bergo Olahraga']},
+    outer: { label: 'Outer', items: ['Blazer','Cardigan','Jaket Denim','Bomber','Trench Coat','Kimono Outer','Vest Formal','Jaket Kulit','Bomber Oversize','Poncho']},
+    alaskaki: { label: 'Alas Kaki', items: ['Heels','Sneakers','Flat Shoes','Crocs','Sandal Slop','Wedges','Mary Jane Shoes','Ballet Flats','Platform Shoes','Mules']}
   };
 
-  const ootdRules = {
+  // (Data ootdRules tetap seperti file asli Anda — tidak diubah karena panjang)
+  // Salin seluruh ootdRules dari file index.html Anda ke sini.
+  // Untuk menghemat ruang, saya pakai referensi dari file asli Anda.
+
+  // ================= PLACEHOLDER UNTUK ootdRules =================
+  // ⚠️ PENTING: Copy seluruh isi `const ootdRules = { ... };` dari file index.html Anda
+  // lalu paste di sini (replace baris ini)
+   const ootdRules = {
     // ============================================================
     // ===== ATASAN (10) =====
     // ============================================================
@@ -1848,7 +1925,7 @@
       ]
     }
   };
-
+  
   // ============================================================
   // SKIN TYPE — DATA
   // ============================================================
@@ -1929,8 +2006,8 @@
         { name: 'Heavy Cream', reason: 'Terlalu rich untuk kulit berminyak' },
         { name: 'Alcohol Denat (tinggi)', reason: 'Memicu produksi minyak berlebih' }
       ],
-      morning: ['Gentle Cleanser', 'Oil-control Toner', 'Niacinamide Serum', 'Gel Moisturizer', 'Sunscreen Gel/Water-based'],
-      night: ['Double Cleansing', 'Salicylic Acid Toner', 'Niacinamide / Zinc Serum', 'Light Moisturizer'],
+      morning: ['Gentle Cleanser','Oil-control Toner','Niacinamide Serum','Gel Moisturizer','Sunscreen Gel/Water-based'],
+      night: ['Double Cleansing','Salicylic Acid Toner','Niacinamide / Zinc Serum','Light Moisturizer'],
       tips: [
         'Jangan over-washing! Cukup 2x sehari, karena mencuci terlalu sering justru memicu minyak lebih banyak.',
         'Pilih pelembap berbasis gel atau water-based, hindari yang berbasis oil.',
@@ -1951,8 +2028,8 @@
         { name: 'Salicylic Acid (tinggi)', reason: 'Terlalu keras untuk kulit kering' },
         { name: 'Foaming Cleanser', reason: 'Mengikis minyak alami kulit' }
       ],
-      morning: ['Creamy Cleanser', 'Hydrating Toner', 'Hyaluronic Acid Serum', 'Rich Moisturizer', 'Sunscreen Moisturizing'],
-      night: ['Oil Cleanser', 'Creamy Cleanser', 'Ceramide Serum', 'Face Oil / Rich Cream'],
+      morning: ['Creamy Cleanser','Hydrating Toner','Hyaluronic Acid Serum','Rich Moisturizer','Sunscreen Moisturizing'],
+      night: ['Oil Cleanser','Creamy Cleanser','Ceramide Serum','Face Oil / Rich Cream'],
       tips: [
         'Gunakan pelembap segera setelah mencuci muka, saat kulit masih lembap.',
         'Hindari air panas saat mencuci muka, pakai air hangat atau dingin.',
@@ -1973,8 +2050,8 @@
         { name: 'Alcohol Denat (tinggi)', reason: 'Bikin pipi makin kering' },
         { name: 'Coconut Oil', reason: 'Komodogenik di T-zone' }
       ],
-      morning: ['Gentle Cleanser', 'Balancing Toner', 'Niacinamide Serum', 'Light Moisturizer', 'Sunscreen Gel'],
-      night: ['Double Cleansing', 'Exfoliating Toner (T-zone)', 'Hyaluronic Serum', 'Moisturizer'],
+      morning: ['Gentle Cleanser','Balancing Toner','Niacinamide Serum','Light Moisturizer','Sunscreen Gel'],
+      night: ['Double Cleansing','Exfoliating Toner (T-zone)','Hyaluronic Serum','Moisturizer'],
       tips: [
         'Gunakan produk berbeda untuk area berbeda: clay mask di T-zone, hydrating mask di pipi.',
         'Jangan pakai produk "untuk kulit berminyak" di seluruh wajah, bisa bikin pipi makin kering.',
@@ -1996,8 +2073,8 @@
         { name: 'AHA/BHA (konsentrasi tinggi)', reason: 'Terlalu keras untuk barrier lemah' },
         { name: 'Alcohol Denat', reason: 'Merusak barrier lebih lanjut' }
       ],
-      morning: ['Gentle Non-foaming Cleanser', 'Soothing Toner', 'Centella Serum', 'Barrier Moisturizer', 'Mineral Sunscreen'],
-      night: ['Micellar Water', 'Gentle Cleanser', 'Panthenol Serum', 'Ceramide Cream'],
+      morning: ['Gentle Non-foaming Cleanser','Soothing Toner','Centella Serum','Barrier Moisturizer','Mineral Sunscreen'],
+      night: ['Micellar Water','Gentle Cleanser','Panthenol Serum','Ceramide Cream'],
       tips: [
         'Selalu patch test produk baru di belakang telinga selama 24 jam.',
         'Perkenalkan 1 produk baru setiap 2 minggu, jangan sekaligus.',
@@ -2017,8 +2094,8 @@
         { name: 'Produk terlalu keras', reason: 'Bisa merusak keseimbangan alami' },
         { name: 'Over-exfoliating', reason: 'Bikin kulit jadi sensitif' }
       ],
-      morning: ['Gentle Cleanser', 'Vitamin C Serum', 'Moisturizer', 'Sunscreen'],
-      night: ['Cleanser', 'Hydrating Toner', 'Niacinamide Serum', 'Moisturizer'],
+      morning: ['Gentle Cleanser','Vitamin C Serum','Moisturizer','Sunscreen'],
+      night: ['Cleanser','Hydrating Toner','Niacinamide Serum','Moisturizer'],
       tips: [
         'Jangan malas skincare! Kulit normal bisa berubah kalau tidak dirawat.',
         'Fokus pada prevention: sunscreen & antioksidan adalah kunci.',
@@ -2029,8 +2106,7 @@
   };
 
   const skinConditions = {
-    acne: {
-      name: 'Acne-Prone', emoji: '⚠️',
+    acne: { name: 'Acne-Prone', emoji: '⚠️',
       description: 'Kulitmu cenderung mudah breakout. Butuh perhatian ekstra dalam memilih produk.',
       extraTips: [
         'Jangan pernah tidur dengan makeup masih menempel.',
@@ -2039,8 +2115,7 @@
         'Konsultasi dermatolog kalau jerawat sudah meradang.'
       ]
     },
-    dehydrated: {
-      name: 'Dehydrated', emoji: '💦',
+    dehydrated: { name: 'Dehydrated', emoji: '💦',
       description: 'Kulitmu kekurangan air (bukan minyak). Bisa terjadi pada semua tipe kulit.',
       extraTips: [
         'Minum air 8 gelas sehari, kulit butuh hidrasi dari dalam.',
@@ -2049,8 +2124,7 @@
         'Tidur dengan humidifier membantu hidrasi malam.'
       ]
     },
-    dull: {
-      name: 'Dull Skin', emoji: '🌫️',
+    dull: { name: 'Dull Skin', emoji: '🌫️',
       description: 'Kulitmu kurang bercahaya, bisa karena penumpukan sel kulit mati atau kurang hidrasi.',
       extraTips: [
         'Eksfoliasi lembut 1-2x seminggu untuk angkat sel mati.',
@@ -2061,72 +2135,70 @@
     }
   };
 
-  // ============================================================
-  // UNDERTONE — DATA (DENGAN SWATCH HEX)
-  // ============================================================
   const undertoneQuestions = [
     { q: 'Warna pembuluh darah di pergelangan tanganmu?', subtitle: 'Lihat di bawah cahaya alami, jangan di bawah lampu kuning', opts: [
-      { text: 'Biru atau ungu',           type: 'cool' },
-      { text: 'Hijau atau zaitun',         type: 'warm' },
-      { text: 'Campuran biru & hijau',     type: 'neutral' },
+      { text: 'Biru atau ungu', type: 'cool' },
+      { text: 'Hijau atau zaitun', type: 'warm' },
+      { text: 'Campuran biru & hijau', type: 'neutral' },
       { text: 'Sulit dibedakan / tidak jelas', type: 'olive' }
     ]},
     { q: 'Perhiasan apa yang paling membuat kulitmu "bersinar"?', subtitle: 'Coba bandingkan perak & emas di wajahmu', opts: [
-      { text: 'Perak / platinum — kulit terlihat cerah',     type: 'cool' },
-      { text: 'Emas kuning — kulit terlihat hangat',         type: 'warm' },
-      { text: 'Keduanya cocok, tidak ada beda signifikan',   type: 'neutral' },
-      { text: 'Rose gold / emas putih lebih cocok',          type: 'olive' }
+      { text: 'Perak / platinum', type: 'cool' },
+      { text: 'Emas kuning', type: 'warm' },
+      { text: 'Keduanya cocok', type: 'neutral' },
+      { text: 'Rose gold / emas putih', type: 'olive' }
     ]},
     { q: 'Bagaimana reaksi kulitmu saat terkena sinar matahari?', subtitle: 'Pikirkan reaksi setelah 30 menit terpapar', opts: [
-      { text: 'Terbakar dulu, baru cokelat',              type: 'cool' },
-      { text: 'Langsung cokelat, jarang terbakar',         type: 'warm' },
-      { text: 'Kadang terbakar, kadang cokelat',           type: 'neutral' },
-      { text: 'Cokelat kehitaman, hampir tidak terbakar',  type: 'olive' }
+      { text: 'Terbakar dulu, baru cokelat', type: 'cool' },
+      { text: 'Langsung cokelat, jarang terbakar', type: 'warm' },
+      { text: 'Kadang terbakar, kadang cokelat', type: 'neutral' },
+      { text: 'Cokelat kehitaman, hampir tidak terbakar', type: 'olive' }
     ]},
     { q: 'Warna kulitmu jika dibandingkan kertas putih?', subtitle: 'Letakkan tangan di samping kertas putih, lihat di cahaya alami', opts: [
-      { text: 'Terlihat pink / kemerahan',         type: 'cool' },
-      { text: 'Terlihat kuning / keemasan',        type: 'warm' },
-      { text: 'Seimbang, tidak condong ke mana',   type: 'neutral' },
-      { text: 'Terlihat kehijauan / zaitun',       type: 'olive' }
+      { text: 'Terlihat pink / kemerahan', type: 'cool' },
+      { text: 'Terlihat kuning / keemasan', type: 'warm' },
+      { text: 'Seimbang, tidak condong ke mana', type: 'neutral' },
+      { text: 'Terlihat kehijauan / zaitun', type: 'olive' }
     ]},
     { q: 'Warna mata alami kamu?', subtitle: 'Perhatikan warna dominan di lingkar iris', opts: [
-      { text: 'Biru, abu-abu, atau hitam pekat',   type: 'cool' },
-      { text: 'Cokelat hangat / amber',            type: 'warm' },
-      { text: 'Cokelat sedang / hazel',            type: 'neutral' },
-      { text: 'Cokelat kehijauan / zaitun',        type: 'olive' }
+      { text: 'Biru, abu-abu, atau hitam pekat', type: 'cool' },
+      { text: 'Cokelat hangat / amber', type: 'warm' },
+      { text: 'Cokelat sedang / hazel', type: 'neutral' },
+      { text: 'Cokelat kehijauan / zaitun', type: 'olive' }
     ]},
     { q: 'Warna rambut alami kamu (sebelum diwarnai)?', subtitle: 'Lihat bagian akar atau helai yang belum pernah diwarnai', opts: [
-      { text: 'Hitam kebiruan / ash cokelat',      type: 'cool' },
-      { text: 'Cokelat keemasan / merah',          type: 'warm' },
-      { text: 'Cokelat netral / medium brown',     type: 'neutral' },
-      { text: 'Hitam / cokelat tua kehijauan',     type: 'olive' }
+      { text: 'Hitam kebiruan / ash cokelat', type: 'cool' },
+      { text: 'Cokelat keemasan / merah', type: 'warm' },
+      { text: 'Cokelat netral / medium brown', type: 'neutral' },
+      { text: 'Hitam / cokelat tua kehijauan', type: 'olive' }
     ]},
     { q: 'Warna pakaian mana yang membuatmu terlihat paling segar?', subtitle: 'Pikirkan pujian yang sering kamu dapat saat pakai warna ini', opts: [
-      { text: 'Biru, ungu, atau dusty pink',       type: 'cool' },
-      { text: 'Oranye, mustard, atau cokelat',     type: 'warm' },
-      { text: 'Putih, abu-abu, atau navy',         type: 'neutral' },
+      { text: 'Biru, ungu, atau dusty pink', type: 'cool' },
+      { text: 'Oranye, mustard, atau cokelat', type: 'warm' },
+      { text: 'Putih, abu-abu, atau navy', type: 'neutral' },
       { text: 'Hijau zaitun, terracotta, atau burgundy', type: 'olive' }
     ]},
     { q: 'Warna lipstik yang paling membuatmu terlihat "hidup"?', subtitle: 'Bayangkan saat pakai warna ini, kamu langsung glowing', opts: [
-      { text: 'Merah muda, berry, atau plum',      type: 'cool' },
-      { text: 'Coral, peach, atau terracotta',     type: 'warm' },
-      { text: 'Nude, mauve, atau dusty rose',      type: 'neutral' },
+      { text: 'Merah muda, berry, atau plum', type: 'cool' },
+      { text: 'Coral, peach, atau terracotta', type: 'warm' },
+      { text: 'Nude, mauve, atau dusty rose', type: 'neutral' },
       { text: 'Brick red, brown, atau dried rose', type: 'olive' }
     ]},
     { q: 'Bagaimana warna kulitmu saat di bawah sinar matahari?', subtitle: 'Perhatikan apakah terlihat lebih pucat atau lebih gelap', opts: [
       { text: 'Terlihat pucat, kusam, atau kebiruan', type: 'cool' },
-      { text: 'Terlihat kuning langsat / keemasan',   type: 'warm' },
-      { text: 'Terlihat sawo matang merata',          type: 'neutral' },
-      { text: 'Terlihat zaitun / kehijauan',          type: 'olive' }
+      { text: 'Terlihat kuning langsat / keemasan', type: 'warm' },
+      { text: 'Terlihat sawo matang merata', type: 'neutral' },
+      { text: 'Terlihat zaitun / kehijauan', type: 'olive' }
     ]},
     { q: 'Eyeshadow warna apa yang paling sering membuatmu terlihat bagus?', subtitle: 'Pikirkan saat orang memuji matamu terlihat "bercahaya"', opts: [
-      { text: 'Cool tone: silver, plum, biru, abu',  type: 'cool' },
-      { text: 'Warm tone: gold, copper, bronze',     type: 'warm' },
+      { text: 'Cool tone: silver, plum, biru, abu', type: 'cool' },
+      { text: 'Warm tone: gold, copper, bronze', type: 'warm' },
       { text: 'Neutral: cokelat netral, taupe, rose', type: 'neutral' },
       { text: 'Earth tone: olive, khaki, deep green', type: 'olive' }
     ]}
   ];
 
+  // ⚠️ PASTE seluruh const undertoneProfiles = {...} dari file index.html Anda di sini
   const undertoneProfiles = {
     cool: {
       name: 'Cool Undertone',
@@ -2589,188 +2661,12 @@
       ]
     }
   };
-  // ============================================================
-  // PRE-REGISTERED USERS (Akun yang dibuat owner, diberikan ke user setelah pembayaran)
-  // ============================================================
-  const PRE_REGISTERED_USERS = [
-    { name: 'User 1',  email: 'user1@lokaura.app',  password: 'mawarbiru' },
-    { name: 'User 2',  email: 'user2@lokaura.app',  password: 'bulanputih' },
-    { name: 'User 3',  email: 'user3@lokaura.app',  password: 'mentaricerah' },
-    { name: 'User 4',  email: 'user4@lokaura.app',  password: 'lautbiru' },
-    { name: 'User 5',  email: 'user5@lokaura.app',  password: 'bintangjauh' },
-    { name: 'User 6',  email: 'user6@lokaura.app',  password: 'awanputih' },
-    { name: 'User 7',  email: 'user7@lokaura.app',  password: 'daunhijau' },
-    { name: 'User 8',  email: 'user8@lokaura.app',  password: 'senjakala' },
-    { name: 'User 9',  email: 'user9@lokaura.app',  password: 'pagicepat' },
-    { name: 'User 10', email: 'user10@lokaura.app', password: 'kucingmanis' }
-  ];
-
-  // ================= STATE =================
-  let currentUser = null;
-  let skinAnswers = new Array(10).fill(null);
-  let skinIndex = 0;
-  let skinScores = {};
-  let currentSkinResult = null;
-  let undertoneAnswers = new Array(10).fill(null);
-  let undertoneIndex = 0;
-  let editProfilePhotoData = null;
-
-  // ================= INIT =================
-  document.addEventListener('DOMContentLoaded', () => {
-    // Seed akun pre-registered kalau belum ada di localStorage
-    seedPreRegisteredUsers();
-
-    document.getElementById('splashStartBtn').addEventListener('click', () => {
-      document.getElementById('splash-screen').style.opacity = '0';
-      setTimeout(() => {
-        document.getElementById('splash-screen').style.display = 'none';
-        checkAuth();
-      }, 500);
-    });
-
-    document.getElementById('loginForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = document.getElementById('loginEmail').value.trim();
-      const pass = document.getElementById('loginPassword').value;
-      const remember = document.getElementById('rememberMe').checked;
-      const users = JSON.parse(localStorage.getItem('lokaura_users') || '[]');
-      const user = users.find(u => u.email === email && u.password === pass);
-      if (user) {
-        currentUser = user;
-        localStorage.setItem('lokaura_session', JSON.stringify({ email: user.email, remember }));
-        enterApp();
-      } else {
-        showLoginError();
-      }
-    });
-
-    document.querySelectorAll('.bottom-nav .nav-item').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.bottom-nav .nav-item').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        goToPage(btn.dataset.page);
-      });
-    });
-
-    initOotdDropdown();
-    renderSavedSkinCard();
-    renderSavedUndertoneCard();
-  });
 
   // ============================================================
-  // SEED PRE-REGISTERED USERS
-  // Fungsi: mengisi 10 akun ke localStorage kalau belum ada
+  // PLACEHOLDER — data ini HARUS di-copy dari file index.html lama Anda:
+  // 1. const ootdRules = { ... }  (di atas)
+  // 2. const undertoneProfiles = { ... } (di atas)
   // ============================================================
-  function seedPreRegisteredUsers() {
-    const existing = localStorage.getItem('lokaura_users');
-    if (existing) {
-      // Sudah ada data user, jangan timpa
-      // Tapi cek apakah semua akun pre-registered ada
-      try {
-        const users = JSON.parse(existing);
-        let needsUpdate = false;
-        PRE_REGISTERED_USERS.forEach(preUser => {
-          if (!users.find(u => u.email === preUser.email)) {
-            users.push({ ...preUser });
-            needsUpdate = true;
-          }
-        });
-        if (needsUpdate) {
-          localStorage.setItem('lokaura_users', JSON.stringify(users));
-        }
-      } catch (e) {
-        // Data korup, reset
-        localStorage.setItem('lokaura_users', JSON.stringify(PRE_REGISTERED_USERS));
-      }
-    } else {
-      // Pertama kali, seed semua akun
-      localStorage.setItem('lokaura_users', JSON.stringify(PRE_REGISTERED_USERS));
-    }
-  }
-
-  // ============================================================
-  // LOGIN ERROR — tampilkan pesan error yang lebih baik
-  // ============================================================
-  function showLoginError() {
-    const loginForm = document.getElementById('loginForm');
-    const oldAlert = loginForm.querySelector('.login-error-alert');
-    if (oldAlert) oldAlert.remove();
-
-    const alertDiv = document.createElement('div');
-    alertDiv.className = 'login-error-alert alert alert-danger mt-3 mb-0';
-    alertDiv.style.cssText = 'border-radius: 16px; font-size: 0.85rem; padding: 12px 16px; border: none; background: #FDECEC; color: #C0392B;';
-    alertDiv.innerHTML = '<i class="bi bi-exclamation-circle me-1"></i>Email atau password salah. Periksa kembali atau hubungi admin.';
-    loginForm.appendChild(alertDiv);
-
-    setTimeout(() => { if (alertDiv) alertDiv.remove(); }, 4000);
-  }
-
-  // ============================================================
-  // OPEN CONTACT ADMIN — buka modal hubungi admin
-  // ============================================================
-  function openContactAdmin() {
-    new bootstrap.Modal(document.getElementById('contactAdminModal')).show();
-  }
-
-  // ================= AUTH =================
-  function checkAuth() {
-    const session = JSON.parse(localStorage.getItem('lokaura_session') || 'null');
-    if (session) {
-      const users = JSON.parse(localStorage.getItem('lokaura_users') || '[]');
-      const user = users.find(u => u.email === session.email);
-      if (user) {
-        currentUser = user;
-        enterApp();
-        return;
-      }
-    }
-    document.getElementById('authOverlay').classList.remove('hidden');
-    document.getElementById('app-container').classList.add('hidden');
-  }
-
-  function enterApp() {
-    document.getElementById('authOverlay').classList.add('hidden');
-    document.getElementById('app-container').classList.remove('hidden');
-    document.getElementById('greetingName').innerText = currentUser.name.split(' ')[0] + '!';
-    document.getElementById('profileName').innerText = currentUser.name;
-    document.getElementById('profileEmail').innerText = currentUser.email;
-    document.getElementById('profilePic').src = currentUser.photo 
-      ? currentUser.photo 
-      : `https://ui-avatars.com/api/?background=D9A79C&color=fff&name=${encodeURIComponent(currentUser.name)}&size=90`;
-    loadUserPreferences();
-  }
-
-  function logout() {
-    localStorage.removeItem('lokaura_session');
-    currentUser = null;
-    location.reload();
-  }
-
-  // ================= NAVIGATION =================
-  function goToPage(pageId) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    const page = document.getElementById('page-' + pageId);
-    if (page) page.classList.add('active');
-    document.querySelectorAll('.bottom-nav .nav-item').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.page === pageId);
-    });
-
-    if (pageId === 'skincare') {
-      document.getElementById('skincareIntro').classList.remove('hidden');
-      document.getElementById('skinQuizContainer').classList.add('hidden');
-      document.getElementById('skinResult').classList.add('hidden');
-      document.getElementById('skinResult').innerHTML = '';
-      renderSavedSkinCard();
-    }
-
-    if (pageId === 'makeup') {
-      document.getElementById('makeupIntro').classList.remove('hidden');
-      document.getElementById('undertoneQuizContainer').classList.add('hidden');
-      document.getElementById('undertoneResult').classList.add('hidden');
-      document.getElementById('undertoneResult').innerHTML = '';
-      renderSavedUndertoneCard();
-    }
-  }
 
   // ================= OOTD =================
   function initOotdDropdown() { updateOotdItemOptions(); }
@@ -2838,14 +2734,9 @@
     setTimeout(() => {
       const breakdownHtml = rule.breakdown.map((b) => `
         <div class="breakdown-photo-card">
-          <div class="breakdown-photo-slot">
-            ${renderBreakdownPhoto(b)}
-          </div>
+          <div class="breakdown-photo-slot">${renderBreakdownPhoto(b)}</div>
           <div class="breakdown-info">
-            <div class="breakdown-label">
-              <i class="bi ${b.icon}"></i>
-              ${b.label}
-            </div>
+            <div class="breakdown-label"><i class="bi ${b.icon}"></i>${b.label}</div>
             <div class="breakdown-value">${b.value}</div>
           </div>
         </div>
@@ -2853,10 +2744,7 @@
 
       const colorEduHtml = rule.colorEducation.map(edu => `
         <div class="color-edu-card">
-          <div class="color-edu-header">
-            <i class="bi bi-info-circle"></i>
-            ${edu.title}
-          </div>
+          <div class="color-edu-header"><i class="bi bi-info-circle"></i>${edu.title}</div>
           <div class="color-edu-body">${edu.text}</div>
           <div class="color-edu-palette">
             ${edu.palette.map(c => `<div class="color-edu-dot" style="background:${c};"></div>`).join('')}
@@ -2872,28 +2760,21 @@
               <small class="text-soft">Berdasarkan pilihan: <strong>${item}</strong></small>
             </div>
           </div>
-
           <div class="card-lok mb-3">
             <h6 class="fw-bold mb-3"><i class="bi bi-list-check me-2"></i>Outfit Breakdown</h6>
-            <p class="text-soft mb-2" style="font-size:0.78rem;">${rule.breakdown.length} item rekomendasi untuk padu padanmu.</p>
             ${breakdownHtml}
           </div>
-
           <div class="card-lok mb-3">
             <h6 class="fw-bold mb-2"><i class="bi bi-lightbulb me-2"></i>Styling Tips</h6>
             <div class="styling-tips">${rule.tips}</div>
           </div>
-
           <div class="card-lok mb-3">
             <h6 class="fw-bold mb-2"><i class="bi bi-palette me-2"></i>Panduan Warna & Padu Padan</h6>
-            <p class="text-soft mb-2" style="font-size:0.78rem;">Edukasi warna berdasarkan kondisi item pilihanmu.</p>
             ${colorEduHtml}
           </div>
-
           <button class="btn-outline-bronze w-100" onclick="resetOotd()">
             <i class="bi bi-arrow-repeat me-2"></i>Coba Kombinasi Lain
           </button>
-          <div class="footer-space"></div>
         </div>
       `;
     }, 900);
@@ -2950,6 +2831,40 @@
     else finishSkinQuiz();
   }
 
+  async function saveQuizToSupabase(quizType, resultData) {
+    try {
+      const session = JSON.parse(localStorage.getItem('lokaura_session') || 'null');
+      if (!session) return { success: false, reason: 'no_session' };
+
+      const users = JSON.parse(localStorage.getItem('lokaura_users') || '[]');
+      const userDetail = users.find(u => u.email === session.email);
+
+      console.log('📤 Mengirim ke Supabase...', { quizType, userEmail: session.email });
+
+      const { data, error } = await supabaseClient
+        .from('quiz_results')
+        .insert({
+          user_id: '00000000-0000-0000-0000-000000000000',
+          user_email: session.email,
+          user_name: userDetail?.name || session.email,
+          quiz_type: quizType,
+          result_data: resultData
+        })
+        .select();
+
+      if (error) {
+        console.error('❌ Gagal simpan:', error.message, error.code);
+        return { success: false, error: error.message };
+      }
+
+      console.log('✅ BERHASIL! Data tersimpan:', data);
+      return { success: true, data };
+    } catch (err) {
+      console.error('❌ Exception:', err);
+      return { success: false, error: err.message };
+    }
+  }
+
   function finishSkinQuiz() {
     const scores = { oily: 0, dry: 0, combination: 0, sensitive: 0, normal: 0, acne: 0, dehydrated: 0, dull: 0 };
     skinAnswers.forEach((ansIdx, qIdx) => {
@@ -2971,9 +2886,12 @@
     if (scores.dehydrated >= 3) conditions.push('dehydrated');
     if (scores.dull >= 3) conditions.push('dull');
 
-    const result = { type: mainType, conditions: conditions, scores: scores, date: new Date().toISOString() };
+    const result = { type: mainType, conditions, scores, date: new Date().toISOString() };
     localStorage.setItem('lokaura_skin_result', JSON.stringify(result));
     currentSkinResult = result;
+    saveQuizToSupabase('skin', result).then(res => {
+      if (!res.success) console.warn('⚠️ Hasil skin gagal disimpan:', res.error);
+    });
 
     document.getElementById('skinQuizContainer').classList.add('hidden');
     const resDiv = document.getElementById('skinResult');
@@ -3073,44 +2991,35 @@
           <h2 class="mb-2" style="color: ${profile.color}; font-weight:700;">${profile.name}</h2>
           <p class="text-soft mb-0" style="font-size:0.9rem; line-height:1.5;">${profile.description}</p>
         </div>
-
         <div class="card-lok mb-3">
           <h6 class="fw-bold mb-3"><i class="bi bi-clipboard-pulse me-2"></i>Kondisi Tambahan</h6>
           ${conditionsHtml}
         </div>
-
         <div class="card-lok mb-3">
           <h6 class="fw-bold mb-3"><i class="bi bi-bar-chart me-2"></i>Profil Kulitmu</h6>
           ${scoreBars}
         </div>
-
         <div class="card-lok mb-3">
           <h6 class="fw-bold mb-3"><i class="bi bi-check-circle me-2" style="color:#27AE60;"></i>Kandungan yang Cocok</h6>
           ${goodIngredientsHtml}
         </div>
-
         <div class="card-lok mb-3">
           <h6 class="fw-bold mb-3"><i class="bi bi-x-circle me-2" style="color:#C0392B;"></i>Kandungan yang Sebaiknya Dihindari</h6>
           ${badIngredientsHtml}
         </div>
-
         <div class="card-lok mb-3">
           <h6 class="fw-bold mb-3"><i class="bi bi-sun me-2" style="color:#F39C12;"></i>Rutinitas Pagi</h6>
           ${morningSteps}
         </div>
-
         <div class="card-lok mb-3">
           <h6 class="fw-bold mb-3"><i class="bi bi-moon-stars me-2" style="color:#34495E;"></i>Rutinitas Malam</h6>
           ${nightSteps}
         </div>
-
         <div class="card-lok mb-3" style="background: linear-gradient(135deg, #FFF9F4, #FDF3EC);">
           <h6 class="fw-bold mb-3"><i class="bi bi-lightbulb me-2"></i>Tips Personal untuk Kulitmu</h6>
           ${tipsHtml}
         </div>
-
         ${actionButtons}
-        <div class="footer-space"></div>
       </div>
     `;
   }
@@ -3153,8 +3062,7 @@
   }
 
   function deleteSavedSkinResult() {
-    const deleteModal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
-    deleteModal.show();
+    new bootstrap.Modal(document.getElementById('deleteConfirmModal')).show();
   }
 
   function confirmDeleteSkinResult() {
@@ -3181,7 +3089,7 @@
           <small style="font-size:0.7rem; letter-spacing:1px; text-transform:uppercase; color: var(--text-soft);">
             <i class="bi bi-bookmark-fill me-1" style="color: var(--bronze);"></i>Hasil Tersimpan
           </small>
-          <button class="btn btn-sm p-0" style="color:#C0392B; font-size:0.8rem;" onclick="deleteSavedSkinResult()" title="Hapus hasil">
+          <button class="btn btn-sm p-0" style="color:#C0392B; font-size:0.8rem;" onclick="deleteSavedSkinResult()" title="Hapus">
             <i class="bi bi-trash"></i>
           </button>
         </div>
@@ -3200,7 +3108,7 @@
   }
 
   // ============================================================
-  // UNDERTONE QUIZ — dengan SWATCH WARNA
+  // UNDERTONE QUIZ
   // ============================================================
   function startUndertoneQuiz() {
     undertoneAnswers = new Array(10).fill(null);
@@ -3250,8 +3158,11 @@
     let maxScore = 0;
     for (const t in scores) { if (scores[t] > maxScore) { maxScore = scores[t]; maxType = t; } }
 
-    const result = { type: maxType, scores: scores, date: new Date().toISOString() };
+    const result = { type: maxType, scores, date: new Date().toISOString() };
     localStorage.setItem('lokaura_undertone_result', JSON.stringify(result));
+    saveQuizToSupabase('undertone', result).then(res => {
+      if (!res.success) console.warn('⚠️ Hasil undertone gagal disimpan:', res.error);
+    });
 
     document.getElementById('undertoneQuizContainer').classList.add('hidden');
     const resDiv = document.getElementById('undertoneResult');
@@ -3498,7 +3409,7 @@
   }
 
   function deleteSavedUndertoneResult() {
-    if (!confirm('Yakin ingin menghapus hasil undertone yang tersimpan?')) return;
+    if (!confirm('Yakin ingin menghapus hasil undertone?')) return;
     localStorage.removeItem('lokaura_undertone_result_saved');
     renderSavedUndertoneCard();
   }
@@ -3518,7 +3429,7 @@
           <small style="font-size:0.7rem; letter-spacing:1px; text-transform:uppercase; color: var(--text-soft);">
             <i class="bi bi-bookmark-fill me-1" style="color: var(--bronze);"></i>Hasil Undertone Tersimpan
           </small>
-          <button class="btn btn-sm p-0" style="color:#C0392B; font-size:0.8rem;" onclick="deleteSavedUndertoneResult()" title="Hapus hasil">
+          <button class="btn btn-sm p-0" style="color:#C0392B; font-size:0.8rem;" onclick="deleteSavedUndertoneResult()">
             <i class="bi bi-trash"></i>
           </button>
         </div>
@@ -3534,6 +3445,247 @@
         </button>
       </div>
     `;
+  }
+
+  // ============================================================
+  // ADMIN PANEL
+  // ============================================================
+  function openAdminPanel() {
+    if (!currentUser || currentUser.role !== 'admin') {
+      showToast('⛔ Hanya admin yang bisa akses');
+      return;
+    }
+    goToPage('admin');
+    loadAdminData();
+  }
+
+  async function loadAdminData() {
+    const filter = document.getElementById('adminFilter').value;
+    const container = document.getElementById('adminResults');
+
+    container.innerHTML = `
+      <div class="loading-overlay">
+        <div class="spinner-lok"></div>
+        <p class="text-soft">Memuat data...</p>
+      </div>
+    `;
+
+    let query = supabaseClient
+      .from('quiz_results')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (filter !== 'all') {
+      query = query.eq('quiz_type', filter);
+    }
+
+    const { data, error } = await query;
+
+    if (error) {
+      console.error('❌ Gagal load admin data:', error);
+      container.innerHTML = `
+        <div class="card-lok text-center">
+          <i class="bi bi-exclamation-triangle" style="font-size:2.5rem; color:#C0392B;"></i>
+          <p class="text-soft mt-2 mb-2">Gagal memuat data</p>
+          <small class="text-soft" style="font-size:0.75rem;">${error.message}</small>
+        </div>
+      `;
+      return;
+    }
+
+    adminDataCache = data || [];
+    updateAdminStats(adminDataCache);
+    renderAdminResults(adminDataCache);
+    filterAdminResults();
+  }
+
+  function updateAdminStats(data) {
+    const total = data.length;
+    const skinCount = data.filter(d => d.quiz_type === 'skin').length;
+    const undertoneCount = data.filter(d => d.quiz_type === 'undertone').length;
+    const uniqueUsers = new Set(data.map(d => d.user_email)).size;
+
+    document.getElementById('statTotal').innerText = total;
+    document.getElementById('statSkin').innerText = skinCount;
+    document.getElementById('statUndertone').innerText = undertoneCount;
+
+    // Insight
+    const skinTypes = {};
+    const undertoneTypes = {};
+    data.forEach(d => {
+      if (d.quiz_type === 'skin' && d.result_data?.type) {
+        skinTypes[d.result_data.type] = (skinTypes[d.result_data.type] || 0) + 1;
+      }
+      if (d.quiz_type === 'undertone' && d.result_data?.type) {
+        undertoneTypes[d.result_data.type] = (undertoneTypes[d.result_data.type] || 0) + 1;
+      }
+    });
+
+    const topSkin = Object.entries(skinTypes).sort((a,b) => b[1]-a[1])[0];
+    const topUndertone = Object.entries(undertoneTypes).sort((a,b) => b[1]-a[1])[0];
+
+    const insightEl = document.getElementById('adminInsight');
+    if (!insightEl) return;
+
+    let html = `
+      <div class="d-flex justify-content-between mb-2">
+        <small class="text-soft">Total user aktif</small>
+        <small class="fw-semibold">${uniqueUsers} orang</small>
+      </div>
+    `;
+    if (topSkin) {
+      html += `<div class="d-flex justify-content-between mb-2">
+        <small class="text-soft">Tipe kulit terbanyak</small>
+        <small class="fw-semibold">${skinProfiles[topSkin[0]]?.emoji || ''} ${skinProfiles[topSkin[0]]?.name || topSkin[0]} (${topSkin[1]})</small>
+      </div>`;
+    }
+    if (topUndertone) {
+      html += `<div class="d-flex justify-content-between mb-2">
+        <small class="text-soft">Undertone terbanyak</small>
+        <small class="fw-semibold">${undertoneProfiles[topUndertone[0]]?.emoji || ''} ${undertoneProfiles[topUndertone[0]]?.name || topUndertone[0]} (${topUndertone[1]})</small>
+      </div>`;
+    }
+    html += `<div class="d-flex justify-content-between">
+      <small class="text-soft">Kuis terbaru</small>
+      <small class="fw-semibold">${data[0] ? new Date(data[0].created_at).toLocaleDateString('id-ID', {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}) : '-'}</small>
+    </div>`;
+    insightEl.innerHTML = html;
+  }
+
+  function renderAdminResults(data) {
+    const container = document.getElementById('adminResults');
+
+    if (data.length === 0) {
+      container.innerHTML = `
+        <div class="card-lok text-center">
+          <i class="bi bi-inbox" style="font-size:2.5rem; color: var(--rose);"></i>
+          <p class="text-soft mt-2 mb-0">Belum ada data kuis.</p>
+          <small class="text-soft" style="font-size:0.75rem;">Data akan muncul setelah user mengerjakan kuis.</small>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = data.map(item => {
+      const date = new Date(item.created_at).toLocaleString('id-ID', {
+        day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+      });
+
+      let summary = '';
+      let badgeColor = '#D9A79C';
+      let badgeLabel = 'SKIN';
+
+      if (item.quiz_type === 'skin') {
+        const typeName = skinProfiles[item.result_data?.type]?.name || item.result_data?.type || 'Unknown';
+        const emoji = skinProfiles[item.result_data?.type]?.emoji || '💧';
+        const conditions = (item.result_data?.conditions || []).map(c => skinConditions[c]?.name).filter(Boolean).join(', ');
+        summary = `
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <span style="font-size:1.3rem;">${emoji}</span>
+            <strong style="color: var(--bronze-dark); font-size:0.9rem;">${typeName}</strong>
+          </div>
+          ${conditions ? `<small class="text-soft" style="font-size:0.75rem;">+ ${conditions}</small>` : ''}
+        `;
+        badgeColor = '#D9A79C';
+        badgeLabel = 'SKIN';
+      } else {
+        const typeName = undertoneProfiles[item.result_data?.type]?.name || item.result_data?.type || 'Unknown';
+        const emoji = undertoneProfiles[item.result_data?.type]?.emoji || '🎨';
+        summary = `
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <span style="font-size:1.3rem;">${emoji}</span>
+            <strong style="color: var(--bronze-dark); font-size:0.9rem;">${typeName}</strong>
+          </div>
+        `;
+        badgeColor = '#8B5E3C';
+        badgeLabel = 'UNDERTONE';
+      }
+
+      return `
+        <div class="card-lok mb-2 admin-result-item" 
+             data-name="${(item.user_name || '').toLowerCase()}" 
+             data-email="${(item.user_email || '').toLowerCase()}"
+             style="padding:1rem;">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <div style="flex:1; min-width:0;">
+              <div class="fw-semibold" style="font-size:0.9rem;">${item.user_name || '-'}</div>
+              <small class="text-soft" style="font-size:0.72rem; word-break:break-all;">${item.user_email || '-'}</small>
+            </div>
+            <span class="badge-complement" style="background:${badgeColor}30; color:${badgeColor}; font-size:0.62rem; font-weight:700; flex-shrink:0; margin-left:8px;">${badgeLabel}</span>
+          </div>
+          ${summary}
+          <small class="text-soft" style="font-size:0.7rem; display:block; margin-top:6px;">
+            <i class="bi bi-clock me-1"></i>${date}
+          </small>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function filterAdminResults() {
+    const searchTerm = (document.getElementById('adminSearch')?.value || '').toLowerCase().trim();
+    const items = document.querySelectorAll('.admin-result-item');
+
+    items.forEach(item => {
+      const name = item.dataset.name || '';
+      const email = item.dataset.email || '';
+      const match = !searchTerm || name.includes(searchTerm) || email.includes(searchTerm);
+      item.style.display = match ? 'block' : 'none';
+    });
+
+    const visibleCount = Array.from(items).filter(i => i.style.display !== 'none').length;
+    const container = document.getElementById('adminResults');
+    const noResultMsg = document.getElementById('adminNoResult');
+
+    if (visibleCount === 0 && items.length > 0) {
+      if (!noResultMsg) {
+        const msg = document.createElement('div');
+        msg.id = 'adminNoResult';
+        msg.className = 'card-lok text-center';
+        msg.innerHTML = `
+          <i class="bi bi-search" style="font-size:2rem; color: var(--rose);"></i>
+          <p class="text-soft mt-2 mb-0" style="font-size:0.85rem;">Tidak ada hasil untuk "<strong>${searchTerm}</strong>"</p>
+        `;
+        container.appendChild(msg);
+      }
+    } else if (noResultMsg) {
+      noResultMsg.remove();
+    }
+  }
+
+  function exportAdminCSV() {
+    if (adminDataCache.length === 0) {
+      showToast('Tidak ada data untuk di-export');
+      return;
+    }
+
+    const headers = ['ID', 'Nama', 'Email', 'Tipe Kuis', 'Hasil', 'Detail', 'Tanggal'];
+    const rows = adminDataCache.map(d => {
+      let hasil = '';
+      let detail = '';
+      if (d.quiz_type === 'skin') {
+        hasil = skinProfiles[d.result_data?.type]?.name || d.result_data?.type || '';
+        detail = (d.result_data?.conditions || []).map(c => skinConditions[c]?.name).filter(Boolean).join(', ');
+      } else {
+        hasil = undertoneProfiles[d.result_data?.type]?.name || d.result_data?.type || '';
+      }
+      return [d.id, d.user_name || '', d.user_email || '', d.quiz_type, hasil, detail, new Date(d.created_at).toLocaleString('id-ID')];
+    });
+
+    const csv = [
+      headers.join(','),
+      ...rows.map(r => r.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+    ].join('\n');
+
+    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `lokaura-quiz-${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+
+    showToast('✅ CSV berhasil di-download');
   }
 
   // ============================================================
@@ -3705,18 +3857,7 @@
     }
   }
 
-  // ================= SERVICE WORKER + MANIFEST =================
-  if ('serviceWorker' in navigator) {
-    const swCode = `
-      self.addEventListener('install', e => self.skipWaiting());
-      self.addEventListener('activate', e => self.clients.claim());
-      self.addEventListener('fetch', e => {
-        e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
-      });
-    `;
-    const blob = new Blob([swCode], {type: 'application/javascript'});
-    navigator.serviceWorker.register(URL.createObjectURL(blob));
-  }
+  // ================= MANIFEST =================
   const manifest = {
     name: 'Lokaura', short_name: 'Lokaura', start_url: '.',
     display: 'standalone', background_color: '#FDFBF7', theme_color: '#8B5E3C',
@@ -3762,6 +3903,13 @@
   window.showToast = showToast;
   window.openContactAdmin = openContactAdmin;
   window.logout = logout;
+
+  // Admin Panel
+  window.openAdminPanel = openAdminPanel;
+  window.loadAdminData = loadAdminData;
+  window.filterAdminResults = filterAdminResults;
+  window.exportAdminCSV = exportAdminCSV;
+
 </script>
 </body>
 </html>
