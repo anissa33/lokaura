@@ -686,32 +686,72 @@
   </nav>
 </div>
 
-<!-- LOGIN / REGISTER OVERLAY -->
+<!-- LOGIN OVERLAY -->
 <div id="authOverlay" class="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style="background: var(--cream); z-index: 2000;">
   <div class="card-lok w-100 mx-3" style="max-width: 400px;">
-    <h3 class="text-center mb-4" style="color: var(--bronze);">Lokaura</h3>
-    <ul class="nav nav-pills nav-fill mb-3" id="authTabs">
-      <li class="nav-item"><button class="nav-link active" data-tab="login">Login</button></li>
-      <li class="nav-item"><button class="nav-link" data-tab="register">Daftar</button></li>
-    </ul>
+    <div class="text-center mb-4">
+      <div style="font-size:2.5rem; font-weight:700; color: var(--bronze); margin-bottom:4px;">Lokaura</div>
+      <p class="text-soft mb-0" style="font-size:0.8rem;">Style & Beauty Assistant</p>
+    </div>
+
     <form id="loginForm">
-      <input type="email" class="form-control form-control-lok mb-2" placeholder="Email" id="loginEmail" required>
-      <input type="password" class="form-control form-control-lok mb-2" placeholder="Password" id="loginPassword" required>
-      <div class="form-check mb-3"><input class="form-check-input" type="checkbox" id="rememberMe"><label class="form-check-label" for="rememberMe">Remember Me</label></div>
-      <button type="submit" class="btn-bronze w-100 mb-2">Masuk</button>
-      <div class="text-center text-soft">Lupa Password?</div>
-    </form>
-    <form id="registerForm" class="hidden">
-      <input type="text" class="form-control form-control-lok mb-2" placeholder="Nama Lengkap" id="regName" required>
-      <input type="email" class="form-control form-control-lok mb-2" placeholder="Email" id="regEmail" required>
-      <input type="password" class="form-control form-control-lok mb-2" placeholder="Password (min 6)" id="regPassword" required>
-      <input type="password" class="form-control form-control-lok mb-2" placeholder="Konfirmasi Password" id="regConfirm" required>
-      <div class="form-check mb-3"><input class="form-check-input" type="checkbox" id="regTerms" required><label class="form-check-label">Saya setuju Syarat & Ketentuan</label></div>
-      <button type="submit" class="btn-bronze w-100 mb-2">Daftar</button>
-    </form>
-    <div class="text-center mt-2">
-      <button class="btn btn-google w-100 mb-2"><i class="bi bi-google me-2"></i>Google</button>
-      <button class="btn btn-google w-100"><i class="bi bi-apple me-2"></i>Apple</button>
+      <label class="form-label fw-semibold mb-1" style="font-size:0.85rem;">Email</label>
+      <input type="email" class="form-control form-control-lok mb-3" placeholder="Masukkan email kamu" id="loginEmail" required>
+
+      <label class="form-label fw-semibold mb-1" style="font-size:0.85rem;">Password</label>
+      <input type="password" class="form-control form-control-lok mb-3" placeholder="Masukkan password" id="loginPassword" required>
+
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" id="rememberMe">
+        <label class="form-check-label" for="rememberMe" style="font-size:0.85rem;">Remember Me</label>
+      </div>
+
+      <button type="submit" class="btn-bronze w-100 mb-3">
+        <i class="bi bi-box-arrow-in-right me-2"></i>Masuk
+      </button>
+
+      <div class="text-center">
+        <a href="https://wa.me/6285877409460?text=Halo%20Admin%20Lokaura%2C%20saya%20butuh%20bantuan%20terkait%20akun%20saya."
+           target="_blank"
+           class="btn btn-link text-decoration-none" 
+           style="color: var(--bronze); font-size:0.85rem;">
+          <i class="bi bi-whatsapp me-1"></i>Lupa Password? Hubungi Admin
+        </a>
+      </div>
+
+    <p class="text-soft text-center mt-3 mb-0" style="font-size:0.72rem; line-height:1.5;">
+      Akun hanya diberikan kepada pengguna yang sudah melakukan pembelian.<br>
+      Hubungi admin untuk info lebih lanjut.
+    </p>
+  </div>   <!-- ← Tutup card-lok -->
+</div>     <!-- ← TAMBAHKAN INI: tutup authOverlay -->
+
+<!-- MODAL: KONTAK ADMIN -->
+<div class="modal fade" id="contactAdminModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-2 text-center">
+      <div class="modal-header border-0 justify-content-center pb-0">
+        <div class="modal-icon-circle" style="background: linear-gradient(135deg, #25D366, #128C7E);">
+          <i class="bi bi-whatsapp" style="font-size:2rem;"></i>
+        </div>
+      </div>
+      <div class="modal-body pt-2">
+        <h5 class="fw-bold mb-2" style="color: var(--bronze);">Hubungi Admin</h5>
+        <p class="text-soft mb-3" style="font-size:0.88rem; line-height:1.6;">
+          Lupa password atau butuh bantuan terkait akun?<br>
+          Hubungi admin Lokaura via WhatsApp:
+        </p>
+        <a href="https://wa.me/6285877409460?text=Halo%20Admin%20Lokaura%2C%20saya%20butuh%20bantuan%20terkait%20akun%20saya." 
+   target="_blank" 
+           class="btn-bronze w-100 mb-2" 
+           style="text-decoration:none; display:inline-block; padding:12px;">
+          <i class="bi bi-whatsapp me-2"></i>Chat via WhatsApp
+        </a>
+        <p class="text-soft mb-0" style="font-size:0.72rem;">Admin akan merespons dalam 1×24 jam</p>
+      </div>
+      <div class="modal-footer border-0 justify-content-center pt-0">
+        <button class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Tutup</button>
+      </div>
     </div>
   </div>
 </div>
@@ -938,29 +978,65 @@
   // OOTD — MAPPING & DATA
   // ============================================================
   const ITEM_IMAGES = {
-    'Blouse':      'assets/atasan/blouse.jpg',
-    'Kaos':        'assets/atasan/kaos.jpg',
-    'Kemeja':      'assets/atasan/kemeja.jpg',
-    'Sweater':     'assets/atasan/sweater.jpg',
-    'Turtleneck':  'assets/atasan/turtleneck.jpg',
-    'Celana Kulot':  'assets/bawahan/celana-kulot.jpg',
-    'Jeans':         'assets/bawahan/jeans.jpg',
-    'Rok Plisket':   'assets/bawahan/rok-plisket.jpg',
-    'Rok Panjang':   'assets/bawahan/rok-panjang.jpg',
-    'Palazzo':       'assets/bawahan/palazzo.jpg',
-    'Hijab Segi Empat': 'assets/hijab/segi-empat.jpg',
-    'Hijab Pashmina':   'assets/hijab/pashmina.jpg',
-    'Hijab Instan':     'assets/hijab/instan.jpg',
-    'Bergo':            'assets/hijab/bergo.jpg',
-    'Blazer':       'assets/outer/blazer.jpg',
-    'Cardigan':     'assets/outer/cardigan.jpg',
-    'Jaket Denim':  'assets/outer/jaket-denim.jpg',
-    'Bomber':       'assets/outer/bomber.jpg',
-    'Heels':         'assets/alas-kaki/heels.jpg',
-    'Sneakers':      'assets/alas-kaki/sneakers.jpg',
-    'Flat Shoes':    'assets/alas-kaki/flat-shoes.jpg',
-    'Crocs':         'assets/alas-kaki/crocs.jpg',
-    'Sandal Slop':   'assets/alas-kaki/sandal-slop.jpg'
+    // ===== ATASAN =====
+    'Blouse':         'assets/atasan/blouse.jpg',
+    'Kaos':           'assets/atasan/kaos.jpg',
+    'Kemeja':         'assets/atasan/kemeja.jpg',
+    'Sweater':        'assets/atasan/sweater.jpg',
+    'Turtleneck':     'assets/atasan/turtleneck.jpg',
+    'Crop Top':       'assets/atasan/crop-top.jpg',
+    'Tunic':          'assets/atasan/tunic.jpg',
+    'Puff Sleeve Top':'assets/atasan/puff-sleeve.jpg',
+    'Vest Rajut':     'assets/atasan/vest-rajut.jpg',
+    'Cardigan Knit':  'assets/atasan/cardigan-knit.jpg',
+
+    // ===== BAWAHAN =====
+    'Celana Kulot':   'assets/bawahan/celana-kulot.jpg',
+    'Jeans':          'assets/bawahan/jeans.jpg',
+    'Rok Plisket':    'assets/bawahan/rok-plisket.jpg',
+    'Rok Panjang':    'assets/bawahan/rok-panjang.jpg',
+    'Palazzo':        'assets/bawahan/palazzo.jpg',
+    'Rok A-Line':     'assets/bawahan/rok-a-line.jpg',
+    'Rok Span':       'assets/bawahan/rok-span.jpg',
+    'Culotte':        'assets/bawahan/culotte.jpg',
+    'Cargo Pants':    'assets/bawahan/cargo-pants.jpg',
+    'Wide Leg Pants': 'assets/bawahan/wide-leg-pants.jpg',
+
+    // ===== HIJAB =====
+    'Hijab Segi Empat':   'assets/hijab/segi-empat.jpg',
+    'Hijab Pashmina':     'assets/hijab/pashmina.jpg',
+    'Hijab Instan':       'assets/hijab/instan.jpg',
+    'Bergo':              'assets/hijab/bergo.jpg',
+    'Hijab Khimar':       'assets/hijab/khimar.jpg',
+    'Hijab Satin':        'assets/hijab/satin.jpg',
+    'Hijab Bella Square': 'assets/hijab/bella-square.jpg',
+    'Hijab Voal':         'assets/hijab/voal.jpg',
+    'Hijab Jersey':       'assets/hijab/jersey.jpg',
+    'Bergo Olahraga':     'assets/hijab/bergo-olahraga.jpg',
+
+    // ===== OUTER =====
+    'Blazer':          'assets/outer/blazer.jpg',
+    'Cardigan':        'assets/outer/cardigan.jpg',
+    'Jaket Denim':     'assets/outer/jaket-denim.jpg',
+    'Bomber':          'assets/outer/bomber.jpg',
+    'Trench Coat':     'assets/outer/trench-coat.jpg',
+    'Kimono Outer':    'assets/outer/kimono.jpg',
+    'Vest Formal':     'assets/outer/vest-formal.jpg',
+    'Jaket Kulit':     'assets/outer/jaket-kulit.jpg',
+    'Bomber Oversize': 'assets/outer/bomber-oversize.jpg',
+    'Poncho':          'assets/outer/poncho.jpg',
+
+    // ===== ALAS KAKI =====
+    'Heels':          'assets/alas-kaki/heels.jpg',
+    'Sneakers':       'assets/alas-kaki/sneakers.jpg',
+    'Flat Shoes':     'assets/alas-kaki/flat-shoes.jpg',
+    'Crocs':          'assets/alas-kaki/crocs.jpg',
+    'Sandal Slop':    'assets/alas-kaki/sandal-slop.jpg',
+    'Wedges':         'assets/alas-kaki/wedges.jpg',
+    'Mary Jane Shoes':'assets/alas-kaki/mary-jane.jpg',
+    'Ballet Flats':   'assets/alas-kaki/ballet-flats.jpg',
+    'Platform Shoes': 'assets/alas-kaki/platform-shoes.jpg',
+    'Mules':          'assets/alas-kaki/mules.jpg'
   };
 
   const categoryColors = {
@@ -977,14 +1053,34 @@
   };
 
   const ootdCategories = {
-    atasan: { label: 'Atasan', items: ['Blouse', 'Kaos', 'Kemeja', 'Sweater', 'Turtleneck'] },
-    bawahan: { label: 'Bawahan', items: ['Celana Kulot', 'Jeans', 'Rok Plisket', 'Rok Panjang', 'Palazzo'] },
-    hijab: { label: 'Hijab', items: ['Hijab Segi Empat', 'Hijab Pashmina', 'Hijab Instan', 'Bergo'] },
-    outer: { label: 'Outer', items: ['Blazer', 'Cardigan', 'Jaket Denim', 'Bomber'] },
-    alaskaki: { label: 'Alas Kaki', items: ['Heels', 'Sneakers', 'Flat Shoes', 'Crocs', 'Sandal Slop'] }
+    atasan: { label: 'Atasan', items: [
+      'Blouse', 'Kaos', 'Kemeja', 'Sweater', 'Turtleneck',
+      'Crop Top', 'Tunic', 'Puff Sleeve Top', 'Vest Rajut', 'Cardigan Knit'
+    ]},
+    bawahan: { label: 'Bawahan', items: [
+      'Celana Kulot', 'Jeans', 'Rok Plisket', 'Rok Panjang', 'Palazzo',
+      'Rok A-Line', 'Rok Span', 'Culotte', 'Cargo Pants', 'Wide Leg Pants'
+    ]},
+    hijab: { label: 'Hijab', items: [
+      'Hijab Segi Empat', 'Hijab Pashmina', 'Hijab Instan', 'Bergo',
+      'Hijab Khimar', 'Hijab Satin', 'Hijab Bella Square', 'Hijab Voal',
+      'Hijab Jersey', 'Bergo Olahraga'
+    ]},
+    outer: { label: 'Outer', items: [
+      'Blazer', 'Cardigan', 'Jaket Denim', 'Bomber',
+      'Trench Coat', 'Kimono Outer', 'Vest Formal', 'Jaket Kulit',
+      'Bomber Oversize', 'Poncho'
+    ]},
+    alaskaki: { label: 'Alas Kaki', items: [
+      'Heels', 'Sneakers', 'Flat Shoes', 'Crocs', 'Sandal Slop',
+      'Wedges', 'Mary Jane Shoes', 'Ballet Flats', 'Platform Shoes', 'Mules'
+    ]}
   };
 
   const ootdRules = {
+    // ============================================================
+    // ===== ATASAN (10) =====
+    // ============================================================
     'Blouse': {
       lookTitle: 'Smart Casual Look with Blouse',
       breakdown: [
@@ -993,11 +1089,11 @@
         { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
         { label: 'Outer', value: 'Blazer / Cardigan', icon: 'bi-layers' }
       ],
-      tips: 'Blouse sangat cocok dipadukan dengan <strong>Celana Kulot</strong> atau <strong>Rok Plisket</strong> untuk kesan smart casual. Hindari celana skinny agar siluet tubuh terlihat lebih seimbang. Untuk alas kaki, pilih <strong>Flat Shoes</strong> atau <strong>Heels</strong> agar penampilan lebih elegan. Jika ingin tampil santai, <strong>Sneakers putih</strong> bisa menjadi pilihan. Padukan dengan <strong>Hijab Pashmina</strong> untuk gaya flowy yang anggun, atau <strong>Hijab Segi Empat</strong> untuk tampilan yang lebih rapi dan formal. Tambahkan <strong>Blazer</strong> sebagai outer untuk acara formal, atau <strong>Cardigan</strong> untuk acara santai.',
+      tips: 'Blouse sangat cocok dipadukan dengan <strong>Celana Kulot</strong> atau <strong>Rok Plisket</strong> untuk kesan smart casual. Hindari celana skinny agar siluet tubuh terlihat lebih seimbang. Untuk alas kaki, pilih <strong>Flat Shoes</strong> atau <strong>Heels</strong> agar penampilan lebih elegan.',
       colorEducation: [
-        { title: 'Jika Blouse Warna Terang (Putih, Cream, Pastel)', text: 'Bawahan lebih cocok pakai warna <strong>netral gelap</strong> seperti Cokelat Mocca, Navy, atau Hitam agar kontrasnya elegan dan tidak terlihat pucat. Untuk hijab, pilih warna <strong>Dusty Pink, Beige, atau Sage Green</strong> supaya tampilan lebih lembut dan seimbang.', palette: ['#FFFFFF', '#8B5E3C', '#1B2A4A', '#D9A79C', '#E8D9CD'] },
-        { title: 'Jika Blouse Warna Gelap (Navy, Maroon, Hitam)', text: 'Bawahan sebaiknya pakai warna <strong>terang atau netral</strong> seperti Cream, Putih, atau Beige agar tidak terlihat berat. Hijab bisa pakai warna <strong>senada dengan bawahan</strong> atau sedikit lebih terang untuk memberi aksen.', palette: ['#1B2A4A', '#FDFBF7', '#E8D9CD', '#D9A79C', '#8B5E3C'] },
-        { title: 'Jika Blouse Warna Bold (Merah, Kuning, Hijau)', text: 'Pilih bawahan warna <strong>netral</strong> seperti Hitam, Putih, atau Denim agar warna bold tetap jadi pusat perhatian. Hindari bawahan dengan warna bold lain agar tidak terlalu ramai. Hijab cukup pakai warna <strong>netral atau senada</strong> dengan salah satu warna di blouse.', palette: ['#C0392B', '#2C3E50', '#FDFBF7', '#D9C7B8', '#8B5E3C'] }
+        { title: '💡 Blouse Putih + Bawahan Cokelat Mocca', text: 'Combo klasik yang nggak pernah salah. <strong>Cokelat Mocca (#6B4226)</strong> bikin tampilan hangat & earthy. Buat hijab, pilih <strong>Dusty Pink (#DCAEBB)</strong> atau <strong>Beige (#E8D9CD)</strong> biar makin soft.', palette: ['#FFFFFF', '#6B4226', '#DCAEBB', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Blouse Navy + Bawahan Putih', text: 'Kontras tinggi yang bikin kamu keliatan profesional. <strong>Navy (#1B2A4A)</strong> + <strong>Putih (#FFFFFF)</strong> = look kantor yang clean. Hijab pilih <strong>Silver (#C0C0C0)</strong>.', palette: ['#1B2A4A', '#FFFFFF', '#C0C0C0', '#8C92AC', '#8B5E3C'] },
+        { title: '💡 Blouse Sage Green + Bawahan Cream', text: 'Palet natural yang menenangkan. <strong>Sage (#9CAF88)</strong> + <strong>Cream (#FFFDD0)</strong> = earthy look yang chill. Hijab <strong>Terracotta (#E2725B)</strong> kasih aksen hangat.', palette: ['#9CAF88', '#FFFDD0', '#E2725B', '#D9C7B8', '#8B5E3C'] }
       ]
     },
     'Kaos': {
@@ -1008,11 +1104,11 @@
         { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' },
         { label: 'Outer', value: 'Jaket Denim / Bomber', icon: 'bi-layers' }
       ],
-      tips: 'Kaos adalah item paling fleksibel. Padukan dengan <strong>Jeans</strong> untuk gaya kasual sehari-hari, atau <strong>Rok Panjang</strong> dan <strong>Palazzo</strong> untuk tampilan yang lebih feminin. Alas kaki <strong>Sneakers</strong> atau <strong>Sandal Slop</strong> akan melengkapi kesan santai. Gunakan <strong>Hijab Instan</strong> atau <strong>Bergo</strong> agar praktis. Tambahkan <strong>Jaket Denim</strong> atau <strong>Bomber</strong> sebagai outer untuk gaya streetwear yang keren.',
+      tips: 'Kaos adalah item paling fleksibel. Padukan dengan <strong>Jeans</strong> untuk gaya kasual, atau <strong>Rok Panjang</strong> dan <strong>Palazzo</strong> untuk tampilan feminin. <strong>Sneakers</strong> atau <strong>Sandal Slop</strong> melengkapi kesan santai. Tambahkan <strong>Jaket Denim</strong> atau <strong>Bomber</strong> untuk gaya streetwear.',
       colorEducation: [
-        { title: 'Jika Kaos Warna Putih / Netral', text: 'Bawahan bisa pakai warna apa saja, tapi paling aman <strong>Denim Biru, Hitam, atau Cokelat</strong>. Hijab pilih warna <strong>cerah</strong> seperti Mustard atau Dusty Pink untuk memberi aksen.', palette: ['#FFFFFF', '#4A6A8B', '#2C3E50', '#8B5E3C', '#D9A79C'] },
-        { title: 'Jika Kaos Warna Hitam', text: 'Bawahan cocok pakai <strong>Denim, Beige, atau Abu-abu</strong> agar tidak monoton. Hijab bisa pakai warna <strong>terang</strong> untuk kontras, misalnya Putih atau Cream.', palette: ['#2C2C2C', '#4A6A8B', '#D9C7B8', '#FDFBF7', '#E8D9CD'] },
-        { title: 'Jika Kaos Warna Bold', text: 'Pilih bawahan <strong>netral</strong> (Hitam/Putih/Denim) agar warna kaos tetap menonjol. Hijab pakai warna <strong>senada</strong> dengan kaos atau netral.', palette: ['#C0392B', '#2C3E50', '#FDFBF7', '#D9C7B8', '#8B5E3C'] }
+        { title: '💡 Kaos Putih + Jeans Denim + Sneakers', text: 'Formula wajib anak muda. <strong>Putih (#FFFFFF)</strong> + <strong>Denim (#4A6A8B)</strong> = clean look. Hijab <strong>Mustard (#FFDB58)</strong> atau <strong>Dusty Pink (#DCAEBB)</strong> biar ada pop of color.', palette: ['#FFFFFF', '#4A6A8B', '#FFDB58', '#DCAEBB', '#8B5E3C'] },
+        { title: '💡 Kaos Hitam + Bawahan Beige', text: 'Smart casual yang moody tapi elegan. <strong>Hitam (#2C2C2C)</strong> + <strong>Beige (#F5F5DC)</strong> bikin siluet mahal. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#2C2C2C', '#F5F5DC', '#FFFDD0', '#B0A99F', '#8B5E3C'] },
+        { title: '💡 Kaos Merah + Bawahan Netral', text: 'Statement tanpa usaha. <strong>Merah (#C0392B)</strong> jadi pusat perhatian, bawahan pilih <strong>Hitam (#2C3E50)</strong> atau <strong>Denim (#4A6A8B)</strong>. Hijab <strong>Putih</strong>.', palette: ['#C0392B', '#2C3E50', '#4A6A8B', '#FDFBF7', '#8B5E3C'] }
       ]
     },
     'Kemeja': {
@@ -1023,41 +1119,122 @@
         { label: 'Hijab', value: 'Hijab Segi Empat / Pashmina', icon: 'bi-person-badge' },
         { label: 'Outer', value: 'Blazer / Cardigan', icon: 'bi-layers' }
       ],
-      tips: 'Kemeja memberi kesan rapi dan profesional. Padukan dengan <strong>Jeans</strong> untuk smart casual, atau <strong>Celana Kulot</strong> untuk tampilan formal. <strong>Flat Shoes</strong> atau <strong>Heels</strong> akan menyempurnakan gaya. Pilih <strong>Hijab Segi Empat</strong> untuk kesan formal, atau <strong>Pashmina</strong> untuk gaya yang lebih lembut. <strong>Blazer</strong> sangat cocok untuk acara kantor, sedangkan <strong>Cardigan</strong> untuk acara semi-formal.',
+      tips: 'Kemeja memberi kesan rapi dan profesional. Padukan dengan <strong>Jeans</strong> untuk smart casual, atau <strong>Celana Kulot</strong> untuk formal. <strong>Blazer</strong> sangat cocok untuk acara kantor, sedangkan <strong>Cardigan</strong> untuk semi-formal.',
       colorEducation: [
-        { title: 'Jika Kemeja Warna Putih', text: 'Bawahan paling aman <strong>Navy, Hitam, atau Cokelat</strong>. Hijab pilih warna <strong>soft</strong> seperti Beige atau Dusty Pink agar terlihat profesional tapi tetap lembut.', palette: ['#FFFFFF', '#1B2A4A', '#2C3E50', '#8B5E3C', '#D9A79C'] },
-        { title: 'Jika Kemeja Warna Pastel', text: 'Bawahan cocok pakai <strong>Putih, Cream, atau Denim</strong>. Hijab pilih warna <strong>senada</strong> atau sedikit lebih gelap untuk memberi dimensi.', palette: ['#B0C4DE', '#FDFBF7', '#4A6A8B', '#E8D9CD', '#8B5E3C'] },
-        { title: 'Jika Kemeja Warna Gelap', text: 'Bawahan pakai warna <strong>terang</strong> seperti Cream atau Putih. Hijab pilih warna <strong>netral</strong> agar tampilan tetap seimbang.', palette: ['#2C3E50', '#FDFBF7', '#E8D9CD', '#D9A79C', '#8B5E3C'] }
+        { title: '💡 Kemeja Putih + Bawahan Navy', text: 'Look kantor sejuta umat. <strong>Putih (#FFFFFF)</strong> + <strong>Navy (#1B2A4A)</strong> = kombinasi anti gagal. Hijab <strong>Beige (#E8D9CD)</strong> atau <strong>Dusty Pink (#DCAEBB)</strong>.', palette: ['#FFFFFF', '#1B2A4A', '#E8D9CD', '#DCAEBB', '#8B5E3C'] },
+        { title: '💡 Kemeja Pastel Blue + Bawahan Cream', text: 'Soft & calming. <strong>Pastel Blue (#B0C4DE)</strong> + <strong>Cream (#FFFDD0)</strong> = look approachable. Hijab <strong>Abu-abu (#8C92AC)</strong>.', palette: ['#B0C4DE', '#FFFDD0', '#8C92AC', '#D9C7B8', '#8B5E3C'] },
+        { title: '💡 Kemeja Hitam + Bawahan Terang', text: 'Statement bold. <strong>Hitam (#2C3E50)</strong> + <strong>Cream (#FFFDD0)</strong> = kontras tegas. Hijab <strong>Dusty Pink (#DCAEBB)</strong>.', palette: ['#2C3E50', '#FFFDD0', '#FFFFFF', '#DCAEBB', '#8B5E3C'] }
       ]
     },
     'Sweater': {
       lookTitle: 'Cozy Elegance with Sweater',
       breakdown: [
         { label: 'Bawahan', value: 'Jeans / Rok Plisket', icon: 'bi-bag' },
-        { label: 'Alas Kaki', value: 'Sneakers / Sneakers', icon: 'bi-boot' },
+        { label: 'Alas Kaki', value: 'Sneakers / Boots', icon: 'bi-boot' },
         { label: 'Hijab', value: 'Hijab Pashmina / Bergo', icon: 'bi-person-badge' },
         { label: 'Outer', value: 'Cardigan / Jaket Denim', icon: 'bi-layers' }
       ],
-      tips: 'Sweater memberikan kehangatan dan kenyamanan. Padukan dengan <strong>Jeans</strong> untuk gaya kasual, atau <strong>Rok Plisket</strong> untuk tampilan yang lebih manis. <strong>Boots</strong> atau <strong>Sneakers</strong> akan melengkapi. Gunakan <strong>Hijab Pashmina</strong> atau <strong>Bergo</strong> agar tetap nyaman. Tambahkan <strong>Cardigan</strong> atau <strong>Jaket Denim</strong> untuk lapisan ekstra.',
+      tips: 'Sweater memberikan kehangatan dan kenyamanan. Padukan dengan <strong>Jeans</strong> untuk kasual, atau <strong>Rok Plisket</strong> untuk tampilan manis. <strong>Boots</strong> atau <strong>Sneakers</strong> akan melengkapi.',
       colorEducation: [
-        { title: 'Jika Sweater Warna Netral (Cream, Abu, Cokelat)', text: 'Bawahan bisa pakai <strong>Denim, Hitam, atau warna earthy</strong> lainnya. Hijab pilih warna <strong>senada</strong> atau sedikit lebih terang.', palette: ['#D9C7B8', '#4A6A8B', '#2C3E50', '#8B5E3C', '#FDFBF7'] },
-        { title: 'Jika Sweater Warna Bold', text: 'Bawahan sebaiknya <strong>netral</strong> agar sweater tetap jadi pusat perhatian. Hijab pakai warna <strong>netral</strong> atau senada.', palette: ['#C0392B', '#2C3E50', '#FDFBF7', '#D9C7B8', '#8B5E3C'] }
+        { title: '💡 Sweater Cream + Jeans Denim', text: 'Cozy & comfy. <strong>Cream (#FFFDD0)</strong> + <strong>Denim (#4A6A8B)</strong> = look hangat. Hijab <strong>Camel (#C19A6B)</strong>.', palette: ['#FFFDD0', '#4A6A8B', '#C19A6B', '#D9C7B8', '#8B5E3C'] },
+        { title: '💡 Sweater Cokelat + Rok Plisket Cream', text: 'Feminine & warm. <strong>Cokelat (#7B3F00)</strong> + <strong>Cream (#FFFDD0)</strong> = siluet lembut. Hijab <strong>Dusty Pink (#DCAEBB)</strong>.', palette: ['#7B3F00', '#FFFDD0', '#DCAEBB', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Sweater Merah Bata + Bawahan Netral', text: 'Statement cozy. <strong>Merah Bata (#B7410E)</strong> = pusat perhatian. Bawahan <strong>Denim</strong> atau <strong>Beige</strong>. Hijab <strong>Cream</strong>.', palette: ['#B7410E', '#4A6A8B', '#D9C7B8', '#FDFBF7', '#8B5E3C'] }
       ]
     },
     'Turtleneck': {
       lookTitle: 'Sleek & Sophisticated with Turtleneck',
       breakdown: [
         { label: 'Bawahan', value: 'Celana Kulot / Palazzo', icon: 'bi-bag' },
-        { label: 'Alas Kaki', value: 'Heels / Sneakers', icon: 'bi-boot' },
+        { label: 'Alas Kaki', value: 'Heels / Boots', icon: 'bi-boot' },
         { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' },
         { label: 'Outer', value: 'Blazer / Bomber', icon: 'bi-layers' }
       ],
-      tips: 'Turtleneck memberikan siluet ramping dan elegan. Padukan dengan <strong>Celana Kulot</strong> atau <strong>Palazzo</strong> untuk kesan memanjangkan tubuh. <strong>Heels</strong> atau <strong>Boots</strong> akan menambah kesan premium. Pilih <strong>Hijab Instan</strong> atau <strong>Bergo</strong> agar leher tetap terlihat rapi. <strong>Blazer</strong> sangat cocok untuk acara formal, sedangkan <strong>Bomber</strong> untuk gaya kasual yang stylish.',
+      tips: 'Turtleneck memberikan siluet ramping dan elegan. Padukan dengan <strong>Celana Kulot</strong> atau <strong>Palazzo</strong> untuk kesan memanjangkan tubuh. <strong>Blazer</strong> untuk formal, <strong>Bomber</strong> untuk kasual.',
       colorEducation: [
-        { title: 'Jika Turtleneck Warna Gelap', text: 'Bawahan cocok pakai <strong>Cream, Putih, atau Beige</strong> agar tidak terlihat berat. Hijab pilih warna <strong>netral</strong> atau senada dengan bawahan.', palette: ['#2E241F', '#FDFBF7', '#E8D9CD', '#D9A79C', '#8B5E3C'] },
-        { title: 'Jika Turtleneck Warna Terang', text: 'Bawahan bisa pakai <strong>warna gelap</strong> untuk kontras. Hijab pilih warna <strong>senada</strong> atau netral.', palette: ['#FDFBF7', '#2C3E50', '#8B5E3C', '#D9A79C', '#E8D9CD'] }
+        { title: '💡 Turtleneck Hitam + Bawahan Cream', text: 'Sleek & sophisticated. <strong>Hitam (#2E241F)</strong> + <strong>Cream (#FFFDD0)</strong> = siluet memanjang. Hijab <strong>Beige (#E8D9CD)</strong> atau <strong>Silver (#C0C0C0)</strong>.', palette: ['#2E241F', '#FFFDD0', '#E8D9CD', '#C0C0C0', '#8B5E3C'] },
+        { title: '💡 Turtleneck White + Bawahan Camel', text: 'Warm & timeless. <strong>Putih (#FFFFFF)</strong> + <strong>Camel (#C19A6B)</strong> = netral mahal. Hijab <strong>Terracotta (#E2725B)</strong>.', palette: ['#FFFFFF', '#C19A6B', '#E2725B', '#D9C7B8', '#8B5E3C'] },
+        { title: '💡 Turtleneck Plum + Bawahan Navy', text: 'Deep & moody. <strong>Plum (#8E4585)</strong> + <strong>Navy (#1B2A4A)</strong> = bold artistik. Hijab <strong>Silver (#C0C0C0)</strong>.', palette: ['#8E4585', '#1B2A4A', '#C0C0C0', '#DCAEBB', '#8B5E3C'] }
       ]
     },
+    'Crop Top': {
+      lookTitle: 'Youthful Vibe with Crop Top',
+      breakdown: [
+        { label: 'Bawahan', value: 'High Waist Pants / Wide Leg Pants', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Sneakers / Platform Shoes', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Bomber Oversize / Jaket Denim', icon: 'bi-layers' }
+      ],
+      tips: 'Crop Top memberikan kesan youthful dan modern. Padukan dengan <strong>High Waist Pants</strong> atau <strong>Wide Leg Pants</strong> untuk menyeimbangkan siluet. <strong>Sneakers</strong> atau <strong>Platform Shoes</strong> menambah tinggi badan.',
+      colorEducation: [
+        { title: '💡 Crop Top Hitam + High Waist Cream', text: 'Formula anak Gen Z. <strong>Hitam (#2C2C2C)</strong> + <strong>Cream (#FFFDD0)</strong> = tinggi jenjang. Hijab <strong>Navy (#1B2A4A)</strong> atau <strong>Dusty Pink (#DCAEBB)</strong>.', palette: ['#2C2C2C', '#FFFDD0', '#1B2A4A', '#DCAEBB', '#8B5E3C'] },
+        { title: '💡 Crop Top Putih + Cargo Pants Khaki', text: 'Sporty & trendy. <strong>Putih (#FFFFFF)</strong> + <strong>Khaki (#C3B091)</strong> = streetwear look. Hijab <strong>Olive (#808000)</strong>.', palette: ['#FFFFFF', '#C3B091', '#808000', '#FDFBF7', '#8B5E3C'] },
+        { title: '💡 Crop Top Sage + Bawahan Denim', text: 'Soft & chill. <strong>Sage (#9CAF88)</strong> + <strong>Denim (#4A6A8B)</strong> = fresh look. Hijab <strong>Cream (#FFFDD0)</strong> atau <strong>Terracotta (#E2725B)</strong>.', palette: ['#9CAF88', '#4A6A8B', '#FFFDD0', '#E2725B', '#8B5E3C'] }
+      ]
+    },
+    'Tunic': {
+      lookTitle: 'Modest Elegance with Tunic',
+      breakdown: [
+        { label: 'Bawahan', value: 'Legging / Celana Kulot / Palazzo', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Flat Shoes / Ballet Flats', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Cardigan / Kimono Outer', icon: 'bi-layers' }
+      ],
+      tips: 'Tunic memberikan kesan modest dan elegan, cocok untuk hijab friendly. Padukan dengan <strong>Legging</strong>, <strong>Celana Kulot</strong>, atau <strong>Palazzo</strong> untuk siluet memanjang. <strong>Flat Shoes</strong> atau <strong>Ballet Flats</strong> nyaman untuk aktivitas.',
+      colorEducation: [
+        { title: '💡 Tunic Putih + Legging Hitam', text: 'Kombinasi modest yang clean. <strong>Putih (#FFFFFF)</strong> + <strong>Hitam (#2C2C2C)</strong> = siluet jenjang. Hijab <strong>Dusty Pink (#DCAEBB)</strong> atau <strong>Beige (#E8D9CD)</strong>.', palette: ['#FFFFFF', '#2C2C2C', '#DCAEBB', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Tunic Navy + Palazzo Cream', text: 'Look hijab friendly elegan. <strong>Navy (#1B2A4A)</strong> + <strong>Cream (#FFFDD0)</strong> = timeless. Hijab <strong>Silver (#C0C0C0)</strong>.', palette: ['#1B2A4A', '#FFFDD0', '#C0C0C0', '#DCAEBB', '#8B5E3C'] },
+        { title: '💡 Tunic Dusty Pink + Bawahan Abu-abu', text: 'Feminine & soft. <strong>Dusty Pink (#DCAEBB)</strong> + <strong>Abu-abu (#B0A99F)</strong> = lembut sophisticated. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#DCAEBB', '#B0A99F', '#FFFDD0', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Puff Sleeve Top': {
+      lookTitle: 'Feminine Charm with Puff Sleeve Top',
+      breakdown: [
+        { label: 'Bawahan', value: 'Jeans / Rok A-Line / Culotte', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Heels / Mary Jane Shoes', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Bella Square', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Cardigan / Blazer', icon: 'bi-layers' }
+      ],
+      tips: 'Puff Sleeve Top memberikan kesan feminin dan vintage. Padukan dengan <strong>Jeans</strong> untuk kasual, atau <strong>Rok A-Line</strong> dan <strong>Culotte</strong> untuk tampilan manis. <strong>Heels</strong> atau <strong>Mary Jane Shoes</strong> untuk gaya vintage.',
+      colorEducation: [
+        { title: '💡 Puff Sleeve Putih + Jeans Denim', text: 'Vintage feminin. <strong>Putih (#FFFFFF)</strong> + <strong>Denim (#4A6A8B)</strong> = manis casual. Hijab <strong>Dusty Pink (#DCAEBB)</strong> atau <strong>Lavender (#B57EDC)</strong>.', palette: ['#FFFFFF', '#4A6A8B', '#DCAEBB', '#B57EDC', '#8B5E3C'] },
+        { title: '💡 Puff Sleeve Pastel Pink + Rok A-Line Cream', text: 'Sweet & girly. <strong>Soft Pink (#FFB6C1)</strong> + <strong>Cream (#FFFDD0)</strong> = look manis. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#FFB6C1', '#FFFDD0', '#E8D9CD', '#D9C7B8', '#8B5E3C'] },
+        { title: '💡 Puff Sleeve Sage + Bawahan Terracotta', text: 'Earthy & artistic. <strong>Sage (#9CAF88)</strong> + <strong>Terracotta (#E2725B)</strong> = artsy look. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#9CAF88', '#E2725B', '#FFFDD0', '#D9C7B8', '#8B5E3C'] }
+      ]
+    },
+    'Vest Rajut': {
+      lookTitle: 'Cozy Layering with Vest Rajut',
+      breakdown: [
+        { label: 'Atasan', value: 'Kemeja / Blouse / Turtleneck', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Jeans / Celana Kulot', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Loafers / Flat Shoes', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' }
+      ],
+      tips: 'Vest Rajut memberikan kesan cozy dan stylish. Padukan dengan <strong>Kemeja</strong> untuk preppy, <strong>Blouse</strong> untuk feminin, atau <strong>Turtleneck</strong> untuk layer hangat. Bawahan <strong>Jeans</strong> atau <strong>Celana Kulot</strong> untuk melengkapi.',
+      colorEducation: [
+        { title: '💡 Vest Rajut Cream + Kemeja Putih', text: 'Preppy & clean. <strong>Cream (#FFFDD0)</strong> + <strong>Putih (#FFFFFF)</strong> = kampus look. Bawahan <strong>Navy (#1B2A4A)</strong> atau <strong>Denim</strong>. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#FFFDD0', '#FFFFFF', '#1B2A4A', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Vest Rajut Cokelat + Turtleneck Cream', text: 'Layered & cozy. <strong>Cokelat (#7B3F00)</strong> + <strong>Cream (#FFFDD0)</strong> = hangat timeless. Hijab <strong>Camel (#C19A6B)</strong> atau <strong>Terracotta (#E2725B)</strong>.', palette: ['#7B3F00', '#FFFDD0', '#C19A6B', '#E2725B', '#8B5E3C'] },
+        { title: '💡 Vest Rajut Merah + Bawahan Netral', text: 'Statement piece. <strong>Merah (#C0392B)</strong> jadi pusat perhatian. Bawahan & atasan pilih <strong>netral</strong>. Hijab <strong>Navy</strong>.', palette: ['#C0392B', '#FFFFFF', '#FFFDD0', '#1B2A4A', '#8B5E3C'] }
+      ]
+    },
+    'Cardigan Knit': {
+      lookTitle: 'Soft & Warm with Cardigan Knit',
+      breakdown: [
+        { label: 'Atasan', value: 'Kaos / Blouse / Crop Top', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Jeans / Rok Plisket / Culotte', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Sneakers / Flat Shoes', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Bergo', icon: 'bi-person-badge' }
+      ],
+      tips: 'Cardigan Knit memberikan kesan soft dan hangat. Padukan dengan <strong>Kaos</strong> untuk kasual, <strong>Blouse</strong> untuk feminin, atau <strong>Crop Top</strong> untuk tampilan modern. Bawahan <strong>Jeans</strong>, <strong>Rok Plisket</strong>, atau <strong>Culotte</strong> untuk variasi.',
+      colorEducation: [
+        { title: '💡 Cardigan Cream + Kaos Putih + Jeans', text: 'Soft & comfy. <strong>Cream (#FFFDD0)</strong> + <strong>Putih (#FFFFFF)</strong> + <strong>Denim (#4A6A8B)</strong> = kasual hangat. Hijab <strong>Camel (#C19A6B)</strong>.', palette: ['#FFFDD0', '#FFFFFF', '#4A6A8B', '#C19A6B', '#8B5E3C'] },
+        { title: '💡 Cardigan Sage + Tunic Cream', text: 'Earthy modest look. <strong>Sage (#9CAF88)</strong> + <strong>Cream (#FFFDD0)</strong> = modest fresh. Hijab <strong>Dusty Pink (#DCAEBB)</strong> atau <strong>Beige (#E8D9CD)</strong>.', palette: ['#9CAF88', '#FFFDD0', '#DCAEBB', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Cardigan Mustard + Bawahan Netral', text: 'Pop of color. <strong>Mustard (#FFDB58)</strong> = cheerful look. Bawahan <strong>Denim</strong> atau <strong>Beige</strong>. Hijab <strong>Navy (#1B2A4A)</strong> atau <strong>Cream</strong>.', palette: ['#FFDB58', '#4A6A8B', '#D9C7B8', '#1B2A4A', '#8B5E3C'] }
+      ]
+    },
+
+    // ============================================================
+    // ===== BAWAHAN (10) =====
+    // ============================================================
     'Celana Kulot': {
       lookTitle: 'Flowy Elegance with Celana Kulot',
       breakdown: [
@@ -1066,24 +1243,26 @@
         { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
         { label: 'Outer', value: 'Blazer / Cardigan', icon: 'bi-layers' }
       ],
-      tips: 'Celana Kulot sangat versatile. Padukan dengan <strong>Blouse</strong> untuk smart casual, <strong>Kemeja</strong> untuk formal, atau <strong>Turtleneck</strong> untuk tampilan sleek. <strong>Heels</strong> atau <strong>Flat Shoes</strong> akan menyempurnakan. Gunakan <strong>Hijab Pashmina</strong> untuk gaya flowy, atau <strong>Segi Empat</strong> untuk kesan rapi. <strong>Blazer</strong> untuk acara kantor, <strong>Cardigan</strong> untuk santai.',
+      tips: 'Celana Kulot sangat versatile. Padukan dengan <strong>Blouse</strong> untuk smart casual, <strong>Kemeja</strong> untuk formal, atau <strong>Turtleneck</strong> untuk tampilan sleek. <strong>Heels</strong> atau <strong>Flat Shoes</strong> menyempurnakan.',
       colorEducation: [
-        { title: 'Jika Celana Kulot Warna Netral', text: 'Atasan bisa pakai warna <strong>bold</strong> atau <strong>pastel</strong> untuk kontras. Hijab pilih warna <strong>senada</strong> dengan atasan atau netral.', palette: ['#D9C7B8', '#C0392B', '#B0C4DE', '#8B5E3C', '#FDFBF7'] },
-        { title: 'Jika Celana Kulot Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong> (Putih/Cream/Hitam) agar tidak terlalu ramai. Hijab pakai warna <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+        { title: '💡 Celana Kulot Cokelat + Blouse Cream', text: 'Kombinasi earthy elegan. <strong>Cokelat (#8B5E3C)</strong> + <strong>Cream (#FFFDD0)</strong> = look hangat. Hijab <strong>Dusty Pink (#DCAEBB)</strong> atau <strong>Terracotta (#E2725B)</strong>.', palette: ['#8B5E3C', '#FFFDD0', '#DCAEBB', '#E2725B', '#FDFBF7'] },
+        { title: '💡 Celana Kulot Hitam + Blouse Sage', text: 'Kontras elegan. <strong>Hitam (#2C2C2C)</strong> + <strong>Sage (#9CAF88)</strong> = modern look. Hijab <strong>Cream (#FFFDD0)</strong> atau <strong>Silver (#C0C0C0)</strong>.', palette: ['#2C2C2C', '#9CAF88', '#FFFDD0', '#C0C0C0', '#8B5E3C'] },
+        { title: '💡 Celana Kulot Terracotta + Blouse Putih', text: 'Warm & fresh. <strong>Terracotta (#E2725B)</strong> + <strong>Putih (#FFFFFF)</strong> = look hangat & clean. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#E2725B', '#FFFFFF', '#E8D9CD', '#D9C7B8', '#8B5E3C'] }
       ]
     },
     'Jeans': {
       lookTitle: 'Everyday Cool with Jeans',
       breakdown: [
         { label: 'Atasan', value: 'Kaos / Kemeja / Sweater', icon: 'bi-bag' },
-        { label: 'Alas Kaki', value: 'Sneakers / Sneakers', icon: 'bi-boot' },
+        { label: 'Alas Kaki', value: 'Sneakers / Boots', icon: 'bi-boot' },
         { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' },
         { label: 'Outer', value: 'Jaket Denim / Bomber', icon: 'bi-layers' }
       ],
-      tips: 'Jeans adalah item wajib. Padukan dengan <strong>Kaos</strong> untuk kasual, <strong>Kemeja</strong> untuk smart casual, atau <strong>Sweater</strong> untuk hangat. <strong>Sneakers</strong> atau <strong>Boots</strong> akan melengkapi. <strong>Hijab Instan</strong> atau <strong>Bergo</strong> praktis untuk sehari-hari. Tambahkan <strong>Jaket Denim</strong> atau <strong>Bomber</strong> untuk gaya streetwear.',
+      tips: 'Jeans adalah item wajib. Padukan dengan <strong>Kaos</strong> untuk kasual, <strong>Kemeja</strong> untuk smart casual, atau <strong>Sweater</strong> untuk hangat. <strong>Sneakers</strong> atau <strong>Boots</strong> melengkapi.',
       colorEducation: [
-        { title: 'Jika Jeans Warna Biru', text: 'Atasan cocok pakai <strong>Putih, Cream, atau warna bold</strong>. Hijab pilih warna <strong>netral</strong> atau senada dengan atasan.', palette: ['#4A6A8B', '#FDFBF7', '#C0392B', '#D9C7B8', '#8B5E3C'] },
-        { title: 'Jika Jeans Warna Hitam', text: 'Atasan bisa pakai <strong>warna terang</strong> agar tidak monoton. Hijab pilih warna <strong>cerah</strong> untuk aksen.', palette: ['#2C2C2C', '#FDFBF7', '#D9A79C', '#B0C4DE', '#8B5E3C'] }
+        { title: '💡 Jeans Biru + Kaos Putih', text: 'Combo sejuta umat. <strong>Denim Blue (#4A6A8B)</strong> + <strong>Putih (#FFFFFF)</strong> = clean & fresh. Hijab <strong>Dusty Pink (#DCAEBB)</strong> atau <strong>Mustard (#FFDB58)</strong>.', palette: ['#4A6A8B', '#FFFFFF', '#DCAEBB', '#FFDB58', '#8B5E3C'] },
+        { title: '💡 Jeans Hitam + Kaos Cream', text: 'Smart casual. <strong>Hitam (#2C2C2C)</strong> + <strong>Cream (#FFFDD0)</strong> = kontras elegan. Hijab <strong>Silver (#C0C0C0)</strong> atau <strong>Camel (#C19A6B)</strong>.', palette: ['#2C2C2C', '#FFFDD0', '#C0C0C0', '#C19A6B', '#8B5E3C'] },
+        { title: '💡 Jeans Denim + Sweater Navy', text: 'Cozy combo. <strong>Denim (#4A6A8B)</strong> + <strong>Navy (#1B2A4A)</strong> = tonal look yang elegan. Hijab <strong>Beige (#E8D9CD)</strong> atau <strong>Cream (#FFFDD0)</strong>.', palette: ['#4A6A8B', '#1B2A4A', '#E8D9CD', '#FFFDD0', '#8B5E3C'] }
       ]
     },
     'Rok Plisket': {
@@ -1094,24 +1273,26 @@
         { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
         { label: 'Outer', value: 'Cardigan / Blazer', icon: 'bi-layers' }
       ],
-      tips: 'Rok Plisket memberikan kesan feminin dan flowy. Padukan dengan <strong>Blouse</strong> untuk elegan, <strong>Kaos</strong> untuk kasual, atau <strong>Sweater</strong> untuk hangat. <strong>Flat Shoes</strong> atau <strong>Heels</strong> cocok. <strong>Hijab Pashmina</strong> untuk gaya anggun, <strong>Segi Empat</strong> untuk rapi. <strong>Cardigan</strong> untuk santai, <strong>Blazer</strong> untuk formal.',
+      tips: 'Rok Plisket memberikan kesan feminin dan flowy. Padukan dengan <strong>Blouse</strong> untuk elegan, <strong>Kaos</strong> untuk kasual, atau <strong>Sweater</strong> untuk hangat. <strong>Flat Shoes</strong> atau <strong>Heels</strong> cocok.',
       colorEducation: [
-        { title: 'Jika Rok Plisket Warna Netral', text: 'Atasan bisa pakai warna <strong>bold</strong> atau <strong>pastel</strong>. Hijab pilih warna <strong>senada</strong> atau netral.', palette: ['#D4C4B7', '#C0392B', '#B0C4DE', '#8B5E3C', '#FDFBF7'] },
-        { title: 'Jika Rok Plisket Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Hijab pakai warna <strong>netral</strong> agar tidak terlalu ramai.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+        { title: '💡 Rok Plisket Mocca + Blouse Cream', text: 'Warm & feminine. <strong>Mocca (#6B4226)</strong> + <strong>Cream (#FFFDD0)</strong> = look earthy. Hijab <strong>Dusty Pink (#DCAEBB)</strong> atau <strong>Beige (#E8D9CD)</strong>.', palette: ['#6B4226', '#FFFDD0', '#DCAEBB', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Rok Plisket Sage + Blouse Putih', text: 'Fresh & soft. <strong>Sage (#9CAF88)</strong> + <strong>Putih (#FFFFFF)</strong> = natural look. Hijab <strong>Terracotta (#E2725B)</strong> atau <strong>Beige (#E8D9CD)</strong>.', palette: ['#9CAF88', '#FFFFFF', '#E2725B', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Rok Plisket Navy + Blouse Putih', text: 'Classic elegan. <strong>Navy (#1B2A4A)</strong> + <strong>Putih (#FFFFFF)</strong> = timeless combo. Hijab <strong>Dusty Pink (#DCAEBB)</strong>.', palette: ['#1B2A4A', '#FFFFFF', '#DCAEBB', '#E8D9CD', '#8B5E3C'] }
       ]
     },
     'Rok Panjang': {
       lookTitle: 'Modest & Elegant with Rok Panjang',
       breakdown: [
-        { label: 'Atasan', value: 'Blouse / Kemeja / Turtleneck', icon: 'bi-bag' },
+        { label: 'Atasan', value: 'Blouse / Kemeja / Tunic', icon: 'bi-bag' },
         { label: 'Alas Kaki', value: 'Flat Shoes / Heels', icon: 'bi-boot' },
         { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
         { label: 'Outer', value: 'Cardigan / Blazer', icon: 'bi-layers' }
       ],
-      tips: 'Rok Panjang memberikan kesan modest dan elegan, sangat hijab friendly. Padukan dengan <strong>Blouse</strong> untuk kesan anggun, <strong>Kemeja</strong> untuk formal, atau <strong>Tunic</strong> untuk gaya yang lebih longgar dan nyaman. <strong>Flat Shoes</strong> atau <strong>Heels</strong> akan melengkapi penampilan. Gunakan <strong>Hijab Pashmina</strong> untuk gaya flowy, atau <strong>Segi Empat</strong> untuk tampilan rapi. <strong>Cardigan</strong> untuk acara santai, <strong>Blazer</strong> untuk acara formal.',
+      tips: 'Rok Panjang memberikan kesan modest dan elegan, sangat hijab friendly. Padukan dengan <strong>Blouse</strong> untuk anggun, <strong>Kemeja</strong> untuk formal, atau <strong>Tunic</strong> untuk longgar. <strong>Flat Shoes</strong> atau <strong>Heels</strong> melengkapi.',
       colorEducation: [
-        { title: 'Jika Rok Panjang Warna Netral', text: 'Atasan bisa pakai warna <strong>earthy</strong> seperti Olive, Mustard, atau Terracotta. Hijab pilih warna <strong>senada</strong> dengan atasan atau netral.', palette: ['#E8D9CD', '#8B7355', '#B8860B', '#A0522D', '#8B5E3C'] },
-        { title: 'Jika Rok Panjang Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong> (Putih/Cream/Hitam). Hijab pakai warna <strong>netral</strong> atau senada.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+        { title: '💡 Rok Panjang Cream + Blouse Olive', text: 'Earthy modest. <strong>Cream (#FFFDD0)</strong> + <strong>Olive (#808000)</strong> = natural look. Hijab <strong>Terracotta (#E2725B)</strong> atau <strong>Mustard (#FFDB58)</strong>.', palette: ['#FFFDD0', '#808000', '#E2725B', '#FFDB58', '#8B5E3C'] },
+        { title: '💡 Rok Panjang Hitam + Blouse Sage', text: 'Elegan & modern. <strong>Hitam (#2C2C2C)</strong> + <strong>Sage (#9CAF88)</strong> = kontras fresh. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#2C2C2C', '#9CAF88', '#FFFDD0', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Rok Panjang Terracotta + Blouse Cream', text: 'Warm & elegant. <strong>Terracotta (#E2725B)</strong> + <strong>Cream (#FFFDD0)</strong> = hangat elegan. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#E2725B', '#FFFDD0', '#E8D9CD', '#D9C7B8', '#8B5E3C'] }
       ]
     },
     'Palazzo': {
@@ -1122,12 +1303,92 @@
         { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
         { label: 'Outer', value: 'Blazer / Cardigan', icon: 'bi-layers' }
       ],
-      tips: 'Palazzo memberikan siluet memanjang. Padukan dengan <strong>Blouse</strong> untuk elegan, <strong>Turtleneck</strong> untuk sleek, atau <strong>Kemeja</strong> untuk formal. <strong>Heels</strong> atau <strong>Flat Shoes</strong> akan menyempurnakan. <strong>Hijab Pashmina</strong> untuk flowy, <strong>Segi Empat</strong> untuk rapi. <strong>Blazer</strong> untuk kantor, <strong>Cardigan</strong> untuk santai.',
+      tips: 'Palazzo memberikan siluet memanjang. Padukan dengan <strong>Blouse</strong> untuk elegan, <strong>Turtleneck</strong> untuk sleek, atau <strong>Kemeja</strong> untuk formal. <strong>Heels</strong> atau <strong>Flat Shoes</strong> menyempurnakan.',
       colorEducation: [
-        { title: 'Jika Palazzo Warna Netral', text: 'Atasan bisa pakai warna <strong>bold</strong> atau <strong>pastel</strong>. Hijab pilih warna <strong>senada</strong> atau netral.', palette: ['#3D2B1F', '#C0392B', '#B0C4DE', '#8B5E3C', '#FDFBF7'] },
-        { title: 'Jika Palazzo Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Hijab pakai warna <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+        { title: '💡 Palazzo Cream + Blouse Navy', text: 'Classic elegan. <strong>Cream (#FFFDD0)</strong> + <strong>Navy (#1B2A4A)</strong> = look clean. Hijab <strong>Silver (#C0C0C0)</strong> atau <strong>Beige (#E8D9CD)</strong>.', palette: ['#FFFDD0', '#1B2A4A', '#C0C0C0', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Palazzo Hitam + Blouse Sage', text: 'Modern elegan. <strong>Hitam (#2C2C2C)</strong> + <strong>Sage (#9CAF88)</strong> = fresh look. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#2C2C2C', '#9CAF88', '#FFFDD0', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Palazzo Terracotta + Blouse Putih', text: 'Warm & clean. <strong>Terracotta (#E2725B)</strong> + <strong>Putih (#FFFFFF)</strong> = look hangat. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#E2725B', '#FFFFFF', '#E8D9CD', '#D9C7B8', '#8B5E3C'] }
       ]
     },
+    'Rok A-Line': {
+      lookTitle: 'Feminine Silhouette with Rok A-Line',
+      breakdown: [
+        { label: 'Atasan', value: 'Blouse / Kaos / Crop Top', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Heels / Ballet Flats', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Cardigan / Blazer', icon: 'bi-layers' }
+      ],
+      tips: 'Rok A-Line memberikan siluet feminin yang flattering untuk semua bentuk tubuh. Padukan dengan <strong>Blouse</strong> untuk elegan, <strong>Kaos</strong> untuk kasual, atau <strong>Crop Top</strong> untuk modern.',
+      colorEducation: [
+        { title: '💡 Rok A-Line Cream + Blouse Sage', text: 'Soft feminine. <strong>Cream (#FFFDD0)</strong> + <strong>Sage (#9CAF88)</strong> = earthy soft. Hijab <strong>Dusty Pink (#DCAEBB)</strong> atau <strong>Terracotta (#E2725B)</strong>.', palette: ['#FFFDD0', '#9CAF88', '#DCAEBB', '#E2725B', '#8B5E3C'] },
+        { title: '💡 Rok A-Line Navy + Blouse Putih', text: 'Classic elegan. <strong>Navy (#1B2A4A)</strong> + <strong>Putih (#FFFFFF)</strong> = clean look. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#1B2A4A', '#FFFFFF', '#E8D9CD', '#DCAEBB', '#8B5E3C'] },
+        { title: '💡 Rok A-Line Terracotta + Blouse Cream', text: 'Warm & feminine. <strong>Terracotta (#E2725B)</strong> + <strong>Cream (#FFFDD0)</strong> = hangat manis. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#E2725B', '#FFFDD0', '#E8D9CD', '#D9C7B8', '#8B5E3C'] }
+      ]
+    },
+    'Rok Span': {
+      lookTitle: 'Sleek Look with Rok Span',
+      breakdown: [
+        { label: 'Atasan', value: 'Blouse / Kemeja / Turtleneck', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Heels / Wedges', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Blazer / Cardigan', icon: 'bi-layers' }
+      ],
+      tips: 'Rok Span memberikan kesan sleek dan profesional. Padukan dengan <strong>Blouse</strong> untuk elegan, <strong>Kemeja</strong> untuk formal, atau <strong>Turtleneck</strong> untuk modern. <strong>Heels</strong> atau <strong>Wedges</strong> memanjangkan siluet.',
+      colorEducation: [
+        { title: '💡 Rok Span Hitam + Blouse Putih', text: 'Kombinasi profesional. <strong>Hitam (#2C2C2C)</strong> + <strong>Putih (#FFFFFF)</strong> = look kantor. Hijab <strong>Beige (#E8D9CD)</strong> atau <strong>Dusty Pink (#DCAEBB)</strong>.', palette: ['#2C2C2C', '#FFFFFF', '#E8D9CD', '#DCAEBB', '#8B5E3C'] },
+        { title: '💡 Rok Span Navy + Blouse Cream', text: 'Elegan clean. <strong>Navy (#1B2A4A)</strong> + <strong>Cream (#FFFDD0)</strong> = professional. Hijab <strong>Silver (#C0C0C0)</strong>.', palette: ['#1B2A4A', '#FFFDD0', '#C0C0C0', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Rok Span Cokelat + Blouse Sage', text: 'Warm profesional. <strong>Cokelat (#6B4226)</strong> + <strong>Sage (#9CAF88)</strong> = earthy kantor. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#6B4226', '#9CAF88', '#FFFDD0', '#D9C7B8', '#8B5E3C'] }
+      ]
+    },
+    'Culotte': {
+      lookTitle: 'Modern Chic with Culotte',
+      breakdown: [
+        { label: 'Atasan', value: 'Blouse / Crop Top / Turtleneck', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Heels / Wedges', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Blazer / Cardigan', icon: 'bi-layers' }
+      ],
+      tips: 'Culotte memberikan siluet modern dan stylish. Padukan dengan <strong>Blouse</strong> untuk elegan, <strong>Crop Top</strong> untuk youthful, atau <strong>Turtleneck</strong> untuk sleek. <strong>Heels</strong> atau <strong>Wedges</strong> menyempurnakan.',
+      colorEducation: [
+        { title: '💡 Culotte Cream + Crop Top Hitam', text: 'Modern chic. <strong>Cream (#FFFDD0)</strong> + <strong>Hitam (#2C2C2C)</strong> = clean modern. Hijab <strong>Dusty Pink (#DCAEBB)</strong> atau <strong>Navy (#1B2A4A)</strong>.', palette: ['#FFFDD0', '#2C2C2C', '#DCAEBB', '#1B2A4A', '#8B5E3C'] },
+        { title: '💡 Culotte Navy + Blouse Putih', text: 'Classic modern. <strong>Navy (#1B2A4A)</strong> + <strong>Putih (#FFFFFF)</strong> = timeless. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#1B2A4A', '#FFFFFF', '#E8D9CD', '#DCAEBB', '#8B5E3C'] },
+        { title: '💡 Culotte Cokelat + Blouse Cream', text: 'Earthy modern. <strong>Cokelat (#6B4226)</strong> + <strong>Cream (#FFFDD0)</strong> = hangat. Hijab <strong>Terracotta (#E2725B)</strong>.', palette: ['#6B4226', '#FFFDD0', '#E2725B', '#D9C7B8', '#8B5E3C'] }
+      ]
+    },
+    'Cargo Pants': {
+      lookTitle: 'Edgy Street Style with Cargo Pants',
+      breakdown: [
+        { label: 'Atasan', value: 'Crop Top / Kaos / Sweater', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Sneakers / Boots', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Bomber Oversize / Jaket Denim', icon: 'bi-layers' }
+      ],
+      tips: 'Cargo Pants memberikan kesan edgy dan streetwear. Padukan dengan <strong>Crop Top</strong> untuk modern, <strong>Kaos</strong> untuk kasual, atau <strong>Sweater</strong> untuk hangat. <strong>Sneakers</strong> atau <strong>Boots</strong> menyempurnakan.',
+      colorEducation: [
+        { title: '💡 Cargo Pants Khaki + Crop Top Putih', text: 'Sporty streetwear. <strong>Khaki (#C3B091)</strong> + <strong>Putih (#FFFFFF)</strong> = clean sporty. Hijab <strong>Olive (#808000)</strong> atau <strong>Cream (#FFFDD0)</strong>.', palette: ['#C3B091', '#FFFFFF', '#808000', '#FFFDD0', '#8B5E3C'] },
+        { title: '💡 Cargo Pants Olive + Kaos Hitam', text: 'Edgy look. <strong>Olive (#808000)</strong> + <strong>Hitam (#2C2C2C)</strong> = streetwear vibes. Hijab <strong>Cream (#FFFDD0)</strong> atau <strong>Beige (#E8D9CD)</strong>.', palette: ['#808000', '#2C2C2C', '#FFFDD0', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Cargo Pants Hitam + Kaos Putih', text: 'Classic streetwear. <strong>Hitam (#2C2C2C)</strong> + <strong>Putih (#FFFFFF)</strong> = clean look. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#2C2C2C', '#FFFFFF', '#FFFDD0', '#D9C7B8', '#8B5E3C'] }
+      ]
+    },
+    'Wide Leg Pants': {
+      lookTitle: 'Flowy Statement with Wide Leg Pants',
+      breakdown: [
+        { label: 'Atasan', value: 'Blouse / Crop Top / Turtleneck', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Heels / Platform Shoes', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Blazer / Cardigan', icon: 'bi-layers' }
+      ],
+      tips: 'Wide Leg Pants memberikan siluet flowy dan statement. Padukan dengan <strong>Blouse</strong> untuk elegan, <strong>Crop Top</strong> untuk modern, atau <strong>Turtleneck</strong> untuk sleek. <strong>Heels</strong> atau <strong>Platform Shoes</strong> menambah tinggi.',
+      colorEducation: [
+        { title: '💡 Wide Leg Cream + Crop Top Sage', text: 'Soft earthy. <strong>Cream (#FFFDD0)</strong> + <strong>Sage (#9CAF88)</strong> = flowy natural. Hijab <strong>Terracotta (#E2725B)</strong>.', palette: ['#FFFDD0', '#9CAF88', '#E2725B', '#D9C7B8', '#8B5E3C'] },
+        { title: '💡 Wide Leg Hitam + Blouse Putih', text: 'Clean elegant. <strong>Hitam (#2C2C2C)</strong> + <strong>Putih (#FFFFFF)</strong> = timeless. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#2C2C2C', '#FFFFFF', '#E8D9CD', '#DCAEBB', '#8B5E3C'] },
+        { title: '💡 Wide Leg Navy + Blouse Cream', text: 'Classic. <strong>Navy (#1B2A4A)</strong> + <strong>Cream (#FFFDD0)</strong> = elegan. Hijab <strong>Silver (#C0C0C0)</strong>.', palette: ['#1B2A4A', '#FFFDD0', '#C0C0C0', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+
+    // ============================================================
+    // ===== HIJAB (10) =====
+    // ============================================================
     'Hijab Segi Empat': {
       lookTitle: 'Classic Elegance with Hijab Segi Empat',
       breakdown: [
@@ -1136,10 +1397,11 @@
         { label: 'Alas Kaki', value: 'Flat Shoes / Heels', icon: 'bi-boot' },
         { label: 'Outer', value: 'Blazer / Cardigan', icon: 'bi-layers' }
       ],
-      tips: 'Hijab Segi Empat memberikan kesan rapi dan formal. Padukan dengan <strong>Blouse</strong> atau <strong>Kemeja</strong> untuk tampilan profesional. Bawahan <strong>Celana Kulot</strong> atau <strong>Rok Plisket</strong> akan menyeimbangkan siluet. <strong>Flat Shoes</strong> atau <strong>Heels</strong> untuk kenyamanan. <strong>Blazer</strong> untuk acara formal, <strong>Cardigan</strong> untuk santai.',
+      tips: 'Hijab Segi Empat memberikan kesan rapi dan formal. Padukan dengan <strong>Blouse</strong> atau <strong>Kemeja</strong> untuk tampilan profesional. Bawahan <strong>Celana Kulot</strong> atau <strong>Rok Plisket</strong> menyeimbangkan siluet.',
       colorEducation: [
-        { title: 'Jika Hijab Warna Netral', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong>. Bawahan pilih <strong>netral</strong> agar seimbang.', palette: ['#F3DFD9', '#C0392B', '#B0C4DE', '#8B5E3C', '#FDFBF7'] },
-        { title: 'Jika Hijab Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong> (Putih/Cream/Hitam). Bawahan pilih <strong>netral</strong> juga.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+        { title: '💡 Hijab Dusty Pink + Blouse Putih', text: 'Soft feminine. <strong>Dusty Pink (#DCAEBB)</strong> + <strong>Putih (#FFFFFF)</strong> = clean soft. Bawahan <strong>Navy (#1B2A4A)</strong> atau <strong>Cream (#FFFDD0)</strong>.', palette: ['#DCAEBB', '#FFFFFF', '#1B2A4A', '#FFFDD0', '#8B5E3C'] },
+        { title: '💡 Hijab Cream + Blouse Sage', text: 'Earthy elegan. <strong>Cream (#FFFDD0)</strong> + <strong>Sage (#9CAF88)</strong> = natural look. Bawahan <strong>Cokelat (#6B4226)</strong> atau <strong>Navy (#1B2A4A)</strong>.', palette: ['#FFFDD0', '#9CAF88', '#6B4226', '#1B2A4A', '#8B5E3C'] },
+        { title: '💡 Hijab Navy + Blouse Cream', text: 'Classic elegan. <strong>Navy (#1B2A4A)</strong> + <strong>Cream (#FFFDD0)</strong> = timeless. Bawahan <strong>Beige (#E8D9CD)</strong>.', palette: ['#1B2A4A', '#FFFDD0', '#E8D9CD', '#DCAEBB', '#8B5E3C'] }
       ]
     },
     'Hijab Pashmina': {
@@ -1150,10 +1412,11 @@
         { label: 'Alas Kaki', value: 'Heels / Flat Shoes', icon: 'bi-boot' },
         { label: 'Outer', value: 'Cardigan / Blazer', icon: 'bi-layers' }
       ],
-      tips: 'Hijab Pashmina memberikan kesan flowy dan anggun. Padukan dengan <strong>Blouse</strong>, <strong>Sweater</strong>, atau <strong>Turtleneck</strong> untuk tampilan lembut. Bawahan <strong>Celana Kulot</strong> atau <strong>Palazzo</strong> akan menambah kesan elegan. <strong>Heels</strong> atau <strong>Flat Shoes</strong> cocok. <strong>Cardigan</strong> untuk santai, <strong>Blazer</strong> untuk formal.',
+      tips: 'Hijab Pashmina memberikan kesan flowy dan anggun. Padukan dengan <strong>Blouse</strong>, <strong>Sweater</strong>, atau <strong>Turtleneck</strong> untuk tampilan lembut. Bawahan <strong>Celana Kulot</strong> atau <strong>Palazzo</strong> menambah kesan elegan.',
       colorEducation: [
-        { title: 'Jika Hijab Warna Pastel', text: 'Atasan bisa pakai <strong>warna senada</strong> atau <strong>netral</strong>. Bawahan pilih <strong>netral</strong> atau warna earthy.', palette: ['#E5D9CF', '#C9A9A6', '#8B5E3C', '#F3DFD9', '#D9C7B8'] },
-        { title: 'Jika Hijab Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong> agar hijab tetap jadi fokus. Bawahan pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+        { title: '💡 Hijab Pastel Pink + Blouse Cream', text: 'Soft flowy. <strong>Pastel Pink (#FFB6C1)</strong> + <strong>Cream (#FFFDD0)</strong> = look manis. Bawahan <strong>Beige (#E8D9CD)</strong>.', palette: ['#FFB6C1', '#FFFDD0', '#E8D9CD', '#D9C7B8', '#8B5E3C'] },
+        { title: '💡 Hijab Sage + Blouse White', text: 'Earthy fresh. <strong>Sage (#9CAF88)</strong> + <strong>Putih (#FFFFFF)</strong> = natural soft. Bawahan <strong>Cream (#FFFDD0)</strong> atau <strong>Terracotta (#E2725B)</strong>.', palette: ['#9CAF88', '#FFFFFF', '#FFFDD0', '#E2725B', '#8B5E3C'] },
+        { title: '💡 Hijab Terracotta + Blouse Cream', text: 'Warm flowy. <strong>Terracotta (#E2725B)</strong> + <strong>Cream (#FFFDD0)</strong> = hangat elegan. Bawahan <strong>Beige (#E8D9CD)</strong>.', palette: ['#E2725B', '#FFFDD0', '#E8D9CD', '#D9C7B8', '#8B5E3C'] }
       ]
     },
     'Hijab Instan': {
@@ -1164,10 +1427,11 @@
         { label: 'Alas Kaki', value: 'Sneakers / Flat Shoes', icon: 'bi-boot' },
         { label: 'Outer', value: 'Jaket Denim / Bomber', icon: 'bi-layers' }
       ],
-      tips: 'Hijab Instan praktis untuk sehari-hari. Padukan dengan <strong>Kaos</strong>, <strong>Kemeja</strong>, atau <strong>Blouse</strong>. Bawahan <strong>Jeans</strong> atau <strong>Celana Kulot</strong> untuk kenyamanan. <strong>Sneakers</strong> atau <strong>Flat Shoes</strong> untuk aktivitas. <strong>Jaket Denim</strong> atau <strong>Bomber</strong> untuk gaya kasual.',
+      tips: 'Hijab Instan praktis untuk sehari-hari. Padukan dengan <strong>Kaos</strong>, <strong>Kemeja</strong>, atau <strong>Blouse</strong>. Bawahan <strong>Jeans</strong> atau <strong>Celana Kulot</strong> untuk kenyamanan. <strong>Sneakers</strong> atau <strong>Flat Shoes</strong> untuk aktivitas.',
       colorEducation: [
-        { title: 'Jika Hijab Warna Netral', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong>. Bawahan pilih <strong>netral</strong>.', palette: ['#FDFBF7', '#C0392B', '#B0C4DE', '#8B5E3C', '#E8D9CD'] },
-        { title: 'Jika Hijab Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Bawahan pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+        { title: '💡 Hijab Cream + Kaos Putih + Jeans', text: 'Casual clean. <strong>Cream (#FFFDD0)</strong> + <strong>Putih (#FFFFFF)</strong> + <strong>Denim (#4A6A8B)</strong> = daily look. Hijab <strong>Camel (#C19A6B)</strong>.', palette: ['#FFFDD0', '#FFFFFF', '#4A6A8B', '#C19A6B', '#8B5E3C'] },
+        { title: '💡 Hijab Navy + Blouse Sage', text: 'Earthy casual. <strong>Navy (#1B2A4A)</strong> + <strong>Sage (#9CAF88)</strong> = fresh look. Bawahan <strong>Cream (#FFFDD0)</strong> atau <strong>Beige (#E8D9CD)</strong>.', palette: ['#1B2A4A', '#9CAF88', '#FFFDD0', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Hijab Dusty Pink + Blouse Cream', text: 'Soft casual. <strong>Dusty Pink (#DCAEBB)</strong> + <strong>Cream (#FFFDD0)</strong> = lembut. Bawahan <strong>Beige (#E8D9CD)</strong> atau <strong>Cokelat (#6B4226)</strong>.', palette: ['#DCAEBB', '#FFFDD0', '#E8D9CD', '#6B4226', '#8B5E3C'] }
       ]
     },
     'Bergo': {
@@ -1178,12 +1442,107 @@
         { label: 'Alas Kaki', value: 'Sneakers / Flat Shoes', icon: 'bi-boot' },
         { label: 'Outer', value: 'Cardigan / Jaket Denim', icon: 'bi-layers' }
       ],
-      tips: 'Bergo memberikan kesan simple dan manis. Padukan dengan <strong>Kaos</strong>, <strong>Blouse</strong>, atau <strong>Sweater</strong>. Bawahan <strong>Jeans</strong> atau <strong>Rok Plisket</strong> untuk variasi. <strong>Sneakers</strong> atau <strong>Flat Shoes</strong> untuk kenyamanan. <strong>Cardigan</strong> atau <strong>Jaket Denim</strong> untuk outer.',
+      tips: 'Bergo memberikan kesan simple dan manis. Padukan dengan <strong>Kaos</strong>, <strong>Blouse</strong>, atau <strong>Sweater</strong>. Bawahan <strong>Jeans</strong> atau <strong>Rok Plisket</strong> untuk variasi. <strong>Sneakers</strong> atau <strong>Flat Shoes</strong> untuk kenyamanan.',
       colorEducation: [
-        { title: 'Jika Bergo Warna Netral', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong>. Bawahan pilih <strong>netral</strong>.', palette: ['#FDFBF7', '#C0392B', '#B0C4DE', '#8B5E3C', '#E8D9CD'] },
-        { title: 'Jika Bergo Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Bawahan pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+        { title: '💡 Bergo Cream + Kaos Putih', text: 'Daily clean. <strong>Cream (#FFFDD0)</strong> + <strong>Putih (#FFFFFF)</strong> = clean look. Bawahan <strong>Denim (#4A6A8B)</strong>.', palette: ['#FFFDD0', '#FFFFFF', '#4A6A8B', '#D9C7B8', '#8B5E3C'] },
+        { title: '💡 Bergo Navy + Blouse Sage', text: 'Earthy casual. <strong>Navy (#1B2A4A)</strong> + <strong>Sage (#9CAF88)</strong> = fresh. Bawahan <strong>Cream (#FFFDD0)</strong>.', palette: ['#1B2A4A', '#9CAF88', '#FFFDD0', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Bergo Terracotta + Blouse Cream', text: 'Warm daily. <strong>Terracotta (#E2725B)</strong> + <strong>Cream (#FFFDD0)</strong> = hangat. Bawahan <strong>Beige (#E8D9CD)</strong>.', palette: ['#E2725B', '#FFFDD0', '#E8D9CD', '#D9C7B8', '#8B5E3C'] }
       ]
     },
+    'Hijab Khimar': {
+      lookTitle: 'Modest Grace with Hijab Khimar',
+      breakdown: [
+        { label: 'Atasan', value: 'Tunic / Blouse / Kemeja', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Legging / Celana Kulot / Palazzo', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Flat Shoes / Ballet Flats', icon: 'bi-boot' },
+        { label: 'Outer', value: 'Kimono Outer / Cardigan', icon: 'bi-layers' }
+      ],
+      tips: 'Hijab Khimar memberikan kesan modest dan anggun. Padukan dengan <strong>Tunic</strong> atau <strong>Blouse</strong> untuk elegan, atau <strong>Kemeja</strong> untuk formal. Bawahan <strong>Legging</strong>, <strong>Celana Kulot</strong>, atau <strong>Palazzo</strong> untuk siluet memanjang.',
+      colorEducation: [
+        { title: '💡 Khimar Cream + Tunic Sage', text: 'Earthy modest. <strong>Cream (#FFFDD0)</strong> + <strong>Sage (#9CAF88)</strong> = natural modest. Bawahan <strong>Cokelat (#6B4226)</strong> atau <strong>Beige (#E8D9CD)</strong>.', palette: ['#FFFDD0', '#9CAF88', '#6B4226', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Khimar Navy + Tunic Cream', text: 'Elegan modest. <strong>Navy (#1B2A4A)</strong> + <strong>Cream (#FFFDD0)</strong> = timeless. Bawahan <strong>Beige (#E8D9CD)</strong>.', palette: ['#1B2A4A', '#FFFDD0', '#E8D9CD', '#DCAEBB', '#8B5E3C'] },
+        { title: '💡 Khimar Dusty Pink + Tunic Putih', text: 'Soft modest. <strong>Dusty Pink (#DCAEBB)</strong> + <strong>Putih (#FFFFFF)</strong> = soft elegan. Bawahan <strong>Cream (#FFFDD0)</strong>.', palette: ['#DCAEBB', '#FFFFFF', '#FFFDD0', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Hijab Satin': {
+      lookTitle: 'Luxury Look with Hijab Satin',
+      breakdown: [
+        { label: 'Atasan', value: 'Blouse / Kemeja / Turtleneck', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Celana Kulot / Rok Span / Palazzo', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Heels / Mules', icon: 'bi-boot' },
+        { label: 'Outer', value: 'Blazer / Cardigan', icon: 'bi-layers' }
+      ],
+      tips: 'Hijab Satin memberikan kesan mewah dan elegan. Padukan dengan <strong>Blouse</strong> atau <strong>Kemeja</strong> untuk tampilan profesional, atau <strong>Turtleneck</strong> untuk kesan premium. Bawahan <strong>Celana Kulot</strong>, <strong>Rok Span</strong>, atau <strong>Palazzo</strong> untuk siluet memanjang.',
+      colorEducation: [
+        { title: '💡 Satin Emerald + Blouse Cream', text: 'Luxury look. <strong>Emerald (#50C878)</strong> + <strong>Cream (#FFFDD0)</strong> = mewah elegan. Bawahan <strong>Navy (#1B2A4A)</strong> atau <strong>Beige (#E8D9CD)</strong>.', palette: ['#50C878', '#FFFDD0', '#1B2A4A', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Satin Gold + Blouse Hitam', text: 'Luxury classic. <strong>Gold (#FFD700)</strong> + <strong>Hitam (#2C2C2C)</strong> = glamor. Bawahan <strong>Cream (#FFFDD0)</strong>.', palette: ['#FFD700', '#2C2C2C', '#FFFDD0', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Satin Navy + Blouse Cream', text: 'Elegan premium. <strong>Navy (#1B2A4A)</strong> + <strong>Cream (#FFFDD0)</strong> = timeless. Bawahan <strong>Beige (#E8D9CD)</strong>.', palette: ['#1B2A4A', '#FFFDD0', '#E8D9CD', '#DCAEBB', '#8B5E3C'] }
+      ]
+    },
+    'Hijab Bella Square': {
+      lookTitle: 'Casual Daily with Hijab Bella Square',
+      breakdown: [
+        { label: 'Atasan', value: 'Kaos / Blouse / Kemeja', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Jeans / Celana Kulot / Rok A-Line', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Sneakers / Flat Shoes', icon: 'bi-boot' },
+        { label: 'Outer', value: 'Cardigan / Jaket Denim', icon: 'bi-layers' }
+      ],
+      tips: 'Hijab Bella Square memberikan kesan casual dan praktis. Padukan dengan <strong>Kaos</strong> untuk sehari-hari, <strong>Blouse</strong> untuk semi-formal, atau <strong>Kemeja</strong> untuk rapi. Bawahan <strong>Jeans</strong>, <strong>Celana Kulot</strong>, atau <strong>Rok A-Line</strong> untuk variasi.',
+      colorEducation: [
+        { title: '💡 Bella Cream + Kaos Putih', text: 'Daily clean. <strong>Cream (#FFFDD0)</strong> + <strong>Putih (#FFFFFF)</strong> = daily look. Bawahan <strong>Denim (#4A6A8B)</strong>.', palette: ['#FFFDD0', '#FFFFFF', '#4A6A8B', '#D9C7B8', '#8B5E3C'] },
+        { title: '💡 Bella Navy + Blouse Sage', text: 'Earthy casual. <strong>Navy (#1B2A4A)</strong> + <strong>Sage (#9CAF88)</strong> = fresh. Bawahan <strong>Cream (#FFFDD0)</strong>.', palette: ['#1B2A4A', '#9CAF88', '#FFFDD0', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Bella Dusty Pink + Kaos Cream', text: 'Soft daily. <strong>Dusty Pink (#DCAEBB)</strong> + <strong>Cream (#FFFDD0)</strong> = lembut. Bawahan <strong>Beige (#E8D9CD)</strong>.', palette: ['#DCAEBB', '#FFFDD0', '#E8D9CD', '#D9C7B8', '#8B5E3C'] }
+      ]
+    },
+    'Hijab Voal': {
+      lookTitle: 'Everyday Elegance with Hijab Voal',
+      breakdown: [
+        { label: 'Atasan', value: 'Blouse / Kemeja / Kaos', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Celana Kulot / Jeans / Rok Plisket', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Flat Shoes / Sneakers', icon: 'bi-boot' },
+        { label: 'Outer', value: 'Cardigan / Blazer', icon: 'bi-layers' }
+      ],
+      tips: 'Hijab Voal memberikan kesan elegan dan nyaman. Padukan dengan <strong>Blouse</strong> untuk formal, <strong>Kemeja</strong> untuk smart casual, atau <strong>Kaos</strong> untuk santai. Bawahan <strong>Celana Kulot</strong>, <strong>Jeans</strong>, atau <strong>Rok Plisket</strong> untuk variasi.',
+      colorEducation: [
+        { title: '💡 Voal Cream + Blouse Navy', text: 'Elegan daily. <strong>Cream (#FFFDD0)</strong> + <strong>Navy (#1B2A4A)</strong> = clean look. Bawahan <strong>Beige (#E8D9CD)</strong>.', palette: ['#FFFDD0', '#1B2A4A', '#E8D9CD', '#DCAEBB', '#8B5E3C'] },
+        { title: '💡 Voal Sage + Blouse Putih', text: 'Earthy fresh. <strong>Sage (#9CAF88)</strong> + <strong>Putih (#FFFFFF)</strong> = natural. Bawahan <strong>Cream (#FFFDD0)</strong>.', palette: ['#9CAF88', '#FFFFFF', '#FFFDD0', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Voal Dusty Pink + Blouse Cream', text: 'Soft elegan. <strong>Dusty Pink (#DCAEBB)</strong> + <strong>Cream (#FFFDD0)</strong> = lembut. Bawahan <strong>Beige (#E8D9CD)</strong>.', palette: ['#DCAEBB', '#FFFDD0', '#E8D9CD', '#D9C7B8', '#8B5E3C'] }
+      ]
+    },
+    'Hijab Jersey': {
+      lookTitle: 'Sporty & Comfy with Hijab Jersey',
+      breakdown: [
+        { label: 'Atasan', value: 'Kaos / Sweater / Cardigan Knit', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Jeans / Cargo Pants / Wide Leg Pants', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Sneakers / Crocs', icon: 'bi-boot' },
+        { label: 'Outer', value: 'Bomber Oversize / Jaket Denim', icon: 'bi-layers' }
+      ],
+      tips: 'Hijab Jersey memberikan kesan sporty dan nyaman. Padukan dengan <strong>Kaos</strong> untuk kasual, <strong>Sweater</strong> untuk hangat, atau <strong>Cardigan Knit</strong> untuk cozy. Bawahan <strong>Jeans</strong>, <strong>Cargo Pants</strong>, atau <strong>Wide Leg Pants</strong> untuk variasi.',
+      colorEducation: [
+        { title: '💡 Jersey Navy + Kaos Putih', text: 'Sporty clean. <strong>Navy (#1B2A4A)</strong> + <strong>Putih (#FFFFFF)</strong> = clean sporty. Bawahan <strong>Denim (#4A6A8B)</strong> atau <strong>Hitam (#2C2C2C)</strong>.', palette: ['#1B2A4A', '#FFFFFF', '#4A6A8B', '#2C2C2C', '#8B5E3C'] },
+        { title: '💡 Jersey Cream + Kaos Sage', text: 'Earthy sporty. <strong>Cream (#FFFDD0)</strong> + <strong>Sage (#9CAF88)</strong> = natural. Bawahan <strong>Beige (#E8D9CD)</strong>.', palette: ['#FFFDD0', '#9CAF88', '#E8D9CD', '#D9C7B8', '#8B5E3C'] },
+        { title: '💡 Jersey Hitam + Sweater Cream', text: 'Sporty elegan. <strong>Hitam (#2C2C2C)</strong> + <strong>Cream (#FFFDD0)</strong> = clean. Bawahan <strong>Denim (#4A6A8B)</strong>.', palette: ['#2C2C2C', '#FFFDD0', '#4A6A8B', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Bergo Olahraga': {
+      lookTitle: 'Active Look with Bergo Olahraga',
+      breakdown: [
+        { label: 'Atasan', value: 'Kaos / Sweater / Tunic', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Cargo Pants / Jeans / Wide Leg Pants', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Sneakers / Crocs', icon: 'bi-boot' },
+        { label: 'Outer', value: 'Bomber Oversize / Jaket Denim', icon: 'bi-layers' }
+      ],
+      tips: 'Bergo Olahraga memberikan kesan aktif dan sporty. Padukan dengan <strong>Kaos</strong> untuk kasual, <strong>Sweater</strong> untuk hangat, atau <strong>Tunic</strong> untuk modest. Bawahan <strong>Cargo Pants</strong>, <strong>Jeans</strong>, atau <strong>Wide Leg Pants</strong> untuk variasi.',
+      colorEducation: [
+        { title: '💡 Bergo Olahraga Cream + Kaos Navy', text: 'Sporty clean. <strong>Cream (#FFFDD0)</strong> + <strong>Navy (#1B2A4A)</strong> = clean sporty. Bawahan <strong>Denim (#4A6A8B)</strong>.', palette: ['#FFFDD0', '#1B2A4A', '#4A6A8B', '#D9C7B8', '#8B5E3C'] },
+        { title: '💡 Bergo Olahraga Hitam + Kaos Sage', text: 'Sporty earthy. <strong>Hitam (#2C2C2C)</strong> + <strong>Sage (#9CAF88)</strong> = fresh. Bawahan <strong>Cream (#FFFDD0)</strong>.', palette: ['#2C2C2C', '#9CAF88', '#FFFDD0', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Bergo Olahraga Terracotta + Kaos Cream', text: 'Warm sporty. <strong>Terracotta (#E2725B)</strong> + <strong>Cream (#FFFDD0)</strong> = hangat. Bawahan <strong>Beige (#E8D9CD)</strong>.', palette: ['#E2725B', '#FFFDD0', '#E8D9CD', '#D9C7B8', '#8B5E3C'] }
+      ]
+    },
+
+    // ============================================================
+    // ===== OUTER (10) =====
+    // ============================================================
     'Blazer': {
       lookTitle: 'Power Look with Blazer',
       breakdown: [
@@ -1192,10 +1551,11 @@
         { label: 'Alas Kaki', value: 'Heels / Flat Shoes', icon: 'bi-boot' },
         { label: 'Hijab', value: 'Hijab Segi Empat / Pashmina', icon: 'bi-person-badge' }
       ],
-      tips: 'Blazer memberikan kesan profesional dan berkelas. Padukan dengan <strong>Kemeja</strong>, <strong>Blouse</strong>, atau <strong>Turtleneck</strong> untuk tampilan kantor. Bawahan <strong>Celana Kulot</strong> atau <strong>Palazzo</strong> akan menyeimbangkan siluet. <strong>Heels</strong> atau <strong>Flat Shoes</strong> untuk kesan formal. <strong>Hijab Segi Empat</strong> atau <strong>Pashmina</strong> untuk melengkapi.',
+      tips: 'Blazer memberikan kesan profesional dan berkelas. Padukan dengan <strong>Kemeja</strong>, <strong>Blouse</strong>, atau <strong>Turtleneck</strong> untuk tampilan kantor. Bawahan <strong>Celana Kulot</strong> atau <strong>Palazzo</strong> menyeimbangkan siluet. <strong>Heels</strong> atau <strong>Flat Shoes</strong> untuk kesan formal.',
       colorEducation: [
-        { title: 'Jika Blazer Warna Netral', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#2C3E50', '#C0392B', '#B0C4DE', '#8B5E3C', '#FDFBF7'] },
-        { title: 'Jika Blazer Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+        { title: '💡 Blazer Navy + Kemeja Putih + Kulot Cream', text: 'Look kantor sejuta umat. <strong>Navy (#1B2A4A)</strong> + <strong>Putih (#FFFFFF)</strong> + <strong>Cream (#FFFDD0)</strong> = kombinasi anti gagal. Hijab <strong>Beige (#E8D9CD)</strong> atau <strong>Silver (#C0C0C0)</strong>.', palette: ['#1B2A4A', '#FFFFFF', '#FFFDD0', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Blazer Hitam + Blouse Cream + Kulot Hitam', text: 'Monokrom elegan. <strong>Hitam (#2C2C2C)</strong> + <strong>Cream (#FFFDD0)</strong> = timeless look. Hijab <strong>Dusty Pink (#DCAEBB)</strong> kasih sentuhan feminine.', palette: ['#2C2C2C', '#FFFDD0', '#DCAEBB', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Blazer Camel + Kemeja Sage + Kulot Beige', text: 'Earthy profesional. <strong>Camel (#C19A6B)</strong> + <strong>Sage (#9CAF88)</strong> + <strong>Beige (#F5F5DC)</strong> = look earthy elegan. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#C19A6B', '#9CAF88', '#F5F5DC', '#FFFDD0', '#8B5E3C'] }
       ]
     },
     'Cardigan': {
@@ -1206,10 +1566,11 @@
         { label: 'Alas Kaki', value: 'Flat Shoes / Sneakers', icon: 'bi-boot' },
         { label: 'Hijab', value: 'Hijab Pashmina / Bergo', icon: 'bi-person-badge' }
       ],
-      tips: 'Cardigan memberikan kesan lembut dan santai. Padukan dengan <strong>Kaos</strong>, <strong>Blouse</strong>, atau <strong>Sweater</strong>. Bawahan <strong>Jeans</strong> atau <strong>Rok Plisket</strong> untuk variasi. <strong>Flat Shoes</strong> atau <strong>Sneakers</strong> untuk kenyamanan. <strong>Hijab Pashmina</strong> atau <strong>Bergo</strong> untuk melengkapi.',
+      tips: 'Cardigan memberikan kesan lembut dan santai. Padukan dengan <strong>Kaos</strong>, <strong>Blouse</strong>, atau <strong>Sweater</strong>. Bawahan <strong>Jeans</strong> atau <strong>Rok Plisket</strong> untuk variasi. <strong>Flat Shoes</strong> atau <strong>Sneakers</strong> untuk kenyamanan.',
       colorEducation: [
-        { title: 'Jika Cardigan Warna Netral', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#D9C7B8', '#C0392B', '#B0C4DE', '#8B5E3C', '#FDFBF7'] },
-        { title: 'Jika Cardigan Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+        { title: '💡 Cardigan Cream + Kaos Putih + Jeans Denim', text: 'Soft casual. <strong>Cream (#FFFDD0)</strong> + <strong>Putih (#FFFFFF)</strong> + <strong>Denim (#4A6A8B)</strong> = look hangat. Hijab <strong>Camel (#C19A6B)</strong> atau <strong>Dusty Pink (#DCAEBB)</strong>.', palette: ['#FFFDD0', '#FFFFFF', '#4A6A8B', '#C19A6B', '#8B5E3C'] },
+        { title: '💡 Cardigan Sage + Blouse Cream + Rok Plisket', text: 'Earthy feminine. <strong>Sage (#9CAF88)</strong> + <strong>Cream (#FFFDD0)</strong> = natural look. Hijab <strong>Terracotta (#E2725B)</strong>.', palette: ['#9CAF88', '#FFFDD0', '#E2725B', '#D9C7B8', '#8B5E3C'] },
+        { title: '💡 Cardigan Dusty Pink + Kaos White + Jeans', text: 'Soft feminine. <strong>Dusty Pink (#DCAEBB)</strong> + <strong>Putih (#FFFFFF)</strong> + <strong>Denim (#4A6A8B)</strong> = manis casual. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#DCAEBB', '#FFFFFF', '#4A6A8B', '#FFFDD0', '#8B5E3C'] }
       ]
     },
     'Jaket Denim': {
@@ -1217,13 +1578,14 @@
       breakdown: [
         { label: 'Atasan', value: 'Kaos / Blouse / Sweater', icon: 'bi-bag' },
         { label: 'Bawahan', value: 'Jeans / Rok Panjang', icon: 'bi-bag' },
-        { label: 'Alas Kaki', value: 'Sneakers / Sneakers', icon: 'bi-boot' },
+        { label: 'Alas Kaki', value: 'Sneakers / Boots', icon: 'bi-boot' },
         { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' }
       ],
-      tips: 'Jaket Denim memberikan kesan streetwear yang keren. Padukan dengan <strong>Kaos</strong>, <strong>Crop Top</strong>, atau <strong>Sweater</strong>. Bawahan <strong>Jeans</strong> atau <strong>Rok Panjang</strong> untuk gaya muda. <strong>Sneakers</strong> atau <strong>Boots</strong> untuk melengkapi. <strong>Hijab Instan</strong> atau <strong>Bergo</strong> praktis.',
+      tips: 'Jaket Denim memberikan kesan streetwear yang keren. Padukan dengan <strong>Kaos</strong>, <strong>Crop Top</strong>, atau <strong>Sweater</strong>. Bawahan <strong>Jeans</strong> atau <strong>Rok Panjang</strong> untuk gaya muda. <strong>Sneakers</strong> atau <strong>Boots</strong> untuk melengkapi.',
       colorEducation: [
-        { title: 'Jika Jaket Denim Warna Biru', text: 'Atasan bisa pakai <strong>Putih, Cream, atau warna bold</strong>. Bawahan pilih <strong>netral</strong> atau Denim. Hijab pilih <strong>netral</strong>.', palette: ['#4A6A8B', '#FDFBF7', '#C0392B', '#D9C7B8', '#8B5E3C'] },
-        { title: 'Jika Jaket Denim Warna Gelap', text: 'Atasan bisa pakai <strong>warna terang</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>cerah</strong>.', palette: ['#2C3E50', '#FDFBF7', '#D9A79C', '#B0C4DE', '#8B5E3C'] }
+        { title: '💡 Jaket Denim Blue + Kaos Putih + Jeans', text: 'Canadian tuxedo modern. <strong>Denim (#4A6A8B)</strong> + <strong>Putih (#FFFFFF)</strong> = clean streetwear. Hijab <strong>Cream (#FFFDD0)</strong> atau <strong>Dusty Pink (#DCAEBB)</strong>.', palette: ['#4A6A8B', '#FFFFFF', '#FFFDD0', '#DCAEBB', '#8B5E3C'] },
+        { title: '💡 Jaket Denim Black + Sweater Cream', text: 'Edgy casual. <strong>Black Denim (#2C2C2C)</strong> + <strong>Cream (#FFFDD0)</strong> = kontras streetwear. Hijab <strong>Dusty Pink (#DCAEBB)</strong> atau <strong>Mustard (#FFDB58)</strong>.', palette: ['#2C2C2C', '#FFFDD0', '#DCAEBB', '#FFDB58', '#8B5E3C'] },
+        { title: '💡 Jaket Denim Light + Blouse Sage', text: 'Soft streetwear. <strong>Light Denim (#89A8C7)</strong> + <strong>Sage (#9CAF88)</strong> = earthy look. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#89A8C7', '#9CAF88', '#FFFDD0', '#E8D9CD', '#8B5E3C'] }
       ]
     },
     'Bomber': {
@@ -1231,15 +1593,110 @@
       breakdown: [
         { label: 'Atasan', value: 'Kaos / Blouse / Turtleneck', icon: 'bi-bag' },
         { label: 'Bawahan', value: 'Jeans / Rok Panjang / Palazzo', icon: 'bi-bag' },
-        { label: 'Alas Kaki', value: 'Sneakers / Sneakers', icon: 'bi-boot' },
+        { label: 'Alas Kaki', value: 'Sneakers / Boots', icon: 'bi-boot' },
         { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' }
       ],
-      tips: 'Bomber memberikan kesan urban dan sporty. Padukan dengan <strong>Kaos</strong>, <strong>Crop Top</strong>, atau <strong>Turtleneck</strong>. Bawahan <strong>Jeans</strong>, <strong>Rok Panjang</strong>, atau <strong>Palazzo</strong>. <strong>Sneakers</strong> atau <strong>Boots</strong> untuk melengkapi. <strong>Hijab Instan</strong> atau <strong>Bergo</strong> untuk kenyamanan.',
+      tips: 'Bomber memberikan kesan urban dan sporty. Padukan dengan <strong>Kaos</strong>, <strong>Crop Top</strong>, atau <strong>Turtleneck</strong>. Bawahan <strong>Jeans</strong>, <strong>Rok Panjang</strong>, atau <strong>Palazzo</strong>. <strong>Sneakers</strong> atau <strong>Boots</strong> untuk melengkapi.',
       colorEducation: [
-        { title: 'Jika Bomber Warna Netral', text: 'Atasan bisa pakai <strong>warna bold</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#3D2B1F', '#C0392B', '#8B5E3C', '#2C3E50', '#FDFBF7'] },
-        { title: 'Jika Bomber Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+        { title: '💡 Bomber Navy + Kaos Putih + Jeans', text: 'Urban clean. <strong>Navy (#1B2A4A)</strong> + <strong>Putih (#FFFFFF)</strong> + <strong>Denim (#4A6A8B)</strong> = look urban. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#1B2A4A', '#FFFFFF', '#4A6A8B', '#FFFDD0', '#8B5E3C'] },
+        { title: '💡 Bomber Olive + Kaos Cream + Cargo Pants', text: 'Military vibes. <strong>Olive (#808000)</strong> + <strong>Cream (#FFFDD0)</strong> + <strong>Khaki (#C3B091)</strong> = earthy urban. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#808000', '#FFFDD0', '#C3B091', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Bomber Hitam + Sweater Cream + Kulot Beige', text: 'Monokrom urban. <strong>Hitam (#2C2C2C)</strong> + <strong>Cream (#FFFDD0)</strong> + <strong>Beige (#F5F5DC)</strong> = elegan urban. Hijab <strong>Dusty Pink (#DCAEBB)</strong>.', palette: ['#2C2C2C', '#FFFDD0', '#F5F5DC', '#DCAEBB', '#8B5E3C'] }
       ]
     },
+    'Trench Coat': {
+      lookTitle: 'Chic & Classy with Trench Coat',
+      breakdown: [
+        { label: 'Atasan', value: 'Kemeja / Blouse / Turtleneck', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Celana Kulot / Jeans / Wide Leg Pants', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Heels / Boots', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' }
+      ],
+      tips: 'Trench Coat memberikan kesan chic dan classy. Padukan dengan <strong>Kemeja</strong>, <strong>Blouse</strong>, atau <strong>Turtleneck</strong> untuk tampilan kantor. Bawahan <strong>Celana Kulot</strong>, <strong>Jeans</strong>, atau <strong>Wide Leg Pants</strong> untuk siluet memanjang.',
+      colorEducation: [
+        { title: '💡 Trench Camel + Kemeja Putih + Kulot Cream', text: 'Timeless chic. <strong>Camel (#C19A6B)</strong> + <strong>Putih (#FFFFFF)</strong> + <strong>Cream (#FFFDD0)</strong> = look mahal. Hijab <strong>Beige (#E8D9CD)</strong> atau <strong>Dusty Pink (#DCAEBB)</strong>.', palette: ['#C19A6B', '#FFFFFF', '#FFFDD0', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Trench Black + Blouse Cream + Jeans', text: 'Elegan modern. <strong>Hitam (#2C2C2C)</strong> + <strong>Cream (#FFFDD0)</strong> + <strong>Denim (#4A6A8B)</strong> = clean look. Hijab <strong>Silver (#C0C0C0)</strong>.', palette: ['#2C2C2C', '#FFFDD0', '#4A6A8B', '#C0C0C0', '#8B5E3C'] },
+        { title: '💡 Trench Beige + Turtleneck Sage + Kulot Cream', text: 'Earthy premium. <strong>Beige (#F5F5DC)</strong> + <strong>Sage (#9CAF88)</strong> + <strong>Cream (#FFFDD0)</strong> = natural elegant. Hijab <strong>Terracotta (#E2725B)</strong>.', palette: ['#F5F5DC', '#9CAF88', '#FFFDD0', '#E2725B', '#8B5E3C'] }
+      ]
+    },
+    'Kimono Outer': {
+      lookTitle: 'Bohemian Vibes with Kimono Outer',
+      breakdown: [
+        { label: 'Atasan', value: 'Kaos / Tunic / Crop Top', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Jeans / Culotte / Wide Leg Pants', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Sandal Slop / Flat Shoes', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' }
+      ],
+      tips: 'Kimono Outer memberikan kesan bohemian dan artistik. Padukan dengan <strong>Kaos</strong> untuk kasual, <strong>Tunic</strong> untuk modest, atau <strong>Crop Top</strong> untuk modern. Bawahan <strong>Jeans</strong>, <strong>Culotte</strong>, atau <strong>Wide Leg Pants</strong> untuk siluet flowy.',
+      colorEducation: [
+        { title: '💡 Kimono Pattern Bold + Kaos Putih + Jeans', text: 'Statement bohemian. <strong>Pattern Bold (#C0392B)</strong> + <strong>Putih (#FFFFFF)</strong> + <strong>Denim (#4A6A8B)</strong> = arty look. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#C0392B', '#FFFFFF', '#4A6A8B', '#FFFDD0', '#8B5E3C'] },
+        { title: '💡 Kimono Cream + Tunic Sage + Culotte Beige', text: 'Earthy bohemian. <strong>Cream (#FFFDD0)</strong> + <strong>Sage (#9CAF88)</strong> + <strong>Beige (#F5F5DC)</strong> = natural artsy. Hijab <strong>Terracotta (#E2725B)</strong>.', palette: ['#FFFDD0', '#9CAF88', '#F5F5DC', '#E2725B', '#8B5E3C'] },
+        { title: '💡 Kimono Dusty Pink + Kaos Cream + Wide Leg', text: 'Soft bohemian. <strong>Dusty Pink (#DCAEBB)</strong> + <strong>Cream (#FFFDD0)</strong> = feminine artsy. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#DCAEBB', '#FFFDD0', '#E8D9CD', '#D9C7B8', '#8B5E3C'] }
+      ]
+    },
+    'Vest Formal': {
+      lookTitle: 'Professional Look with Vest Formal',
+      breakdown: [
+        { label: 'Atasan', value: 'Kemeja / Blouse / Turtleneck', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Celana Kulot / Rok Span / Wide Leg Pants', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Heels / Loafers', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Segi Empat / Pashmina', icon: 'bi-person-badge' }
+      ],
+      tips: 'Vest Formal memberikan kesan profesional dan berkelas. Padukan dengan <strong>Kemeja</strong>, <strong>Blouse</strong>, atau <strong>Turtleneck</strong> untuk tampilan kantor. Bawahan <strong>Celana Kulot</strong>, <strong>Rok Span</strong>, atau <strong>Wide Leg Pants</strong> untuk siluet sleek.',
+      colorEducation: [
+        { title: '💡 Vest Navy + Kemeja Putih + Kulot Cream', text: 'Look kantor premium. <strong>Navy (#1B2A4A)</strong> + <strong>Putih (#FFFFFF)</strong> + <strong>Cream (#FFFDD0)</strong> = anti gagal. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#1B2A4A', '#FFFFFF', '#FFFDD0', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Vest Hitam + Blouse Cream + Rok Span', text: 'Monokrom profesional. <strong>Hitam (#2C2C2C)</strong> + <strong>Cream (#FFFDD0)</strong> = timeless. Hijab <strong>Dusty Pink (#DCAEBB)</strong>.', palette: ['#2C2C2C', '#FFFDD0', '#DCAEBB', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Vest Camel + Turtleneck Sage + Wide Leg', text: 'Earthy profesional. <strong>Camel (#C19A6B)</strong> + <strong>Sage (#9CAF88)</strong> = natural premium. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#C19A6B', '#9CAF88', '#FFFDD0', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Jaket Kulit': {
+      lookTitle: 'Bold Look with Jaket Kulit',
+      breakdown: [
+        { label: 'Atasan', value: 'Kaos / Crop Top / Turtleneck', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Jeans / Cargo Pants / Wide Leg Pants', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Boots / Sneakers', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' }
+      ],
+      tips: 'Jaket Kulit memberikan kesan bold dan edgy. Padukan dengan <strong>Kaos</strong> untuk kasual, <strong>Crop Top</strong> untuk modern, atau <strong>Turtleneck</strong> untuk sleek. Bawahan <strong>Jeans</strong>, <strong>Cargo Pants</strong>, atau <strong>Wide Leg Pants</strong> untuk variasi.',
+      colorEducation: [
+        { title: '💡 Jaket Kulit Hitam + Kaos Putih + Jeans', text: 'Rock & roll vibes. <strong>Hitam (#2C2C2C)</strong> + <strong>Putih (#FFFFFF)</strong> + <strong>Denim (#4A6A8B)</strong> = iconic look. Hijab <strong>Cream (#FFFDD0)</strong> atau <strong>Dusty Pink (#DCAEBB)</strong>.', palette: ['#2C2C2C', '#FFFFFF', '#4A6A8B', '#FFFDD0', '#8B5E3C'] },
+        { title: '💡 Jaket Kulit Cokelat + Kaos Cream + Cargo', text: 'Earthy edgy. <strong>Cokelat (#7B3F00)</strong> + <strong>Cream (#FFFDD0)</strong> + <strong>Khaki (#C3B091)</strong> = natural bold. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#7B3F00', '#FFFDD0', '#C3B091', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Jaket Kulit Burgundy + Kaos Hitam + Jeans', text: 'Deep edgy. <strong>Burgundy (#800020)</strong> + <strong>Hitam (#2C2C2C)</strong> = moody bold. Hijab <strong>Silver (#C0C0C0)</strong>.', palette: ['#800020', '#2C2C2C', '#C0C0C0', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Bomber Oversize': {
+      lookTitle: 'Street Style with Bomber Oversize',
+      breakdown: [
+        { label: 'Atasan', value: 'Crop Top / Kaos / Sweater', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Jeans / Cargo Pants / Wide Leg Pants', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Sneakers / Platform Shoes', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' }
+      ],
+      tips: 'Bomber Oversize memberikan kesan streetwear yang trendy. Padukan dengan <strong>Crop Top</strong> untuk modern, <strong>Kaos</strong> untuk kasual, atau <strong>Sweater</strong> untuk hangat. Bawahan <strong>Jeans</strong>, <strong>Cargo Pants</strong>, atau <strong>Wide Leg Pants</strong> untuk variasi.',
+      colorEducation: [
+        { title: '💡 Bomber Oversize Navy + Crop Top Putih + Cargo', text: 'Streetwear clean. <strong>Navy (#1B2A4A)</strong> + <strong>Putih (#FFFFFF)</strong> + <strong>Khaki (#C3B091)</strong> = look urban. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#1B2A4A', '#FFFFFF', '#C3B091', '#FFFDD0', '#8B5E3C'] },
+        { title: '💡 Bomber Oversize Cream + Kaos Sage + Wide Leg', text: 'Soft streetwear. <strong>Cream (#FFFDD0)</strong> + <strong>Sage (#9CAF88)</strong> = earthy urban. Hijab <strong>Terracotta (#E2725B)</strong>.', palette: ['#FFFDD0', '#9CAF88', '#E2725B', '#D9C7B8', '#8B5E3C'] },
+        { title: '💡 Bomber Oversize Hitam + Crop Top Merah + Jeans', text: 'Bold urban. <strong>Hitam (#2C2C2C)</strong> + <strong>Merah (#C0392B)</strong> + <strong>Denim (#4A6A8B)</strong> = statement look. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#2C2C2C', '#C0392B', '#4A6A8B', '#FFFDD0', '#8B5E3C'] }
+      ]
+    },
+    'Poncho': {
+      lookTitle: 'Boho Chic with Poncho',
+      breakdown: [
+        { label: 'Atasan', value: 'Turtleneck / Kaos / Tunic', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Legging / Jeans / Culotte', icon: 'bi-bag' },
+        { label: 'Alas Kaki', value: 'Boots / Flat Shoes', icon: 'bi-boot' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Bergo', icon: 'bi-person-badge' }
+      ],
+      tips: 'Poncho memberikan kesan boho chic yang unik. Padukan dengan <strong>Turtleneck</strong> untuk hangat, <strong>Kaos</strong> untuk kasual, atau <strong>Tunic</strong> untuk modest. Bawahan <strong>Legging</strong>, <strong>Jeans</strong>, atau <strong>Culotte</strong> untuk siluet ramping.',
+      colorEducation: [
+        { title: '💡 Poncho Pattern Bold + Turtleneck Cream + Legging', text: 'Statement boho. <strong>Pattern Bold (#C0392B)</strong> + <strong>Cream (#FFFDD0)</strong> + <strong>Hitam (#2C2C2C)</strong> = arty look. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#C0392B', '#FFFDD0', '#2C2C2C', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Poncho Cream + Tunic Sage + Culotte', text: 'Earthy boho. <strong>Cream (#FFFDD0)</strong> + <strong>Sage (#9CAF88)</strong> = natural artsy. Hijab <strong>Terracotta (#E2725B)</strong>.', palette: ['#FFFDD0', '#9CAF88', '#E2725B', '#D9C7B8', '#8B5E3C'] },
+        { title: '💡 Poncho Mustard + Kaos Hitam + Jeans', text: 'Warm boho. <strong>Mustard (#FFDB58)</strong> + <strong>Hitam (#2C2C2C)</strong> + <strong>Denim (#4A6A8B)</strong> = earthy artsy. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#FFDB58', '#2C2C2C', '#4A6A8B', '#FFFDD0', '#8B5E3C'] }
+      ]
+    },
+
+    // ============================================================
+    // ===== ALAS KAKI (10) =====
+    // ============================================================
     'Heels': {
       lookTitle: 'Glamorous Step with Heels',
       breakdown: [
@@ -1248,10 +1705,11 @@
         { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
         { label: 'Outer', value: 'Blazer / Cardigan', icon: 'bi-layers' }
       ],
-      tips: 'Heels memberikan kesan elegan dan feminin. Padukan dengan <strong>Blouse</strong>, <strong>Kemeja</strong>, atau <strong>Turtleneck</strong>. Bawahan <strong>Celana Kulot</strong>, <strong>Palazzo</strong>, atau <strong>Rok Plisket</strong> akan menyeimbangkan siluet. <strong>Hijab Pashmina</strong> atau <strong>Segi Empat</strong> untuk melengkapi. <strong>Blazer</strong> untuk formal, <strong>Cardigan</strong> untuk semi-formal.',
+      tips: 'Heels memberikan kesan elegan dan feminin. Padukan dengan <strong>Blouse</strong>, <strong>Kemeja</strong>, atau <strong>Turtleneck</strong>. Bawahan <strong>Celana Kulot</strong>, <strong>Palazzo</strong>, atau <strong>Rok Plisket</strong> menyeimbangkan siluet. <strong>Blazer</strong> untuk formal, <strong>Cardigan</strong> untuk semi-formal.',
       colorEducation: [
-        { title: 'Jika Heels Warna Netral', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#8B5E3C', '#C0392B', '#B0C4DE', '#F5EFE6', '#FDFBF7'] },
-        { title: 'Jika Heels Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+        { title: '💡 Heels Nude + Blouse White + Kulot Cream', text: 'Elegant clean. <strong>Nude (#E8D9CD)</strong> + <strong>Putih (#FFFFFF)</strong> + <strong>Cream (#FFFDD0)</strong> = look mahal. Hijab <strong>Beige (#E8D9CD)</strong> atau <strong>Dusty Pink (#DCAEBB)</strong>.', palette: ['#E8D9CD', '#FFFFFF', '#FFFDD0', '#DCAEBB', '#8B5E3C'] },
+        { title: '💡 Heels Hitam + Blouse Sage + Kulot Hitam', text: 'Kontras elegan. <strong>Hitam (#2C2C2C)</strong> + <strong>Sage (#9CAF88)</strong> = modern look. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#2C2C2C', '#9CAF88', '#FFFDD0', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Heels Burgundy + Blouse Cream + Palazzo', text: 'Warm elegan. <strong>Burgundy (#800020)</strong> + <strong>Cream (#FFFDD0)</strong> = mewah. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#800020', '#FFFDD0', '#E8D9CD', '#D9C7B8', '#8B5E3C'] }
       ]
     },
     'Sneakers': {
@@ -1262,10 +1720,11 @@
         { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' },
         { label: 'Outer', value: 'Jaket Denim / Bomber', icon: 'bi-layers' }
       ],
-      tips: 'Sneakers memberikan kesan sporty dan kasual. Padukan dengan <strong>Kaos</strong>, <strong>Kemeja</strong>, atau <strong>Sweater</strong>. Bawahan <strong>Jeans</strong>, <strong>Rok Panjang</strong>, atau <strong>Palazzo</strong>. <strong>Hijab Instan</strong> atau <strong>Bergo</strong> praktis. <strong>Jaket Denim</strong> atau <strong>Bomber</strong> untuk gaya streetwear.',
+      tips: 'Sneakers memberikan kesan sporty dan kasual. Padukan dengan <strong>Kaos</strong>, <strong>Kemeja</strong>, atau <strong>Sweater</strong>. Bawahan <strong>Jeans</strong>, <strong>Rok Panjang</strong>, atau <strong>Palazzo</strong>. <strong>Jaket Denim</strong> atau <strong>Bomber</strong> untuk gaya streetwear.',
       colorEducation: [
-        { title: 'Jika Sneakers Warna Putih', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#FFFFFF', '#C0392B', '#B0C4DE', '#8B5E3C', '#FDFBF7'] },
-        { title: 'Jika Sneakers Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+        { title: '💡 Sneakers Putih + Kaos Navy + Jeans', text: 'Clean sporty. <strong>Putih (#FFFFFF)</strong> + <strong>Navy (#1B2A4A)</strong> + <strong>Denim (#4A6A8B)</strong> = look fresh. Hijab <strong>Dusty Pink (#DCAEBB)</strong> atau <strong>Cream (#FFFDD0)</strong>.', palette: ['#FFFFFF', '#1B2A4A', '#4A6A8B', '#DCAEBB', '#8B5E3C'] },
+        { title: '💡 Sneakers Cream + Sweater Sage + Palazzo', text: 'Earthy sporty. <strong>Cream (#FFFDD0)</strong> + <strong>Sage (#9CAF88)</strong> = natural look. Hijab <strong>Terracotta (#E2725B)</strong>.', palette: ['#FFFDD0', '#9CAF88', '#E2725B', '#D9C7B8', '#8B5E3C'] },
+        { title: '💡 Sneakers Hitam + Kaos Putih + Cargo', text: 'Urban sporty. <strong>Hitam (#2C2C2C)</strong> + <strong>Putih (#FFFFFF)</strong> + <strong>Khaki (#C3B091)</strong> = streetwear. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#2C2C2C', '#FFFFFF', '#C3B091', '#FFFDD0', '#8B5E3C'] }
       ]
     },
     'Flat Shoes': {
@@ -1276,10 +1735,11 @@
         { label: 'Hijab', value: 'Hijab Pashmina / Instan', icon: 'bi-person-badge' },
         { label: 'Outer', value: 'Cardigan / Blazer', icon: 'bi-layers' }
       ],
-      tips: 'Flat Shoes nyaman untuk aktivitas sehari-hari. Padukan dengan <strong>Blouse</strong>, <strong>Kemeja</strong>, atau <strong>Kaos</strong>. Bawahan <strong>Celana Kulot</strong>, <strong>Jeans</strong>, atau <strong>Rok Plisket</strong>. <strong>Hijab Pashmina</strong> atau <strong>Instan</strong> untuk melengkapi. <strong>Cardigan</strong> untuk santai, <strong>Blazer</strong> untuk formal.',
+      tips: 'Flat Shoes nyaman untuk aktivitas sehari-hari. Padukan dengan <strong>Blouse</strong>, <strong>Kemeja</strong>, atau <strong>Kaos</strong>. Bawahan <strong>Celana Kulot</strong>, <strong>Jeans</strong>, atau <strong>Rok Plisket</strong>. <strong>Cardigan</strong> untuk santai, <strong>Blazer</strong> untuk formal.',
       colorEducation: [
-        { title: 'Jika Flat Shoes Warna Netral', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#5E4B3E', '#C0392B', '#B0C4DE', '#FDFBF7', '#8B5E3C'] },
-        { title: 'Jika Flat Shoes Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+        { title: '💡 Flat Shoes Cream + Blouse Navy + Kulot Cream', text: 'Clean casual. <strong>Cream (#FFFDD0)</strong> + <strong>Navy (#1B2A4A)</strong> = look elegan. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#FFFDD0', '#1B2A4A', '#E8D9CD', '#DCAEBB', '#8B5E3C'] },
+        { title: '💡 Flat Shoes Hitam + Blouse Sage + Jeans', text: 'Modern casual. <strong>Hitam (#2C2C2C)</strong> + <strong>Sage (#9CAF88)</strong> + <strong>Denim (#4A6A8B)</strong> = fresh look. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#2C2C2C', '#9CAF88', '#4A6A8B', '#FFFDD0', '#8B5E3C'] },
+        { title: '💡 Flat Shoes Nude + Blouse Terracotta + Jeans', text: 'Warm casual. <strong>Nude (#E8D9CD)</strong> + <strong>Terracotta (#E2725B)</strong> = hangat earthy. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#E8D9CD', '#E2725B', '#FFFDD0', '#D9C7B8', '#8B5E3C'] }
       ]
     },
     'Crocs': {
@@ -1290,11 +1750,11 @@
         { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' },
         { label: 'Outer', value: 'Cardigan / Jaket Denim', icon: 'bi-layers' }
       ],
-      tips: 'Crocs memberikan kesan fun, comfy, dan kasual. Padukan dengan <strong>Kaos</strong>, <strong>Kemeja</strong>, atau <strong>Blouse</strong> untuk tampilan santai. Bawahan <strong>Jeans</strong>, <strong>Celana Kulot</strong>, atau <strong>Rok Panjang</strong> agar tetap nyaman bergerak. <strong>Hijab Instan</strong> atau <strong>Bergo</strong> praktis untuk aktivitas sehari-hari. Tambahkan <strong>Cardigan</strong> atau <strong>Jaket Denim</strong> untuk melengkapi gaya.',
+      tips: 'Crocs memberikan kesan fun, comfy, dan kasual. Padukan dengan <strong>Kaos</strong>, <strong>Kemeja</strong>, atau <strong>Blouse</strong> untuk tampilan santai. Bawahan <strong>Jeans</strong>, <strong>Celana Kulot</strong>, atau <strong>Rok Panjang</strong> agar tetap nyaman bergerak.',
       colorEducation: [
-        { title: 'Jika Crocs Warna Netral (Putih, Hitam, Cream)', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong> untuk memberi warna. Bawahan pilih <strong>Denim, netral, atau earthy</strong>. Hijab pilih <strong>netral</strong> atau senada dengan atasan.', palette: ['#FFFFFF', '#2C2C2C', '#E8D9CD', '#C0392B', '#8B5E3C'] },
-        { title: 'Jika Crocs Warna Bold (Merah, Kuning, Pink)', text: 'Atasan sebaiknya <strong>netral</strong> (Putih/Cream/Hitam). Bawahan pilih <strong>netral</strong> atau Denim. Hijab pilih <strong>netral</strong> agar tidak terlalu ramai.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#4A6A8B', '#8B5E3C'] },
-        { title: 'Jika Crocs Warna Pastel', text: 'Atasan bisa pakai <strong>warna senada</strong> atau <strong>netral</strong>. Bawahan pilih <strong>netral</strong> atau <strong>earthy</strong>. Hijab pilih <strong>pastel</strong> atau netral.', palette: ['#FADADD', '#B0C4DE', '#FDFBF7', '#E8D9CD', '#8B5E3C'] }
+        { title: '💡 Crocs Putih + Kaos Sage + Jeans', text: 'Fun & fresh. <strong>Putih (#FFFFFF)</strong> + <strong>Sage (#9CAF88)</strong> + <strong>Denim (#4A6A8B)</strong> = casual look. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#FFFFFF', '#9CAF88', '#4A6A8B', '#FFFDD0', '#8B5E3C'] },
+        { title: '💡 Crocs Hitam + Kaos Cream + Kulot Cream', text: 'Monokrom casual. <strong>Hitam (#2C2C2C)</strong> + <strong>Cream (#FFFDD0)</strong> = clean. Hijab <strong>Dusty Pink (#DCAEBB)</strong>.', palette: ['#2C2C2C', '#FFFDD0', '#DCAEBB', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Crocs Pastel Pink + Kaos Putih + Jeans', text: 'Fun soft. <strong>Pastel Pink (#FFB6C1)</strong> + <strong>Putih (#FFFFFF)</strong> + <strong>Denim (#4A6A8B)</strong> = sweet casual. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#FFB6C1', '#FFFFFF', '#4A6A8B', '#FFFDD0', '#8B5E3C'] }
       ]
     },
     'Sandal Slop': {
@@ -1305,10 +1765,86 @@
         { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' },
         { label: 'Outer', value: 'Cardigan / Bomber', icon: 'bi-layers' }
       ],
-      tips: 'Sandal Slop memberikan kesan santai dan relaxed. Padukan dengan <strong>Kaos</strong>, <strong>Blouse</strong>, atau <strong>Kemeja</strong> untuk tampilan kasual. Bawahan <strong>Jeans</strong>, <strong>Rok Panjang</strong>, atau <strong>Palazzo</strong> agar tetap nyaman. <strong>Hijab Instan</strong> atau <strong>Bergo</strong> praktis. <strong>Cardigan</strong> atau <strong>Bomber</strong> untuk outer.',
+      tips: 'Sandal Slop memberikan kesan santai dan relaxed. Padukan dengan <strong>Kaos</strong>, <strong>Blouse</strong>, atau <strong>Kemeja</strong> untuk tampilan kasual. Bawahan <strong>Jeans</strong>, <strong>Rok Panjang</strong>, atau <strong>Palazzo</strong> agar tetap nyaman.',
       colorEducation: [
-        { title: 'Jika Sandal Slop Warna Netral', text: 'Atasan bisa pakai <strong>warna bold</strong> atau <strong>pastel</strong>. Bawahan pilih <strong>netral</strong> atau Denim. Hijab pilih <strong>netral</strong>.', palette: ['#FDFBF7', '#C0392B', '#B0C4DE', '#4A6A8B', '#8B5E3C'] },
-        { title: 'Jika Sandal Slop Warna Bold', text: 'Atasan sebaiknya <strong>netral</strong>. Bawahan pilih <strong>netral</strong>. Hijab pilih <strong>netral</strong>.', palette: ['#C0392B', '#FDFBF7', '#2C3E50', '#E8D9CD', '#8B5E3C'] }
+        { title: '💡 Sandal Slop Cream + Kaos Navy + Jeans', text: 'Relaxed clean. <strong>Cream (#FFFDD0)</strong> + <strong>Navy (#1B2A4A)</strong> + <strong>Denim (#4A6A8B)</strong> = chill look. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#FFFDD0', '#1B2A4A', '#4A6A8B', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Sandal Slop Hitam + Kaos Sage + Palazzo', text: 'Relaxed earthy. <strong>Hitam (#2C2C2C)</strong> + <strong>Sage (#9CAF88)</strong> = natural chill. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#2C2C2C', '#9CAF88', '#FFFDD0', '#D9C7B8', '#8B5E3C'] },
+        { title: '💡 Sandal Slop Tan + Kaos Terracotta + Jeans', text: 'Warm relaxed. <strong>Tan (#C19A6B)</strong> + <strong>Terracotta (#E2725B)</strong> = hangat earthy. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#C19A6B', '#E2725B', '#FFFDD0', '#D9C7B8', '#8B5E3C'] }
+      ]
+    },
+    'Wedges': {
+      lookTitle: 'Comfortable Height with Wedges',
+      breakdown: [
+        { label: 'Atasan', value: 'Blouse / Kemeja / Tunic', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Celana Kulot / Rok Span / Palazzo', icon: 'bi-bag' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Blazer / Cardigan', icon: 'bi-layers' }
+      ],
+      tips: 'Wedges memberikan tinggi ekstra tanpa mengorbankan kenyamanan. Padukan dengan <strong>Blouse</strong>, <strong>Kemeja</strong>, atau <strong>Tunic</strong>. Bawahan <strong>Celana Kulot</strong>, <strong>Rok Span</strong>, atau <strong>Palazzo</strong> menyeimbangkan siluet.',
+      colorEducation: [
+        { title: '💡 Wedges Nude + Blouse Cream + Kulot Cream', text: 'Elegant clean. <strong>Nude (#E8D9CD)</strong> + <strong>Cream (#FFFDD0)</strong> = look mahal. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#E8D9CD', '#FFFDD0', '#DCAEBB', '#D9C7B8', '#8B5E3C'] },
+        { title: '💡 Wedges Cokelat + Blouse Sage + Kulot Beige', text: 'Earthy elegan. <strong>Cokelat (#6B4226)</strong> + <strong>Sage (#9CAF88)</strong> + <strong>Beige (#F5F5DC)</strong> = natural look. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#6B4226', '#9CAF88', '#F5F5DC', '#FFFDD0', '#8B5E3C'] },
+        { title: '💡 Wedges Hitam + Blouse Navy + Rok Span', text: 'Monokrom elegan. <strong>Hitam (#2C2C2C)</strong> + <strong>Navy (#1B2A4A)</strong> = look klasik. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#2C2C2C', '#1B2A4A', '#E8D9CD', '#DCAEBB', '#8B5E3C'] }
+      ]
+    },
+    'Mary Jane Shoes': {
+      lookTitle: 'Vintage Charm with Mary Jane Shoes',
+      breakdown: [
+        { label: 'Atasan', value: 'Blouse / Puff Sleeve Top / Kemeja', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Rok A-Line / Rok Plisket / Culotte', icon: 'bi-bag' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Bella Square', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Cardigan Knit / Blazer', icon: 'bi-layers' }
+      ],
+      tips: 'Mary Jane Shoes memberikan kesan vintage dan feminin. Padukan dengan <strong>Blouse</strong>, <strong>Puff Sleeve Top</strong>, atau <strong>Kemeja</strong> untuk tampilan klasik. Bawahan <strong>Rok A-Line</strong>, <strong>Rok Plisket</strong>, atau <strong>Culotte</strong> untuk siluet feminin.',
+      colorEducation: [
+        { title: '💡 Mary Jane Hitam + Blouse Putih + Rok A-Line Cream', text: 'Vintage classic. <strong>Hitam (#2C2C2C)</strong> + <strong>Putih (#FFFFFF)</strong> + <strong>Cream (#FFFDD0)</strong> = look klasik. Hijab <strong>Dusty Pink (#DCAEBB)</strong> atau <strong>Beige (#E8D9CD)</strong>.', palette: ['#2C2C2C', '#FFFFFF', '#FFFDD0', '#DCAEBB', '#8B5E3C'] },
+        { title: '💡 Mary Jane Burgundy + Puff Sleeve Sage + Rok Plisket', text: 'Vintage earthy. <strong>Burgundy (#800020)</strong> + <strong>Sage (#9CAF88)</strong> = natural classic. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#800020', '#9CAF88', '#FFFDD0', '#D9C7B8', '#8B5E3C'] },
+        { title: '💡 Mary Jane Nude + Blouse Dusty Pink + Culotte', text: 'Soft feminin. <strong>Nude (#E8D9CD)</strong> + <strong>Dusty Pink (#DCAEBB)</strong> = sweet look. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#E8D9CD', '#DCAEBB', '#FFFDD0', '#FADADD', '#8B5E3C'] }
+      ]
+    },
+    'Ballet Flats': {
+      lookTitle: 'Soft Elegance with Ballet Flats',
+      breakdown: [
+        { label: 'Atasan', value: 'Blouse / Tunic / Kemeja', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Celana Kulot / Rok A-Line / Palazzo', icon: 'bi-bag' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Cardigan / Blazer', icon: 'bi-layers' }
+      ],
+      tips: 'Ballet Flats memberikan kesan soft dan elegan. Padukan dengan <strong>Blouse</strong>, <strong>Tunic</strong>, atau <strong>Kemeja</strong> untuk tampilan klasik. Bawahan <strong>Celana Kulot</strong>, <strong>Rok A-Line</strong>, atau <strong>Palazzo</strong> untuk siluet memanjang.',
+      colorEducation: [
+        { title: '💡 Ballet Flats Nude + Tunic Cream + Kulot Beige', text: 'Soft elegant. <strong>Nude (#E8D9CD)</strong> + <strong>Cream (#FFFDD0)</strong> + <strong>Beige (#F5F5DC)</strong> = clean soft. Hijab <strong>Dusty Pink (#DCAEBB)</strong>.', palette: ['#E8D9CD', '#FFFDD0', '#F5F5DC', '#DCAEBB', '#8B5E3C'] },
+        { title: '💡 Ballet Flats Hitam + Blouse Sage + Palazzo', text: 'Modern elegan. <strong>Hitam (#2C2C2C)</strong> + <strong>Sage (#9CAF88)</strong> = natural modern. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#2C2C2C', '#9CAF88', '#FFFDD0', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Ballet Flats Burgundy + Tunic Navy + Kulot Cream', text: 'Deep elegan. <strong>Burgundy (#800020)</strong> + <strong>Navy (#1B2A4A)</strong> + <strong>Cream (#FFFDD0)</strong> = klasik. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#800020', '#1B2A4A', '#FFFDD0', '#E8D9CD', '#8B5E3C'] }
+      ]
+    },
+    'Platform Shoes': {
+      lookTitle: 'Trendy Statement with Platform Shoes',
+      breakdown: [
+        { label: 'Atasan', value: 'Crop Top / Kaos / Blouse', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Jeans / Wide Leg Pants / Culotte', icon: 'bi-bag' },
+        { label: 'Hijab', value: 'Hijab Instan / Bergo', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Bomber Oversize / Jaket Denim', icon: 'bi-layers' }
+      ],
+      tips: 'Platform Shoes memberikan kesan trendy dan bold. Padukan dengan <strong>Crop Top</strong> untuk modern, <strong>Kaos</strong> untuk kasual, atau <strong>Blouse</strong> untuk semi-formal. Bawahan <strong>Jeans</strong>, <strong>Wide Leg Pants</strong>, atau <strong>Culotte</strong> untuk siluet memanjang.',
+      colorEducation: [
+        { title: '💡 Platform Putih + Crop Top Navy + Wide Leg', text: 'Clean trendy. <strong>Putih (#FFFFFF)</strong> + <strong>Navy (#1B2A4A)</strong> = modern look. Hijab <strong>Dusty Pink (#DCAEBB)</strong>.', palette: ['#FFFFFF', '#1B2A4A', '#DCAEBB', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Platform Hitam + Kaos Sage + Jeans', text: 'Modern earthy. <strong>Hitam (#2C2C2C)</strong> + <strong>Sage (#9CAF88)</strong> + <strong>Denim (#4A6A8B)</strong> = fresh. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#2C2C2C', '#9CAF88', '#4A6A8B', '#FFFDD0', '#8B5E3C'] },
+        { title: '💡 Platform Cream + Blouse Terracotta + Culotte', text: 'Warm trendy. <strong>Cream (#FFFDD0)</strong> + <strong>Terracotta (#E2725B)</strong> = hangat. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#FFFDD0', '#E2725B', '#E8D9CD', '#D9C7B8', '#8B5E3C'] }
+      ]
+    },
+    'Mules': {
+      lookTitle: 'Effortless Chic with Mules',
+      breakdown: [
+        { label: 'Atasan', value: 'Blouse / Kemeja / Turtleneck', icon: 'bi-bag' },
+        { label: 'Bawahan', value: 'Celana Kulot / Wide Leg Pants / Culotte', icon: 'bi-bag' },
+        { label: 'Hijab', value: 'Hijab Pashmina / Segi Empat', icon: 'bi-person-badge' },
+        { label: 'Outer', value: 'Blazer / Cardigan', icon: 'bi-layers' }
+      ],
+      tips: 'Mules memberikan kesan effortless chic. Padukan dengan <strong>Blouse</strong>, <strong>Kemeja</strong>, atau <strong>Turtleneck</strong>. Bawahan <strong>Celana Kulot</strong>, <strong>Wide Leg Pants</strong>, atau <strong>Culotte</strong> menyeimbangkan siluet. <strong>Blazer</strong> untuk formal, <strong>Cardigan</strong> untuk santai.',
+      colorEducation: [
+        { title: '💡 Mules Nude + Blouse Cream + Wide Leg', text: 'Effortless elegant. <strong>Nude (#E8D9CD)</strong> + <strong>Cream (#FFFDD0)</strong> = clean look. Hijab <strong>Beige (#E8D9CD)</strong> atau <strong>Dusty Pink (#DCAEBB)</strong>.', palette: ['#E8D9CD', '#FFFDD0', '#DCAEBB', '#D9C7B8', '#8B5E3C'] },
+        { title: '💡 Mules Hitam + Turtleneck Sage + Kulot Cream', text: 'Modern elegan. <strong>Hitam (#2C2C2C)</strong> + <strong>Sage (#9CAF88)</strong> + <strong>Cream (#FFFDD0)</strong> = fresh. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#2C2C2C', '#9CAF88', '#FFFDD0', '#E8D9CD', '#8B5E3C'] },
+        { title: '💡 Mules Burgundy + Blouse Navy + Culotte', text: 'Deep chic. <strong>Burgundy (#800020)</strong> + <strong>Navy (#1B2A4A)</strong> = klasik. Hijab <strong>Beige (#E8D9CD)</strong>.', palette: ['#800020', '#1B2A4A', '#E8D9CD', '#DCAEBB', '#8B5E3C'] }
       ]
     }
   };
@@ -2053,6 +2589,21 @@
       ]
     }
   };
+  // ============================================================
+  // PRE-REGISTERED USERS (Akun yang dibuat owner, diberikan ke user setelah pembayaran)
+  // ============================================================
+  const PRE_REGISTERED_USERS = [
+    { name: 'User 1',  email: 'user1@lokaura.app',  password: 'mawarbiru' },
+    { name: 'User 2',  email: 'user2@lokaura.app',  password: 'bulanputih' },
+    { name: 'User 3',  email: 'user3@lokaura.app',  password: 'mentaricerah' },
+    { name: 'User 4',  email: 'user4@lokaura.app',  password: 'lautbiru' },
+    { name: 'User 5',  email: 'user5@lokaura.app',  password: 'bintangjauh' },
+    { name: 'User 6',  email: 'user6@lokaura.app',  password: 'awanputih' },
+    { name: 'User 7',  email: 'user7@lokaura.app',  password: 'daunhijau' },
+    { name: 'User 8',  email: 'user8@lokaura.app',  password: 'senjakala' },
+    { name: 'User 9',  email: 'user9@lokaura.app',  password: 'pagicepat' },
+    { name: 'User 10', email: 'user10@lokaura.app', password: 'kucingmanis' }
+  ];
 
   // ================= STATE =================
   let currentUser = null;
@@ -2066,16 +2617,8 @@
 
   // ================= INIT =================
   document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('#authTabs .nav-link').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        document.querySelectorAll('#authTabs .nav-link').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const tab = btn.dataset.tab;
-        document.getElementById('loginForm').classList.toggle('hidden', tab !== 'login');
-        document.getElementById('registerForm').classList.toggle('hidden', tab !== 'register');
-      });
-    });
+    // Seed akun pre-registered kalau belum ada di localStorage
+    seedPreRegisteredUsers();
 
     document.getElementById('splashStartBtn').addEventListener('click', () => {
       document.getElementById('splash-screen').style.opacity = '0';
@@ -2096,25 +2639,9 @@
         currentUser = user;
         localStorage.setItem('lokaura_session', JSON.stringify({ email: user.email, remember }));
         enterApp();
-      } else alert('Email atau password salah');
-    });
-
-    document.getElementById('registerForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('regName').value.trim();
-      const email = document.getElementById('regEmail').value.trim();
-      const pass = document.getElementById('regPassword').value;
-      const confirm = document.getElementById('regConfirm').value;
-      if (!email.includes('@')) return alert('Email tidak valid');
-      if (pass.length < 6) return alert('Password minimal 6 karakter');
-      if (pass !== confirm) return alert('Konfirmasi password tidak cocok');
-      if (!document.getElementById('regTerms').checked) return alert('Setuju syarat & ketentuan');
-      let users = JSON.parse(localStorage.getItem('lokaura_users') || '[]');
-      if (users.find(u => u.email === email)) return alert('Email sudah terdaftar');
-      users.push({ name, email, password: pass });
-      localStorage.setItem('lokaura_users', JSON.stringify(users));
-      alert('Registrasi berhasil, silakan login');
-      document.querySelector('#authTabs .nav-link[data-tab="login"]').click();
+      } else {
+        showLoginError();
+      }
     });
 
     document.querySelectorAll('.bottom-nav .nav-item').forEach(btn => {
@@ -2129,6 +2656,61 @@
     renderSavedSkinCard();
     renderSavedUndertoneCard();
   });
+
+  // ============================================================
+  // SEED PRE-REGISTERED USERS
+  // Fungsi: mengisi 10 akun ke localStorage kalau belum ada
+  // ============================================================
+  function seedPreRegisteredUsers() {
+    const existing = localStorage.getItem('lokaura_users');
+    if (existing) {
+      // Sudah ada data user, jangan timpa
+      // Tapi cek apakah semua akun pre-registered ada
+      try {
+        const users = JSON.parse(existing);
+        let needsUpdate = false;
+        PRE_REGISTERED_USERS.forEach(preUser => {
+          if (!users.find(u => u.email === preUser.email)) {
+            users.push({ ...preUser });
+            needsUpdate = true;
+          }
+        });
+        if (needsUpdate) {
+          localStorage.setItem('lokaura_users', JSON.stringify(users));
+        }
+      } catch (e) {
+        // Data korup, reset
+        localStorage.setItem('lokaura_users', JSON.stringify(PRE_REGISTERED_USERS));
+      }
+    } else {
+      // Pertama kali, seed semua akun
+      localStorage.setItem('lokaura_users', JSON.stringify(PRE_REGISTERED_USERS));
+    }
+  }
+
+  // ============================================================
+  // LOGIN ERROR — tampilkan pesan error yang lebih baik
+  // ============================================================
+  function showLoginError() {
+    const loginForm = document.getElementById('loginForm');
+    const oldAlert = loginForm.querySelector('.login-error-alert');
+    if (oldAlert) oldAlert.remove();
+
+    const alertDiv = document.createElement('div');
+    alertDiv.className = 'login-error-alert alert alert-danger mt-3 mb-0';
+    alertDiv.style.cssText = 'border-radius: 16px; font-size: 0.85rem; padding: 12px 16px; border: none; background: #FDECEC; color: #C0392B;';
+    alertDiv.innerHTML = '<i class="bi bi-exclamation-circle me-1"></i>Email atau password salah. Periksa kembali atau hubungi admin.';
+    loginForm.appendChild(alertDiv);
+
+    setTimeout(() => { if (alertDiv) alertDiv.remove(); }, 4000);
+  }
+
+  // ============================================================
+  // OPEN CONTACT ADMIN — buka modal hubungi admin
+  // ============================================================
+  function openContactAdmin() {
+    new bootstrap.Modal(document.getElementById('contactAdminModal')).show();
+  }
 
   // ================= AUTH =================
   function checkAuth() {
@@ -3178,6 +3760,7 @@
   window.openPrivacyModal = openPrivacyModal;
   window.openAboutModal = openAboutModal;
   window.showToast = showToast;
+  window.openContactAdmin = openContactAdmin;
   window.logout = logout;
 </script>
 </body>
