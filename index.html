@@ -980,33 +980,37 @@
   // ============================================================
   // SEED PRE-REGISTERED USERS
   // ============================================================
-  function seedPreRegisteredUsers() {
-    const existing = localStorage.getItem('lokaura_users');
-    if (existing) {
-      try {
-        const users = JSON.parse(existing);
-        let needsUpdate = false;
-        PRE_REGISTERED_USERS.forEach(preUser => {
-          const found = users.find(u => u.email === preUser.email);
-          if (!found) {
-            users.push({ ...preUser });
-            needsUpdate = true;
-          } else if (found.role === undefined) {
-            // Update role kalau belum ada
-            found.role = preUser.role;
-            needsUpdate = true;
-          }
-        });
-        if (needsUpdate) {
-          localStorage.setItem('lokaura_users', JSON.stringify(users));
+function seedPreRegisteredUsers() {
+  const existing = localStorage.getItem('lokaura_users');
+  
+  if (existing) {
+    try {
+      const users = JSON.parse(existing);
+      
+      // Update setiap user dengan data terbaru dari PRE_REGISTERED_USERS
+      // Cocokkan berdasarkan password (karena email mungkin sudah berubah)
+      PRE_REGISTERED_USERS.forEach(preUser => {
+        const found = users.find(u => u.password === preUser.password);
+        if (found) {
+          // Paksa update nama, email, & role
+          found.name = preUser.name;
+          found.email = preUser.email;
+          found.role = preUser.role;
+          // Password tetap (biarkan user ganti sendiri kalau mau)
+        } else {
+          // User belum ada, tambahkan
+          users.push({ ...preUser });
         }
-      } catch (e) {
-        localStorage.setItem('lokaura_users', JSON.stringify(PRE_REGISTERED_USERS));
-      }
-    } else {
+      });
+      
+      localStorage.setItem('lokaura_users', JSON.stringify(users));
+    } catch (e) {
       localStorage.setItem('lokaura_users', JSON.stringify(PRE_REGISTERED_USERS));
     }
+  } else {
+    localStorage.setItem('lokaura_users', JSON.stringify(PRE_REGISTERED_USERS));
   }
+}
 
   // ============================================================
   // LOGIN ERROR
