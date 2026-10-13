@@ -417,15 +417,15 @@
         border-radius: 0 0 10px 10px;
         z-index: 1002;
       }
-
+    }
     /* Untuk layar sangat lebar (>= 1200px), beri sedikit lebih besar */
     @media (min-width: 1200px) {
       #app-container,
       #splash-screen,
       #authOverlay,
       .bottom-nav {
-        max-width: 440px;
-        width: 440px;
+        max-width: 440px !important;
+        width: 440px !important;
       }
     }
 
@@ -435,9 +435,107 @@
       #splash-screen,
       #authOverlay,
       .bottom-nav {
-        max-width: 420px;
-        width: 420px;
+        max-width: 420px !important;
+        width: 420px !important;
       }
+    }
+
+    /* ============================================================
+       KHUSUS HP (layar < 768px) — PAKSA FULL SCREEN
+       ============================================================ */
+    @media (max-width: 767px) {
+      html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        overflow-x: hidden !important;
+        background: var(--cream) !important;
+      }
+
+      #splash-screen {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100vh !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        left: 0 !important;
+        top: 0 !important;
+        transform: none !important;
+        background: var(--cream) !important;
+      }
+
+      #authOverlay {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100vh !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: var(--cream) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+      }
+
+      #authOverlay .card-lok {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        min-height: auto !important;
+        padding: 2rem 1.5rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+        background: var(--cream) !important;
+      }
+
+      #app-container {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        min-height: 100vh !important;
+        max-height: none !important;
+        background: var(--cream) !important;
+      }
+
+      #app-container::before {
+        display: none !important;
+        content: none !important;
+      }
+
+      .bottom-nav {
+        max-width: 100% !important;
+        width: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        transform: none !important;
+        border-radius: 0 !important;
+      }
+    }
+
+    /* ============================================================
+       OVERRIDE HIDDEN
+       ============================================================ */
+    #authOverlay.hidden,
+    #splash-screen.hidden,
+    #app-container.hidden {
+      display: none !important;
     }
   </style>
 </head>
