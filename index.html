@@ -359,14 +359,19 @@
       }
 
       /* Login overlay card disesuaikan */
-      #authOverlay .card-lok {
+   #authOverlay .card-lok {
   width: 100% !important;
   max-width: 100% !important;
   margin: 0 !important;
   border-radius: 24px !important;
   box-shadow: none !important;
-  min-height: auto !important;
-  padding: 2rem !important;
+  min-height: 100% !important;      /* ← UBAH: full height */
+  padding: 2.5rem 2rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+}
 }
 
       /* Bottom nav dipersempit & diposisikan di dalam container */
