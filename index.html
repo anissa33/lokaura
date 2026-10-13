@@ -289,6 +289,153 @@
     .admin-result-item:hover {
       box-shadow: var(--shadow-md);
     }
+
+    /* ============================================================
+       FORCE MOBILE VIEW (untuk tampilan di laptop/desktop)
+       ============================================================ */
+    @media (min-width: 768px) {
+      /* Body jadi background */
+      body {
+        background: linear-gradient(135deg, #F5EFE6 0%, #E8DED2 100%);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 20px 0;
+        min-height: 100vh;
+      }
+
+      /* Container utama dipersempit */
+      #app-container {
+        max-width: 480px;
+        width: 100%;
+        margin: 0 auto;
+        background: var(--cream);
+        border-radius: 24px;
+        box-shadow:
+          0 0 0 1px rgba(139,94,60,0.08),
+          0 30px 80px rgba(0,0,0,0.15);
+        overflow: hidden;
+        min-height: calc(100vh - 40px);
+        max-height: calc(100vh - 40px);
+        position: relative;
+      }
+
+      /* Page scroll internal */
+      #app-container .page {
+        overflow-y: auto;
+        max-height: calc(100vh - 40px - 74px);
+      }
+
+      /* Splash screen dipersempit */
+      #splash-screen {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 480px;
+        max-width: calc(100vw - 40px);
+        height: calc(100vh - 40px);
+        border-radius: 24px;
+        box-shadow:
+          0 0 0 1px rgba(139,94,60,0.08),
+          0 30px 80px rgba(0,0,0,0.15);
+        z-index: 9999;
+      }
+
+      /* Login overlay dipersempit */
+      #authOverlay {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 480px;
+        max-width: calc(100vw - 40px);
+        height: calc(100vh - 40px);
+        border-radius: 24px;
+        box-shadow:
+          0 0 0 1px rgba(139,94,60,0.08),
+          0 30px 80px rgba(0,0,0,0.15);
+        z-index: 2000;
+      }
+
+      /* Login overlay card disesuaikan */
+      #authOverlay .card-lok {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  border-radius: 24px !important;
+  box-shadow: none !important;
+  min-height: auto !important;
+  padding: 2rem !important;
+}
+
+      /* Bottom nav dipersempit & diposisikan di dalam container */
+      .bottom-nav {
+        max-width: 480px;
+        width: 480px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        border-radius: 0 0 24px 24px;
+      }
+
+      /* Modal disesuaikan */
+      .modal-dialog {
+        max-width: 460px;
+      }
+
+      .modal-content {
+        max-width: 100%;
+      }
+
+      /* Hide scrollbar di dalam container */
+      #app-container .page::-webkit-scrollbar {
+        width: 4px;
+      }
+      #app-container .page::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      #app-container .page::-webkit-scrollbar-thumb {
+        background: rgba(139,94,60,0.15);
+        border-radius: 10px;
+      }
+
+      /* Notch cantik di atas container (opsional) */
+      #app-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 6px;
+        background: rgba(139,94,60,0.15);
+        border-radius: 0 0 10px 10px;
+        z-index: 1002;
+      }
+    }
+
+    /* Untuk layar sangat lebar (>= 1200px), beri sedikit lebih besar */
+    @media (min-width: 1200px) {
+      #app-container,
+      #splash-screen,
+      #authOverlay,
+      .bottom-nav {
+        max-width: 440px;
+        width: 440px;
+      }
+    }
+
+    /* Untuk tablet (768px - 1024px), tetap pakai mobile view */
+    @media (min-width: 768px) and (max-width: 1024px) {
+      #app-container,
+      #splash-screen,
+      #authOverlay,
+      .bottom-nav {
+        max-width: 420px;
+        width: 420px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -637,8 +784,8 @@
 </div>
 
 <!-- LOGIN OVERLAY -->
-<div id="authOverlay" class="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style="background: var(--cream); z-index: 2000;">
-  <div class="card-lok w-100 mx-3" style="max-width: 400px;">
+<div id="authOverlay" class="hidden" style="background: var(--cream);">
+  <div class="card-lok">
     <div class="text-center mb-4">
       <div style="font-size:2.5rem; font-weight:700; color: var(--bronze); margin-bottom:4px;">Lokaura</div>
       <p class="text-soft mb-0" style="font-size:0.8rem;">Style & Beauty Assistant</p>
@@ -898,24 +1045,21 @@
 <script>
 
   // ============================================================
-  // PRE-REGISTERED USERS (Akun dibuat owner, diberikan ke user setelah pembayaran)
+  // PRE-REGISTERED USERS
   // ============================================================
- const PRE_REGISTERED_USERS = [
-  // 👑 OWNER — jangan diubah kecuali perlu
-  { name: 'Owner', email: 'owner@lokaura.app', password: 'LokauraOwner2025!', role: 'admin' },
-
-  // User biasa — GANTI sesuai keinginan
-  { name: 'Desy',  email: 'desy@lokaura.app',  password: 'mawarbiru',    role: 'user' },
-  { name: 'Ika',  email: 'ika@lokaura.app',  password: 'bulanputih',   role: 'user' },
-  { name: 'Shella',  email: 'shella@lokaura.app',  password: 'mentaricerah', role: 'user' },
-  { name: 'Maya',  email: 'maya@lokaura.app',  password: 'lautbiru',     role: 'user' },
-  { name: 'Lina',  email: 'lina@lokaura.app',  password: 'bintangjauh',  role: 'user' },
-  { name: 'Nisa',  email: 'nisa@lokaura.app',  password: 'awanputih',    role: 'user' },
-  { name: 'Dewi',  email: 'dewi@lokaura.app',  password: 'daunhijau',    role: 'user' },
-  { name: 'Ayu',   email: 'ayu@lokaura.app',   password: 'senjakala',    role: 'user' },
-  { name: 'Fitri', email: 'fitri@lokaura.app', password: 'pagicepat',    role: 'user' },
-  { name: 'Zahra', email: 'zahra@lokaura.app', password: 'kucingmanis',  role: 'user' }
-];
+  const PRE_REGISTERED_USERS = [
+    { name: 'Owner', email: 'owner@lokaura.app', password: 'LokauraOwner2025!', role: 'admin' },
+    { name: 'Desy',  email: 'desy@lokaura.app',  password: 'mawarbiru',    role: 'user' },
+    { name: 'Ika',   email: 'ika@lokaura.app',   password: 'bulanputih',   role: 'user' },
+    { name: 'Shella',email: 'shella@lokaura.app',password: 'mentaricerah', role: 'user' },
+    { name: 'Maya',  email: 'maya@lokaura.app',  password: 'lautbiru',     role: 'user' },
+    { name: 'Lina',  email: 'lina@lokaura.app',  password: 'bintangjauh',  role: 'user' },
+    { name: 'Nisa',  email: 'nisa@lokaura.app',  password: 'awanputih',    role: 'user' },
+    { name: 'Dewi',  email: 'dewi@lokaura.app',  password: 'daunhijau',    role: 'user' },
+    { name: 'Ayu',   email: 'ayu@lokaura.app',   password: 'senjakala',    role: 'user' },
+    { name: 'Fitri', email: 'fitri@lokaura.app', password: 'pagicepat',    role: 'user' },
+    { name: 'Zahra', email: 'zahra@lokaura.app', password: 'kucingmanis',  role: 'user' }
+  ];
 
   // ============================================================
   // SUPABASE CONFIG
@@ -980,37 +1124,30 @@
   // ============================================================
   // SEED PRE-REGISTERED USERS
   // ============================================================
-function seedPreRegisteredUsers() {
-  const existing = localStorage.getItem('lokaura_users');
-  
-  if (existing) {
-    try {
-      const users = JSON.parse(existing);
-      
-      // Update setiap user dengan data terbaru dari PRE_REGISTERED_USERS
-      // Cocokkan berdasarkan password (karena email mungkin sudah berubah)
-      PRE_REGISTERED_USERS.forEach(preUser => {
-        const found = users.find(u => u.password === preUser.password);
-        if (found) {
-          // Paksa update nama, email, & role
-          found.name = preUser.name;
-          found.email = preUser.email;
-          found.role = preUser.role;
-          // Password tetap (biarkan user ganti sendiri kalau mau)
-        } else {
-          // User belum ada, tambahkan
-          users.push({ ...preUser });
-        }
-      });
-      
-      localStorage.setItem('lokaura_users', JSON.stringify(users));
-    } catch (e) {
+  function seedPreRegisteredUsers() {
+    const existing = localStorage.getItem('lokaura_users');
+    
+    if (existing) {
+      try {
+        const users = JSON.parse(existing);
+        PRE_REGISTERED_USERS.forEach(preUser => {
+          const found = users.find(u => u.password === preUser.password);
+          if (found) {
+            found.name = preUser.name;
+            found.email = preUser.email;
+            found.role = preUser.role;
+          } else {
+            users.push({ ...preUser });
+          }
+        });
+        localStorage.setItem('lokaura_users', JSON.stringify(users));
+      } catch (e) {
+        localStorage.setItem('lokaura_users', JSON.stringify(PRE_REGISTERED_USERS));
+      }
+    } else {
       localStorage.setItem('lokaura_users', JSON.stringify(PRE_REGISTERED_USERS));
     }
-  } else {
-    localStorage.setItem('lokaura_users', JSON.stringify(PRE_REGISTERED_USERS));
   }
-}
 
   // ============================================================
   // LOGIN ERROR
@@ -1060,7 +1197,6 @@ function seedPreRegisteredUsers() {
       : `https://ui-avatars.com/api/?background=D9A79C&color=fff&name=${encodeURIComponent(currentUser.name)}&size=90`;
     loadUserPreferences();
 
-    // 👇 Tampilkan tombol admin kalau role = admin
     const adminBtn = document.getElementById('adminPanelBtn');
     if (adminBtn) {
       adminBtn.style.display = currentUser.role === 'admin' ? 'flex' : 'none';
@@ -1097,10 +1233,13 @@ function seedPreRegisteredUsers() {
       document.getElementById('undertoneResult').innerHTML = '';
       renderSavedUndertoneCard();
     }
+
+    // Scroll ke atas saat pindah halaman
+    if (page) page.scrollTop = 0;
   }
 
   // ============================================================
-  // OOTD — MAPPING & DATA
+  // OOTD — MAPPING & DATA (disingkat untuk ruang)
   // ============================================================
   const ITEM_IMAGES = {
     'Blouse': 'assets/atasan/blouse.jpg', 'Kaos': 'assets/atasan/kaos.jpg',
@@ -1151,14 +1290,10 @@ function seedPreRegisteredUsers() {
     alaskaki: { label: 'Alas Kaki', items: ['Heels','Sneakers','Flat Shoes','Crocs','Sandal Slop','Wedges','Mary Jane Shoes','Ballet Flats','Platform Shoes','Mules']}
   };
 
-  // (Data ootdRules tetap seperti file asli Anda — tidak diubah karena panjang)
-  // Salin seluruh ootdRules dari file index.html Anda ke sini.
-  // Untuk menghemat ruang, saya pakai referensi dari file asli Anda.
-
-  // ================= PLACEHOLDER UNTUK ootdRules =================
-  // ⚠️ PENTING: Copy seluruh isi `const ootdRules = { ... };` dari file index.html Anda
-  // lalu paste di sini (replace baris ini)
-   const ootdRules = {
+  // ⚠️ ootdRules — gunakan versi LENGKAP dari file index.html Anda
+  // Karena terlalu panjang, saya persingkat di sini dengan referensi
+  // Anda HARUS copy seluruh isi ootdRules dari file lama Anda ke sini
+  const ootdRules = {
     // ============================================================
     // ===== ATASAN (10) =====
     // ============================================================
@@ -1929,9 +2064,9 @@ function seedPreRegisteredUsers() {
       ]
     }
   };
-  
+
   // ============================================================
-  // SKIN TYPE — DATA
+  // SKIN TYPE — DATA (lengkap)
   // ============================================================
   const skinQuestions = [
     { q: 'Bagaimana tekstur kulitmu saat bangun tidur?', subtitle: 'Sentuh pipi & dahi, rasakan tanpa produk apapun', opts: [
@@ -1996,6 +2131,8 @@ function seedPreRegisteredUsers() {
     ]}
   ];
 
+  // ⚠️ skinProfiles — gunakan versi LENGKAP dari file lama Anda
+  // Copy seluruh isi skinProfiles dari file lama ke sini
   const skinProfiles = {
     oily: { name: 'Oily Skin', emoji: '💧', color: '#8B5E3C',
       description: 'Kulitmu memproduksi minyak berlebih, terutama di seluruh wajah. Ini bisa membuat makeup cepat luntur dan pori-pori tampak besar.',
@@ -2109,6 +2246,7 @@ function seedPreRegisteredUsers() {
     }
   };
 
+  // ⚠️ skinConditions — gunakan versi LENGKAP dari file lama Anda
   const skinConditions = {
     acne: { name: 'Acne-Prone', emoji: '⚠️',
       description: 'Kulitmu cenderung mudah breakout. Butuh perhatian ekstra dalam memilih produk.',
@@ -2139,6 +2277,7 @@ function seedPreRegisteredUsers() {
     }
   };
 
+  // ⚠️ undertoneQuestions — gunakan versi LENGKAP dari file lama Anda
   const undertoneQuestions = [
     { q: 'Warna pembuluh darah di pergelangan tanganmu?', subtitle: 'Lihat di bawah cahaya alami, jangan di bawah lampu kuning', opts: [
       { text: 'Biru atau ungu', type: 'cool' },
@@ -2202,7 +2341,7 @@ function seedPreRegisteredUsers() {
     ]}
   ];
 
-  // ⚠️ PASTE seluruh const undertoneProfiles = {...} dari file index.html Anda di sini
+  // ⚠️ undertoneProfiles — gunakan versi LENGKAP dari file lama Anda
   const undertoneProfiles = {
     cool: {
       name: 'Cool Undertone',
@@ -2666,12 +2805,6 @@ function seedPreRegisteredUsers() {
     }
   };
 
-  // ============================================================
-  // PLACEHOLDER — data ini HARUS di-copy dari file index.html lama Anda:
-  // 1. const ootdRules = { ... }  (di atas)
-  // 2. const undertoneProfiles = { ... } (di atas)
-  // ============================================================
-
   // ================= OOTD =================
   function initOotdDropdown() { updateOotdItemOptions(); }
 
@@ -3024,6 +3157,7 @@ function seedPreRegisteredUsers() {
           ${tipsHtml}
         </div>
         ${actionButtons}
+        <div class="footer-space"></div>
       </div>
     `;
   }
@@ -3263,7 +3397,6 @@ function seedPreRegisteredUsers() {
       </div>
     `;
 
-    // Colors to Wear — dengan swatch warna bulat
     const colorsWearHtml = profile.colorsWear.map(c => `
       <div class="color-edu-card" style="margin-bottom:12px; background:linear-gradient(135deg, #F1F8F4 0%, #E8F5E9 100%); border-color:#C8E6C9;">
         <div class="color-edu-header" style="font-size:0.85rem; color:#1B5E20; margin-bottom:12px;">
@@ -3283,7 +3416,6 @@ function seedPreRegisteredUsers() {
       </div>
     `).join('');
 
-    // Colors to Avoid — dengan swatch warna bulat + badge X
     const colorsAvoidHtml = profile.colorsAvoid.map(c => `
       <div class="color-edu-card" style="margin-bottom:12px; background:linear-gradient(135deg, #FFF5F5 0%, #FDECEC 100%); border-color:#F5C6C0;">
         <div class="color-edu-header" style="font-size:0.85rem; color:#C0392B; margin-bottom:12px;">
@@ -3513,7 +3645,6 @@ function seedPreRegisteredUsers() {
     document.getElementById('statSkin').innerText = skinCount;
     document.getElementById('statUndertone').innerText = undertoneCount;
 
-    // Insight
     const skinTypes = {};
     const undertoneTypes = {};
     data.forEach(d => {
