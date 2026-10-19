@@ -296,7 +296,7 @@
     @media (min-width: 768px) {
       /* Body jadi background */
       body {
-        background: linear-gradient(135deg, #F5EFE6 0%, #E8DED2 100%);
+        background: linear-gradient(135deg, #F5EFE6 0%, #E8DED2 100%) !important;
         display: flex;
         justify-content: center;
         align-items: flex-start;
@@ -306,9 +306,9 @@
 
       /* Container utama dipersempit */
       #app-container {
-        max-width: 480px;
-        width: 100%;
-        margin: 0 auto;
+        max-width: 480px !important;
+        width: 100% !important;
+        margin: 0 auto !important;
         background: var(--cream);
         border-radius: 24px;
         box-shadow:
@@ -328,58 +328,62 @@
 
       /* Splash screen dipersempit */
       #splash-screen {
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 480px;
-        max-width: calc(100vw - 40px);
-        height: calc(100vh - 40px);
-        border-radius: 24px;
+        position: fixed !important;
+        top: 20px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 480px !important;
+        max-width: calc(100vw - 40px) !important;
+        height: calc(100vh - 40px) !important;
+        border-radius: 24px !important;
         box-shadow:
           0 0 0 1px rgba(139,94,60,0.08),
-          0 30px 80px rgba(0,0,0,0.15);
-        z-index: 9999;
+          0 30px 80px rgba(0,0,0,0.15) !important;
+        z-index: 9999 !important;
       }
 
       /* Login overlay dipersempit */
       #authOverlay {
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 480px;
-        max-width: calc(100vw - 40px);
-        height: calc(100vh - 40px);
-        border-radius: 24px;
+        position: fixed !important;
+        top: 20px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 480px !important;
+        max-width: calc(100vw - 40px) !important;
+        height: calc(100vh - 40px) !important;
+        border-radius: 24px !important;
         box-shadow:
           0 0 0 1px rgba(139,94,60,0.08),
-          0 30px 80px rgba(0,0,0,0.15);
-        z-index: 2000;
+          0 30px 80px rgba(0,0,0,0.15) !important;
+        z-index: 2000 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 20px !important;
       }
 
       /* Login overlay card disesuaikan */
-   #authOverlay .card-lok {
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 !important;
-  border-radius: 24px !important;
-  box-shadow: none !important;
-  min-height: 100% !important;      /* ← UBAH: full height */
-  padding: 2.5rem 2rem !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  box-sizing: border-box !important;
-}
+      #authOverlay .card-lok {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        border-radius: 24px !important;
+        box-shadow: none !important;
+        min-height: 100% !important;
+        padding: 2.5rem 2rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+      }
 
       /* Bottom nav dipersempit & diposisikan di dalam container */
       .bottom-nav {
-        max-width: 480px;
-        width: 480px;
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
+        max-width: 480px !important;
+        width: 480px !important;
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
         border-radius: 0 0 24px 24px;
       }
 
@@ -418,6 +422,7 @@
         z-index: 1002;
       }
     }
+
     /* Untuk layar sangat lebar (>= 1200px), beri sedikit lebih besar */
     @media (min-width: 1200px) {
       #app-container,
@@ -754,10 +759,13 @@
       <p class="text-soft" id="profileEmail">email@contoh.com</p>
     </div>
     <div class="card-lok mb-3">
+      
+      <!-- ADMIN PANEL BUTTON -->
       <div class="setting-item" id="adminPanelBtn" style="display:none;" onclick="openAdminPanel()">
-        <span>👑 Admin Panel</span>
-        <i class="bi bi-chevron-right"></i>
+        <span style="color: var(--bronze); font-weight: 600;">👑 Admin Panel</span>
+        <i class="bi bi-chevron-right" style="color: var(--bronze);"></i>
       </div>
+
       <div class="setting-item" onclick="openEditProfile()">
         <span>Edit Profil</span><i class="bi bi-chevron-right"></i>
       </div>
@@ -1027,28 +1035,6 @@
   </div>
 </div>
 
-<!-- MODAL: BAHASA -->
-<div class="modal fade" id="languageModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content p-2">
-      <div class="modal-header">
-        <h5 class="modal-title">Pilih Bahasa</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <div class="quiz-option" id="langOptionId" onclick="selectLanguage('id')">
-          <input type="radio" name="langOption" id="langRadioId">
-          <span>🇮🇩 Bahasa Indonesia</span>
-        </div>
-        <div class="quiz-option" id="langOptionEn" onclick="selectLanguage('en')">
-          <input type="radio" name="langOption" id="langRadioEn">
-          <span>🇬🇧 English</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- MODAL: KEBIJAKAN PRIVASI -->
 <div class="modal fade" id="privacyModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -1226,8 +1212,9 @@
             found.name = preUser.name;
             found.email = preUser.email;
             found.role = preUser.role;
+            if (!found.role) found.role = 'user';
           } else {
-            users.push({ ...preUser });
+            users.push({ ...preUser, role: preUser.role || 'user' });
           }
         });
         localStorage.setItem('lokaura_users', JSON.stringify(users));
@@ -1287,9 +1274,14 @@
       : `https://ui-avatars.com/api/?background=D9A79C&color=fff&name=${encodeURIComponent(currentUser.name)}&size=90`;
     loadUserPreferences();
 
+    // 👇 PERBAIKAN: Cek role dengan pasti
     const adminBtn = document.getElementById('adminPanelBtn');
     if (adminBtn) {
-      adminBtn.style.display = currentUser.role === 'admin' ? 'flex' : 'none';
+      if (currentUser.role === 'admin') {
+        adminBtn.style.display = 'flex';
+      } else {
+        adminBtn.style.display = 'none';
+      }
     }
   }
 
@@ -1324,6 +1316,10 @@
       renderSavedUndertoneCard();
     }
 
+    if (pageId === 'admin') {
+      loadAdminData();
+    }
+
     // Scroll ke atas saat pindah halaman
     if (page) page.scrollTop = 0;
   }
@@ -1353,7 +1349,7 @@
     'Vest Formal': 'assets/outer/vest-formal.jpg', 'Jaket Kulit': 'assets/outer/jaket-kulit.jpg',
     'Bomber Oversize': 'assets/outer/bomber-oversize.jpg', 'Poncho': 'assets/outer/poncho.jpg',
     'Heels': 'assets/alas-kaki/heels.jpg', 'Sneakers': 'assets/alas-kaki/sneakers.jpg',
-    'Flat Shoes': 'assets/alas-kaki/flat-shoes.jpg', 'Crocs': 'assets/alas-kaki/crocs.jpg',
+    'Flat Shoes': 'assets/alas-kaki/flatshoes.jpg', 'Crocs': 'assets/alas-kaki/crocs.jpg',
     'Sandal Slop': 'assets/alas-kaki/sandal-slop.jpg', 'Wedges': 'assets/alas-kaki/wedges.jpg',
     'Mary Jane Shoes': 'assets/alas-kaki/mary-jane.jpg', 'Ballet Flats': 'assets/alas-kaki/ballet-flats.jpg',
     'Platform Shoes': 'assets/alas-kaki/platform-shoes.jpg', 'Mules': 'assets/alas-kaki/mules.jpg'
@@ -1380,13 +1376,8 @@
     alaskaki: { label: 'Alas Kaki', items: ['Heels','Sneakers','Flat Shoes','Crocs','Sandal Slop','Wedges','Mary Jane Shoes','Ballet Flats','Platform Shoes','Mules']}
   };
 
-  // ⚠️ ootdRules — gunakan versi LENGKAP dari file index.html Anda
-  // Karena terlalu panjang, saya persingkat di sini dengan referensi
-  // Anda HARUS copy seluruh isi ootdRules dari file lama Anda ke sini
+  // ⚠️ ootdRules
   const ootdRules = {
-    // ============================================================
-    // ===== ATASAN (10) =====
-    // ============================================================
     'Blouse': {
       lookTitle: 'Smart Casual Look with Blouse',
       breakdown: [
@@ -1537,10 +1528,6 @@
         { title: '💡 Cardigan Mustard + Bawahan Netral', text: 'Pop of color. <strong>Mustard (#FFDB58)</strong> = cheerful look. Bawahan <strong>Denim</strong> atau <strong>Beige</strong>. Hijab <strong>Navy (#1B2A4A)</strong> atau <strong>Cream</strong>.', palette: ['#FFDB58', '#4A6A8B', '#D9C7B8', '#1B2A4A', '#8B5E3C'] }
       ]
     },
-
-    // ============================================================
-    // ===== BAWAHAN (10) =====
-    // ============================================================
     'Celana Kulot': {
       lookTitle: 'Flowy Elegance with Celana Kulot',
       breakdown: [
@@ -1691,10 +1678,6 @@
         { title: '💡 Wide Leg Navy + Blouse Cream', text: 'Classic. <strong>Navy (#1B2A4A)</strong> + <strong>Cream (#FFFDD0)</strong> = elegan. Hijab <strong>Silver (#C0C0C0)</strong>.', palette: ['#1B2A4A', '#FFFDD0', '#C0C0C0', '#E8D9CD', '#8B5E3C'] }
       ]
     },
-
-    // ============================================================
-    // ===== HIJAB (10) =====
-    // ============================================================
     'Hijab Segi Empat': {
       lookTitle: 'Classic Elegance with Hijab Segi Empat',
       breakdown: [
@@ -1845,10 +1828,6 @@
         { title: '💡 Bergo Olahraga Terracotta + Kaos Cream', text: 'Warm sporty. <strong>Terracotta (#E2725B)</strong> + <strong>Cream (#FFFDD0)</strong> = hangat. Bawahan <strong>Beige (#E8D9CD)</strong>.', palette: ['#E2725B', '#FFFDD0', '#E8D9CD', '#D9C7B8', '#8B5E3C'] }
       ]
     },
-
-    // ============================================================
-    // ===== OUTER (10) =====
-    // ============================================================
     'Blazer': {
       lookTitle: 'Power Look with Blazer',
       breakdown: [
@@ -1999,10 +1978,6 @@
         { title: '💡 Poncho Mustard + Kaos Hitam + Jeans', text: 'Warm boho. <strong>Mustard (#FFDB58)</strong> + <strong>Hitam (#2C2C2C)</strong> + <strong>Denim (#4A6A8B)</strong> = earthy artsy. Hijab <strong>Cream (#FFFDD0)</strong>.', palette: ['#FFDB58', '#2C2C2C', '#4A6A8B', '#FFFDD0', '#8B5E3C'] }
       ]
     },
-
-    // ============================================================
-    // ===== ALAS KAKI (10) =====
-    // ============================================================
     'Heels': {
       lookTitle: 'Glamorous Step with Heels',
       breakdown: [
@@ -2221,8 +2196,6 @@
     ]}
   ];
 
-  // ⚠️ skinProfiles — gunakan versi LENGKAP dari file lama Anda
-  // Copy seluruh isi skinProfiles dari file lama ke sini
   const skinProfiles = {
     oily: { name: 'Oily Skin', emoji: '💧', color: '#8B5E3C',
       description: 'Kulitmu memproduksi minyak berlebih, terutama di seluruh wajah. Ini bisa membuat makeup cepat luntur dan pori-pori tampak besar.',
@@ -2336,7 +2309,6 @@
     }
   };
 
-  // ⚠️ skinConditions — gunakan versi LENGKAP dari file lama Anda
   const skinConditions = {
     acne: { name: 'Acne-Prone', emoji: '⚠️',
       description: 'Kulitmu cenderung mudah breakout. Butuh perhatian ekstra dalam memilih produk.',
@@ -2367,7 +2339,6 @@
     }
   };
 
-  // ⚠️ undertoneQuestions — gunakan versi LENGKAP dari file lama Anda
   const undertoneQuestions = [
     { q: 'Warna pembuluh darah di pergelangan tanganmu?', subtitle: 'Lihat di bawah cahaya alami, jangan di bawah lampu kuning', opts: [
       { text: 'Biru atau ungu', type: 'cool' },
@@ -2431,7 +2402,6 @@
     ]}
   ];
 
-  // ⚠️ undertoneProfiles — gunakan versi LENGKAP dari file lama Anda
   const undertoneProfiles = {
     cool: {
       name: 'Cool Undertone',
@@ -4006,34 +3976,6 @@
     showToast(el.checked ? 'Notifikasi diaktifkan' : 'Notifikasi dimatikan');
   }
 
-  function toggleDarkMode(el) {
-    document.body.classList.toggle('dark-mode', el.checked);
-    localStorage.setItem('lokaura_darkmode', el.checked ? 'on' : 'off');
-  }
-
-  function openLanguageModal() {
-    const currentLang = localStorage.getItem('lokaura_language') || 'id';
-    document.getElementById('langOptionId').classList.toggle('selected', currentLang === 'id');
-    document.getElementById('langRadioId').checked = currentLang === 'id';
-    document.getElementById('langOptionEn').classList.toggle('selected', currentLang === 'en');
-    document.getElementById('langRadioEn').checked = currentLang === 'en';
-    new bootstrap.Modal(document.getElementById('languageModal')).show();
-  }
-
-  function selectLanguage(lang) {
-    localStorage.setItem('lokaura_language', lang);
-    document.getElementById('currentLanguageDisplay').innerHTML = 
-      (lang === 'id' ? 'Indonesia' : 'English') + ' <i class="bi bi-chevron-down"></i>';
-    document.getElementById('langOptionId').classList.toggle('selected', lang === 'id');
-    document.getElementById('langRadioId').checked = lang === 'id';
-    document.getElementById('langOptionEn').classList.toggle('selected', lang === 'en');
-    document.getElementById('langRadioEn').checked = lang === 'en';
-    setTimeout(() => {
-      bootstrap.Modal.getInstance(document.getElementById('languageModal')).hide();
-      showToast(lang === 'id' ? 'Bahasa diubah ke Indonesia' : 'Language changed to English');
-    }, 300);
-  }
-
   function openPrivacyModal() { new bootstrap.Modal(document.getElementById('privacyModal')).show(); }
   function openAboutModal() { new bootstrap.Modal(document.getElementById('aboutModal')).show(); }
 
@@ -4069,14 +4011,6 @@
   function loadUserPreferences() {
     const notif = localStorage.getItem('lokaura_notif') || 'on';
     document.getElementById('notifToggle').checked = notif === 'on';
-    const darkMode = localStorage.getItem('lokaura_darkmode') || 'off';
-    if (darkMode === 'on') {
-      document.body.classList.add('dark-mode');
-      document.getElementById('darkModeToggle').checked = true;
-    }
-    const lang = localStorage.getItem('lokaura_language') || 'id';
-    document.getElementById('currentLanguageDisplay').innerHTML = 
-      (lang === 'id' ? 'Indonesia' : 'English') + ' <i class="bi bi-chevron-down"></i>';
     if (currentUser && currentUser.photo) {
       document.getElementById('profilePic').src = currentUser.photo;
     }
@@ -4120,9 +4054,6 @@
   window.openChangePassword = openChangePassword;
   window.saveNewPassword = saveNewPassword;
   window.toggleNotification = toggleNotification;
-  window.toggleDarkMode = toggleDarkMode;
-  window.openLanguageModal = openLanguageModal;
-  window.selectLanguage = selectLanguage;
   window.openPrivacyModal = openPrivacyModal;
   window.openAboutModal = openAboutModal;
   window.showToast = showToast;
