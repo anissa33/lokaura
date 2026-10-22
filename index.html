@@ -282,19 +282,175 @@
       font-size: 0.65rem; color: var(--text-soft);
       margin-top: 4px; line-height: 1.15;
     }
-    /* Admin panel styles */
-    .admin-result-item {
-      transition: box-shadow 0.15s, transform 0.15s;
+    
+    /* ============================================================
+       ADMIN PANEL REDESIGN
+       ============================================================ */
+    #page-admin {
+      background-color: #FAF8F5;
+      padding-bottom: 24px;
     }
-    .admin-result-item:hover {
-      box-shadow: var(--shadow-md);
+    .admin-stat-card {
+      background: white;
+      border-radius: 16px;
+      padding: 12px 8px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(139,94,60,0.05);
+      border: 1px solid rgba(139,94,60,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .admin-stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 4px;
+    }
+    .admin-stat-card.total::before { background: var(--bronze); }
+    .admin-stat-card.skin::before { background: var(--rose); }
+    .admin-stat-card.undertone::before { background: #9CAF88; }
+    
+    .admin-stat-val {
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+    .admin-stat-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+      color: var(--text-soft);
+    }
+    .admin-insight-box {
+      background: linear-gradient(135deg, #8B5E3C 0%, #A67B5B 100%);
+      border-radius: 20px;
+      padding: 16px;
+      color: white;
+      box-shadow: 0 8px 24px rgba(139,94,60,0.2);
+      margin-bottom: 16px;
+    }
+    .admin-insight-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #FFF3E0;
+    }
+    .admin-insight-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 0.8rem;
+    }
+    .admin-insight-row:last-child { margin-bottom: 0; }
+    .admin-insight-label { opacity: 0.85; }
+    .admin-insight-value { font-weight: 600; }
+    .admin-filter-box {
+      background: white;
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      border: 1px solid #F0E6DD;
+      margin-bottom: 16px;
+    }
+    .admin-user-card {
+      background: white;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      border: 1px solid #F0E6DD;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .admin-user-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(139,94,60,0.08);
+    }
+    .admin-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #F3DFD9, #D9A79C);
+      color: #6B4226;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .admin-user-info { flex: 1; min-width: 0; }
+    .admin-user-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      margin-bottom: 2px;
+    }
+    .admin-user-email {
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      word-break: break-all;
+    }
+    .admin-badge {
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+    }
+    .admin-badge.skin {
+      background: #FDF3EC;
+      color: #8B5E3C;
+      border: 1px solid #F0E0D5;
+    }
+    .admin-badge.undertone {
+      background: #F1F8F4;
+      color: #1B5E20;
+      border: 1px solid #C8E6C9;
+    }
+    .admin-result-content {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed #F0E6DD;
+    }
+    .admin-result-main {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .admin-result-main strong {
+      font-size: 0.9rem;
+      color: var(--bronze-dark);
+    }
+    .admin-result-detail {
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      background: #FAF8F5;
+      padding: 6px 10px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 4px;
+    }
+    .admin-time {
+      font-size: 0.7rem;
+      color: #A9A9A9;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 10px;
     }
 
     /* ============================================================
        FORCE MOBILE VIEW (untuk tampilan di laptop/desktop)
        ============================================================ */
     @media (min-width: 768px) {
-      /* Body jadi background */
       body {
         background: linear-gradient(135deg, #F5EFE6 0%, #E8DED2 100%) !important;
         display: flex;
@@ -303,30 +459,22 @@
         padding: 20px 0;
         min-height: 100vh;
       }
-
-      /* Container utama dipersempit */
       #app-container {
         max-width: 480px !important;
         width: 100% !important;
         margin: 0 auto !important;
         background: var(--cream);
         border-radius: 24px;
-        box-shadow:
-          0 0 0 1px rgba(139,94,60,0.08),
-          0 30px 80px rgba(0,0,0,0.15);
+        box-shadow: 0 0 0 1px rgba(139,94,60,0.08), 0 30px 80px rgba(0,0,0,0.15);
         overflow: hidden;
         min-height: calc(100vh - 40px);
         max-height: calc(100vh - 40px);
         position: relative;
       }
-
-      /* Page scroll internal */
       #app-container .page {
         overflow-y: auto;
         max-height: calc(100vh - 40px - 74px);
       }
-
-      /* Splash screen dipersempit */
       #splash-screen {
         position: fixed !important;
         top: 20px !important;
@@ -336,13 +484,9 @@
         max-width: calc(100vw - 40px) !important;
         height: calc(100vh - 40px) !important;
         border-radius: 24px !important;
-        box-shadow:
-          0 0 0 1px rgba(139,94,60,0.08),
-          0 30px 80px rgba(0,0,0,0.15) !important;
+        box-shadow: 0 0 0 1px rgba(139,94,60,0.08), 0 30px 80px rgba(0,0,0,0.15) !important;
         z-index: 9999 !important;
       }
-
-      /* Login overlay dipersempit */
       #authOverlay {
         position: fixed !important;
         top: 20px !important;
@@ -352,17 +496,13 @@
         max-width: calc(100vw - 40px) !important;
         height: calc(100vh - 40px) !important;
         border-radius: 24px !important;
-        box-shadow:
-          0 0 0 1px rgba(139,94,60,0.08),
-          0 30px 80px rgba(0,0,0,0.15) !important;
+        box-shadow: 0 0 0 1px rgba(139,94,60,0.08), 0 30px 80px rgba(0,0,0,0.15) !important;
         z-index: 2000 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         padding: 20px !important;
       }
-
-      /* Login overlay card disesuaikan */
       #authOverlay .card-lok {
         width: 100% !important;
         max-width: 100% !important;
@@ -376,8 +516,6 @@
         justify-content: center !important;
         box-sizing: border-box !important;
       }
-
-      /* Bottom nav dipersempit & diposisikan di dalam container */
       .bottom-nav {
         max-width: 480px !important;
         width: 480px !important;
@@ -386,29 +524,11 @@
         transform: translateX(-50%) !important;
         border-radius: 0 0 24px 24px;
       }
-
-      /* Modal disesuaikan */
-      .modal-dialog {
-        max-width: 460px;
-      }
-
-      .modal-content {
-        max-width: 100%;
-      }
-
-      /* Hide scrollbar di dalam container */
-      #app-container .page::-webkit-scrollbar {
-        width: 4px;
-      }
-      #app-container .page::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      #app-container .page::-webkit-scrollbar-thumb {
-        background: rgba(139,94,60,0.15);
-        border-radius: 10px;
-      }
-
-      /* Notch cantik di atas container (opsional) */
+      .modal-dialog { max-width: 460px; }
+      .modal-content { max-width: 100%; }
+      #app-container .page::-webkit-scrollbar { width: 4px; }
+      #app-container .page::-webkit-scrollbar-track { background: transparent; }
+      #app-container .page::-webkit-scrollbar-thumb { background: rgba(139,94,60,0.15); border-radius: 10px; }
       #app-container::before {
         content: '';
         position: absolute;
@@ -422,124 +542,65 @@
         z-index: 1002;
       }
     }
-
-    /* Untuk layar sangat lebar (>= 1200px), beri sedikit lebih besar */
     @media (min-width: 1200px) {
-      #app-container,
-      #splash-screen,
-      #authOverlay,
-      .bottom-nav {
+      #app-container, #splash-screen, #authOverlay, .bottom-nav {
         max-width: 440px !important;
         width: 440px !important;
       }
     }
-
-    /* Untuk tablet (768px - 1024px), tetap pakai mobile view */
     @media (min-width: 768px) and (max-width: 1024px) {
-      #app-container,
-      #splash-screen,
-      #authOverlay,
-      .bottom-nav {
+      #app-container, #splash-screen, #authOverlay, .bottom-nav {
         max-width: 420px !important;
         width: 420px !important;
       }
     }
-
-    /* ============================================================
-       KHUSUS HP (layar < 768px) — PAKSA FULL SCREEN
-       ============================================================ */
     @media (max-width: 767px) {
       html, body {
-        margin: 0 !important;
-        padding: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        overflow-x: hidden !important;
-        background: var(--cream) !important;
+        margin: 0 !important; padding: 0 !important;
+        width: 100% !important; height: 100% !important;
+        overflow-x: hidden !important; background: var(--cream) !important;
       }
-
       #splash-screen {
-        position: fixed !important;
-        inset: 0 !important;
-        width: 100% !important;
-        height: 100vh !important;
-        max-width: 100% !important;
-        max-height: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
-        left: 0 !important;
-        top: 0 !important;
-        transform: none !important;
-        background: var(--cream) !important;
+        position: fixed !important; inset: 0 !important;
+        width: 100% !important; height: 100vh !important;
+        max-width: 100% !important; max-height: 100% !important;
+        margin: 0 !important; padding: 0 !important;
+        border-radius: 0 !important; box-shadow: none !important;
+        left: 0 !important; top: 0 !important;
+        transform: none !important; background: var(--cream) !important;
       }
-
       #authOverlay {
-        position: fixed !important;
-        inset: 0 !important;
-        width: 100% !important;
-        height: 100vh !important;
-        max-width: 100% !important;
-        max-height: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
-        background: var(--cream) !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
+        position: fixed !important; inset: 0 !important;
+        width: 100% !important; height: 100vh !important;
+        max-width: 100% !important; max-height: 100% !important;
+        margin: 0 !important; padding: 0 !important;
+        border-radius: 0 !important; box-shadow: none !important;
+        background: var(--cream) !important; display: flex !important;
+        align-items: center !important; justify-content: center !important;
         box-sizing: border-box !important;
       }
-
       #authOverlay .card-lok {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
-        min-height: auto !important;
-        padding: 2rem 1.5rem !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        box-sizing: border-box !important;
-        background: var(--cream) !important;
+        width: 100% !important; max-width: 100% !important;
+        margin: 0 !important; border-radius: 0 !important;
+        box-shadow: none !important; min-height: auto !important;
+        padding: 2rem 1.5rem !important; display: flex !important;
+        flex-direction: column !important; justify-content: center !important;
+        box-sizing: border-box !important; background: var(--cream) !important;
       }
-
       #app-container {
-        max-width: 100% !important;
-        width: 100% !important;
-        margin: 0 !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
-        min-height: 100vh !important;
-        max-height: none !important;
-        background: var(--cream) !important;
+        max-width: 100% !important; width: 100% !important;
+        margin: 0 !important; border-radius: 0 !important;
+        box-shadow: none !important; min-height: 100vh !important;
+        max-height: none !important; background: var(--cream) !important;
       }
-
-      #app-container::before {
-        display: none !important;
-        content: none !important;
-      }
-
+      #app-container::before { display: none !important; content: none !important; }
       .bottom-nav {
-        max-width: 100% !important;
-        width: 100% !important;
-        left: 0 !important;
-        right: 0 !important;
-        transform: none !important;
-        border-radius: 0 !important;
+        max-width: 100% !important; width: 100% !important;
+        left: 0 !important; right: 0 !important;
+        transform: none !important; border-radius: 0 !important;
       }
     }
-
-    /* ============================================================
-       OVERRIDE HIDDEN
-       ============================================================ */
-    #authOverlay.hidden,
-    #splash-screen.hidden,
-    #app-container.hidden {
+    #authOverlay.hidden, #splash-screen.hidden, #app-container.hidden {
       display: none !important;
     }
   </style>
@@ -789,68 +850,80 @@
     <div class="footer-space"></div>
   </div>
 
-  <!-- ============ ADMIN PANEL ============ -->
+  <!-- ============ ADMIN PANEL (NEW DESIGN) ============ -->
   <div id="page-admin" class="page">
-    <div class="d-flex align-items-center gap-2 mb-3">
-      <button class="btn btn-sm rounded-pill" 
-              style="background: var(--rose-light); color: var(--bronze); border:none; width:36px; height:36px;"
+    <!-- Header -->
+    <div class="d-flex align-items-center gap-3 mb-4">
+      <button class="btn btn-sm rounded-circle" 
+              style="background: white; color: var(--bronze); border: 1px solid #F0E6DD; width:40px; height:40px; box-shadow: 0 4px 8px rgba(0,0,0,0.04);"
               onclick="goToPage('profil')">
-        <i class="bi bi-arrow-left"></i>
+        <i class="bi bi-arrow-left" style="font-size:1.2rem;"></i>
       </button>
       <div>
-        <h2 class="mb-0" style="font-size:1.3rem;">👑 Admin Panel</h2>
-        <small class="text-soft" style="font-size:0.75rem;">Kelola & lihat hasil kuis user</small>
+        <h2 class="mb-0" style="font-size:1.4rem; font-weight: 700;">Dashboard Admin</h2>
+        <small class="text-soft" style="font-size:0.75rem;">Pantau hasil kuis pengguna</small>
       </div>
     </div>
 
     <!-- Statistik Cards -->
     <div class="row g-2 mb-3">
       <div class="col-4">
-        <div class="card-lok text-center p-2" style="padding:0.8rem !important;">
-          <div style="font-size:1.6rem; font-weight:700; color: var(--bronze);" id="statTotal">0</div>
-          <small class="text-soft" style="font-size:0.68rem; line-height:1.2;">Total Kuis</small>
+        <div class="admin-stat-card total">
+          <div class="admin-stat-val" style="color: var(--bronze);" id="statTotal">0</div>
+          <div class="admin-stat-label">Total Kuis</div>
         </div>
       </div>
       <div class="col-4">
-        <div class="card-lok text-center p-2" style="padding:0.8rem !important;">
-          <div style="font-size:1.6rem; font-weight:700; color: #D9A79C;" id="statSkin">0</div>
-          <small class="text-soft" style="font-size:0.68rem; line-height:1.2;">Skin Type</small>
+        <div class="admin-stat-card skin">
+          <div class="admin-stat-val" style="color: var(--rose);" id="statSkin">0</div>
+          <div class="admin-stat-label">Skin Type</div>
         </div>
       </div>
       <div class="col-4">
-        <div class="card-lok text-center p-2" style="padding:0.8rem !important;">
-          <div style="font-size:1.6rem; font-weight:700; color: #8B5E3C;" id="statUndertone">0</div>
-          <small class="text-soft" style="font-size:0.68rem; line-height:1.2;">Undertone</small>
+        <div class="admin-stat-card undertone">
+          <div class="admin-stat-val" style="color: #9CAF88;" id="statUndertone">0</div>
+          <div class="admin-stat-label">Undertone</div>
         </div>
       </div>
     </div>
 
     <!-- Insight Section -->
-    <div class="card-lok mb-3">
-      <h6 class="fw-bold mb-3"><i class="bi bi-graph-up-arrow me-2"></i>Insight</h6>
+    <div class="admin-insight-box">
+      <div class="admin-insight-title">
+        <i class="bi bi-graph-up-arrow"></i> Insight Pengguna
+      </div>
       <div id="adminInsight">
-        <small class="text-soft">Memuat insight...</small>
+        <div class="admin-insight-row">
+          <span class="admin-insight-label">Memuat data...</span>
+        </div>
       </div>
     </div>
 
     <!-- Filter & Search -->
-    <div class="card-lok mb-3">
-      <div class="mb-2">
-        <input type="text" 
-               class="form-control form-control-lok" 
-               id="adminSearch" 
-               placeholder="🔍 Cari nama atau email user..." 
-               oninput="filterAdminResults()">
+    <div class="admin-filter-box">
+      <div class="mb-3">
+        <div class="input-group">
+          <span class="input-group-text bg-white border-end-0" style="border-radius: 12px 0 0 12px; border-color: #E5D9CF;">
+            <i class="bi bi-search text-soft"></i>
+          </span>
+          <input type="text" 
+                 class="form-control border-start-0" 
+                 id="adminSearch" 
+                 placeholder="Cari nama atau email..." 
+                 oninput="filterAdminResults()"
+                 style="border-radius: 0 12px 12px 0; border-color: #E5D9CF; box-shadow: none; font-size: 0.9rem;">
+        </div>
       </div>
       <div class="d-flex gap-2">
-        <select class="form-select form-select-lok flex-grow-1" 
+        <select class="form-select flex-grow-1" 
                 id="adminFilter" 
-                onchange="loadAdminData()">
+                onchange="loadAdminData()"
+                style="border-radius: 12px; border-color: #E5D9CF; font-size: 0.85rem; color: var(--text-dark);">
           <option value="all">Semua Kuis</option>
           <option value="skin">Hanya Skin Type</option>
           <option value="undertone">Hanya Undertone</option>
         </select>
-        <button class="btn-bronze rounded-pill px-3" onclick="loadAdminData()" title="Refresh">
+        <button class="btn-bronze rounded-circle px-3" onclick="loadAdminData()" title="Refresh" style="min-width: 44px;">
           <i class="bi bi-arrow-clockwise"></i>
         </button>
       </div>
@@ -865,8 +938,8 @@
     </div>
 
     <!-- Export -->
-    <button class="btn-outline-bronze w-100 mt-3" onclick="exportAdminCSV()">
-      <i class="bi bi-download me-2"></i>Export CSV (Excel)
+    <button class="btn-outline-bronze w-100 mt-3" onclick="exportAdminCSV()" style="border-radius: 16px; padding: 12px;">
+      <i class="bi bi-download me-2"></i>Export Data (CSV)
     </button>
 
     <div class="footer-space"></div>
@@ -3723,26 +3796,26 @@
     if (!insightEl) return;
 
     let html = `
-      <div class="d-flex justify-content-between mb-2">
-        <small class="text-soft">Total user aktif</small>
-        <small class="fw-semibold">${uniqueUsers} orang</small>
+      <div class="admin-insight-row">
+        <span class="admin-insight-label">Total User Aktif</span>
+        <span class="admin-insight-value">${uniqueUsers} Orang</span>
       </div>
     `;
     if (topSkin) {
-      html += `<div class="d-flex justify-content-between mb-2">
-        <small class="text-soft">Tipe kulit terbanyak</small>
-        <small class="fw-semibold">${skinProfiles[topSkin[0]]?.emoji || ''} ${skinProfiles[topSkin[0]]?.name || topSkin[0]} (${topSkin[1]})</small>
+      html += `<div class="admin-insight-row">
+        <span class="admin-insight-label">Tipe Kulit Terbanyak</span>
+        <span class="admin-insight-value">${skinProfiles[topSkin[0]]?.emoji || ''} ${skinProfiles[topSkin[0]]?.name || topSkin[0]} (${topSkin[1]})</span>
       </div>`;
     }
     if (topUndertone) {
-      html += `<div class="d-flex justify-content-between mb-2">
-        <small class="text-soft">Undertone terbanyak</small>
-        <small class="fw-semibold">${undertoneProfiles[topUndertone[0]]?.emoji || ''} ${undertoneProfiles[topUndertone[0]]?.name || topUndertone[0]} (${topUndertone[1]})</small>
+      html += `<div class="admin-insight-row">
+        <span class="admin-insight-label">Undertone Terbanyak</span>
+        <span class="admin-insight-value">${undertoneProfiles[topUndertone[0]]?.emoji || ''} ${undertoneProfiles[topUndertone[0]]?.name || topUndertone[0]} (${topUndertone[1]})</span>
       </div>`;
     }
-    html += `<div class="d-flex justify-content-between">
-      <small class="text-soft">Kuis terbaru</small>
-      <small class="fw-semibold">${data[0] ? new Date(data[0].created_at).toLocaleDateString('id-ID', {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}) : '-'}</small>
+    html += `<div class="admin-insight-row">
+      <span class="admin-insight-label">Kuis Terbaru</span>
+      <span class="admin-insight-value">${data[0] ? new Date(data[0].created_at).toLocaleDateString('id-ID', {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}) : '-'}</span>
     </div>`;
     insightEl.innerHTML = html;
   }
@@ -3752,10 +3825,10 @@
 
     if (data.length === 0) {
       container.innerHTML = `
-        <div class="card-lok text-center">
-          <i class="bi bi-inbox" style="font-size:2.5rem; color: var(--rose);"></i>
-          <p class="text-soft mt-2 mb-0">Belum ada data kuis.</p>
-          <small class="text-soft" style="font-size:0.75rem;">Data akan muncul setelah user mengerjakan kuis.</small>
+        <div class="card-lok text-center py-5">
+          <i class="bi bi-inbox" style="font-size:3rem; color: var(--rose);"></i>
+          <h6 class="mt-3 fw-bold">Belum Ada Data</h6>
+          <p class="text-soft mb-0" style="font-size:0.85rem;">Data kuis akan muncul setelah user mengisi kuis.</p>
         </div>
       `;
       return;
@@ -3766,52 +3839,62 @@
         day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
       });
 
+      const initial = (item.user_name || 'U').charAt(0).toUpperCase();
+      
       let summary = '';
-      let badgeColor = '#D9A79C';
+      let badgeClass = 'skin';
       let badgeLabel = 'SKIN';
 
       if (item.quiz_type === 'skin') {
         const typeName = skinProfiles[item.result_data?.type]?.name || item.result_data?.type || 'Unknown';
         const emoji = skinProfiles[item.result_data?.type]?.emoji || '💧';
         const conditions = (item.result_data?.conditions || []).map(c => skinConditions[c]?.name).filter(Boolean).join(', ');
+        
         summary = `
-          <div class="d-flex align-items-center gap-2 mb-1">
-            <span style="font-size:1.3rem;">${emoji}</span>
-            <strong style="color: var(--bronze-dark); font-size:0.9rem;">${typeName}</strong>
+          <div class="admin-result-main">
+            <span style="font-size:1.2rem;">${emoji}</span>
+            <strong>${typeName}</strong>
           </div>
-          ${conditions ? `<small class="text-soft" style="font-size:0.75rem;">+ ${conditions}</small>` : ''}
+          ${conditions ? `<div class="admin-result-detail">+ ${conditions}</div>` : ''}
         `;
-        badgeColor = '#D9A79C';
+        badgeClass = 'skin';
         badgeLabel = 'SKIN';
       } else {
         const typeName = undertoneProfiles[item.result_data?.type]?.name || item.result_data?.type || 'Unknown';
         const emoji = undertoneProfiles[item.result_data?.type]?.emoji || '🎨';
+        
         summary = `
-          <div class="d-flex align-items-center gap-2 mb-1">
-            <span style="font-size:1.3rem;">${emoji}</span>
-            <strong style="color: var(--bronze-dark); font-size:0.9rem;">${typeName}</strong>
+          <div class="admin-result-main">
+            <span style="font-size:1.2rem;">${emoji}</span>
+            <strong>${typeName}</strong>
           </div>
         `;
-        badgeColor = '#8B5E3C';
+        badgeClass = 'undertone';
         badgeLabel = 'UNDERTONE';
       }
 
       return `
-        <div class="card-lok mb-2 admin-result-item" 
+        <div class="admin-user-card admin-result-item" 
              data-name="${(item.user_name || '').toLowerCase()}" 
-             data-email="${(item.user_email || '').toLowerCase()}"
-             style="padding:1rem;">
-          <div class="d-flex justify-content-between align-items-start mb-2">
-            <div style="flex:1; min-width:0;">
-              <div class="fw-semibold" style="font-size:0.9rem;">${item.user_name || '-'}</div>
-              <small class="text-soft" style="font-size:0.72rem; word-break:break-all;">${item.user_email || '-'}</small>
+             data-email="${(item.user_email || '').toLowerCase()}">
+          
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <div class="d-flex align-items-center gap-3">
+              <div class="admin-avatar">${initial}</div>
+              <div class="admin-user-info">
+                <div class="admin-user-name">${item.user_name || '-'}</div>
+                <div class="admin-user-email">${item.user_email || '-'}</div>
+              </div>
             </div>
-            <span class="badge-complement" style="background:${badgeColor}30; color:${badgeColor}; font-size:0.62rem; font-weight:700; flex-shrink:0; margin-left:8px;">${badgeLabel}</span>
+            <span class="admin-badge ${badgeClass}">${badgeLabel}</span>
           </div>
-          ${summary}
-          <small class="text-soft" style="font-size:0.7rem; display:block; margin-top:6px;">
-            <i class="bi bi-clock me-1"></i>${date}
-          </small>
+
+          <div class="admin-result-content">
+            ${summary}
+            <div class="admin-time">
+              <i class="bi bi-clock"></i> ${date}
+            </div>
+          </div>
         </div>
       `;
     }).join('');
